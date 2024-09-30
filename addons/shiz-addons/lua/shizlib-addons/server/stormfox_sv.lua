@@ -27,4 +27,4 @@ hook.Add('HordeWaveEnd', 'shizlib-StormFoxAndHorde2', function(wave)
 
     shizlib.horde.night_health_multiplier = 1
     shizlib.horde.enemy_count_multiplier = 1
-end) 
+end)

@@ -14,6 +14,31 @@ local draw_RoundedBoxEx = CLIENT and draw.RoundedBoxEx
 local draw_SimpleText = CLIENT and draw.SimpleText
 
 function CHAT.Init()
+    if IsValid(CHAT.freak) or IsValid(CHAT.fr) then
+        CHAT.freak:Remove()
+        CHAT.fr:Remove()
+    end
+    hook.Add('HUDPaint', 'shizlib-chatPaint', function()
+        local w = s(45)
+        local h = s(640)
+        local x = s(100)
+        local y = s(300)
+
+        if CHAT.fr:IsVisible() then
+            CHAT.hud_richText:SetPos(9999, 9999)
+        else
+            CHAT.hud_richText:Dock(FILL)
+            CHAT.hud_richText:DockMargin(s(5), s(5), s(5), s(40))
+        end
+    end)
+
+    CHAT.freak = vgui.Create('DPanel')
+    CHAT.freak:SetPos(s(100), s(640))
+    CHAT.freak:SetSize(s(600), s(300))
+    function CHAT.freak:Paint(w, h)
+        draw.RoundedBox(0, 0, 0, 0, 0, color_white)
+    end
+
     CHAT.fr = vgui.Create('DFrame')
     CHAT.fr:SetVisible(false)
     CHAT.fr:SetPos(s(100), s(640))
@@ -21,11 +46,7 @@ function CHAT.Init()
     CHAT.fr:ShowCloseButton(false)
     CHAT.fr:SetDraggable(true)
     CHAT.fr:SetTitle('Pretty Chating')
-    -- function CHAT.fr:Paint(w, h)
-    --     draw_RoundedBox(8, 0, 0, w, h, colors.bg)
-    --     draw_RoundedBoxEx(8, 0, 0, w, s(24), colors.hvr, true, true)
-    --     draw_SimpleText('Pretty Chating?', 'font.24', s(8), s(12), color_white, 0, 1)
-    -- end
+    
     local keypressed = true
     function CHAT.fr:Think()
         if input.IsButtonDown(KEY_ESCAPE) then
@@ -44,6 +65,15 @@ function CHAT.Init()
     CHAT.richText:DockMargin(s(5), s(5), s(5), s(40))
     CHAT.richText:SetVerticalScrollbarEnabled(true)
     function CHAT.richText:Paint(w, h)
+        self:DrawTextEntryText(Color(25, 25, 25), Color(25, 25, 25), Color(25, 25, 25))
+        self:SetFontInternal('font.20')
+    end
+
+    CHAT.hud_richText = CHAT.freak:Add('RichText')
+    CHAT.hud_richText:Dock(FILL)
+    CHAT.hud_richText:DockMargin(s(5), s(5), s(5), s(40))
+    CHAT.hud_richText:SetVerticalScrollbarEnabled(true)
+    function CHAT.hud_richText:Paint(w, h)
         self:DrawTextEntryText(Color(25, 25, 25), Color(25, 25, 25), Color(25, 25, 25))
         self:SetFontInternal('font.20')
     end
@@ -99,7 +129,7 @@ function autotypePlayerName( str )
 end
 
 function CHAT.ChangeVisible( bool )
-    if not IsValid(CHAT.fr) then return end
+    if not IsValid(CHAT.fr) or not IsValid(CHAT.freak) then CHAT.Init() end
 
     CHAT.fr:SetMouseInputEnabled(bool)
     CHAT.fr:SetKeyboardInputEnabled(bool)
@@ -118,11 +148,14 @@ function CHAT.ChangeVisible( bool )
 end
 
 function appendToChat(obj)
-    if not IsValid(CHAT.richText) then return end
+    if not IsValid(CHAT.richText) or not IsValid(CHAT.hud_richText) then return end
     if type(obj) == 'table' then
-        CHAT.richText:InsertColorChange( obj.r, obj.g, obj.b, 255 );
+        CHAT.richText:InsertColorChange( obj.r, obj.g, obj.b, 255 )
+        CHAT.hud_richText:InsertColorChange( obj.r, obj.g, obj.b, 255 )
     elseif type(obj) == 'string' then
-        CHAT.richText:AppendText(obj);
+        CHAT.richText:AppendText(obj)
+        CHAT.hud_richText:AppendText(obj)
+        CHAT.hud_richText:InsertFade(10, 2.5)
     end
 end
 
