@@ -1,24 +1,32 @@
-# /*
-# !.gitignore
-# # Разрешить всё в addons/, gamemodes/, lua/
-# !addons/
-# !gamemodes/
-# !lua/
-
-# # Разрешить все файлы и подпапки в addons/, gamemodes/, lua/
-# !addons/**
-# !gamemodes/**
-# !lua/**
-
-# # Запретить папку addons/libfuse-protect/ и её содержимое
-# addons/libfuse-protect/
-# addons/libfuse-protect/**
-
 *
-
 !.gitignore
-!/
-!.lua
+!*/
+!*.lua
+.vmt
+.mdl
+.vtx
+.phy
+.vvd
 
+# Разрешить всё в addons/, gamemodes/, lua/
+!addons/
+!gamemodes/
+!lua/
+
+# Разрешить все файлы и подпапки в addons/, gamemodes/, lua/
+!addons/**
+!gamemodes/**
+!lua/**
+
+# Запретить папку addons/libfuse-protect/ и её содержимое
 addons/libfuse-protect/
 addons/libfuse-protect/**
+
+# *
+
+# !.gitignore
+# !/
+# !.lua
+
+# addons/libfuse-protect/
+# addons/libfuse-protect/**
