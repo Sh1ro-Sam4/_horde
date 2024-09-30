@@ -15,6 +15,8 @@ hook.Add('HordeWaveStart', 'shizlib-StormFoxAndHorde', function(wave)
         shizlib.horde.enemy_count_multiplier = 1.5
 
         StormFox2.Time.Set(60)
+    else
+        StormFox2.Time.Set(720)
     end
 
     StormFox2.Time.Pause()
