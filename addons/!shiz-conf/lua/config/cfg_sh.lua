@@ -69,3 +69,5 @@ CFG.icon17 = {
     ['knife'] = 'knife',
     ['revolver'] = 'revolver',
 }
+
+-- Пасхалка
