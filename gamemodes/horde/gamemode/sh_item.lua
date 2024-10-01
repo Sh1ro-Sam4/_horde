@@ -387,21 +387,6 @@ end
 
 function HORDE:GetDefaultItemsData()
     // CUSTOM
-    HORDE:CreateItem("Melee", "Ice bitch", "tfa_cso_tyrantmace", 4000, 8,
-    "That so cold. I mean soooo cold..\n\nPress R to deliver a powerful ice blast.",
-    { Berserker = true }, 10, -1, nil, nil, { Berserker = 9 }, nil, { HORDE.DMG_BLUNT, HORDE.DMG_COLD })
-
-    HORDE:CreateItem("Melee", "Storm Giant", "tfa_cso_stormgiant", 5000, 9,
-    "Powerfull.. Just a powerfull weapon.\n\nStorm Giant has tremendous damage but low attack speed",
-    { Berserker = true }, 10, -1, nil, nil, { Berserker = 10 }, nil, { HORDE.DMG_BLUNT })
-
-    HORDE:CreateItem("Shotgun", "Bouncer", "tfa_cso_bouncer", 4000, 9,
-    "Jump and jump and jump and jump and jump and jump and ..\n\nAll projectiles bounce off the walls",
-    { Warden = true }, 10, -1, nil, nil, { Warden = 5 }, nil, { HORDE.DMG_BALLISTIC })
-    
-    HORDE:CreateItem("MG", "Thanatos-7", "tfa_cso_thanatos7", 4000, 9,
-    "Spin me.\n\nShoot spining saw on right click",
-    { Heavy = true }, 10, -1, nil, nil, { Heavy = 7 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_BLAST })
 
     // DEFAULT
     HORDE:CreateItem("Melee", "Combat Knife", "arccw_horde_knife", 100, 2,
