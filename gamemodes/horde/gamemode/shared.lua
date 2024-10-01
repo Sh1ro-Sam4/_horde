@@ -92,6 +92,7 @@ local function CheckAllowFeature(ply)
     -- else
     --     return false
     -- end
+    if ply == nil then return false end
     return ply:GetUserGroup() == 'founder'
 end
 
@@ -129,7 +130,7 @@ function GM:PlayerSpawnEffect(ply, model) return CheckAllowFeature(ply) end
 
 function GM:PlayerGiveSWEP(ply, weapon, swep) return CheckAllowFeature(ply) end
 
-function GM:HUDAmmoPickedUp(item, amount) return CheckAllowFeature(ply) end
+function GM:HUDAmmoPickedUp(item, amount) return CheckAllowFeature() end
 
 CreateConVar("horde_disable_f1", 0, FCVAR_ARCHIVE, "Disables F1 hotkey for stats menu.")
 

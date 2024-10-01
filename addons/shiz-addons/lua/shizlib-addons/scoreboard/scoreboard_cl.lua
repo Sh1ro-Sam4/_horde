@@ -4,50 +4,13 @@ local colors = CFG.skinColors
 
 scoreboard = scoreboard or {}
 
-function scoreboard.Init()
-    if IsValid(scoreboard.fr) then scoreboard.fr:Remove() end
-    
-    local ply = LocalPlayer()
-
+local function InitPlayerPanel(panel)
     local players = player.GetAll()
     table.sort(players, function(a, b)
         return(a:Frags() > b:Frags())
     end)
-
-    scoreboard.fr = vgui.Create('DPanel')
-    scoreboard.fr:SetSize(s(1920), s(1080))
-    scoreboard.fr:SetPos(0, 0)
-    scoreboard.fr:SetAlpha(0)
-    function scoreboard.fr:Paint(w, h)
-        draw.RoundedBox(0, 0, 0, w, h, ColorAlpha(colors.hvr, 100))
-        shizlib.surface.DrawPanelBlur(scoreboard.fr, 4)
-    end
-    function scoreboard.fr:CheckVisible()
-        if self:GetAlpha() >= 1 then
-            return true
-        else
-            return false
-        end
-    end
-    function scoreboard.fr:Open()
-        self:AlphaTo(255, .4, 0)
-    end
-    function scoreboard.fr:Close()
-        self:AlphaTo(0, .4, 0)
-    end
-
-    local pnl = scoreboard.fr:Add('Panel')
-    pnl:SetSize(s(900), s(750))
-    pnl:SetPos(s(460), s(190))
-    function pnl:Paint(w, h)
-        draw.RoundedBox(8, 0, 0, w, h, ColorAlpha(colors.bg, 150))
-    end
-
-    local scroll = pnl:Add('DScrollPanel')
-    scroll:Dock(FILL)
-
     for _, pl in SortedPairs(players) do
-        local player_pnl = scroll:Add('DButton')
+        local player_pnl = panel:Add('DButton')
         player_pnl:Dock(TOP)
         player_pnl:DockMargin(0, 0, 0, s(4))
         player_pnl:SetTall(s(40))
@@ -144,6 +107,46 @@ function scoreboard.Init()
     end
 end
 
+function scoreboard.Init()
+    if IsValid(scoreboard.fr) then scoreboard.fr:Remove() end
+    
+    local ply = LocalPlayer()
+
+    scoreboard.fr = vgui.Create('DPanel')
+    scoreboard.fr:SetSize(s(1920), s(1080))
+    scoreboard.fr:SetPos(0, 0)
+    scoreboard.fr:SetAlpha(0)
+    function scoreboard.fr:Paint(w, h)
+        draw.RoundedBox(0, 0, 0, w, h, ColorAlpha(colors.hvr, 100))
+        shizlib.surface.DrawPanelBlur(scoreboard.fr, 4)
+    end
+    function scoreboard.fr:CheckVisible()
+        if self:GetAlpha() >= 1 then
+            return true
+        else
+            return false
+        end
+    end
+    function scoreboard.fr:Open()
+        self:AlphaTo(255, .4, 0)
+        if IsValid(scoreboard.fr.scroll) then scoreboard.fr.scroll:Remove() end
+        scoreboard.fr.scroll = scoreboard.fr.pnl:Add('DScrollPanel')
+        scoreboard.fr.scroll:Dock(FILL)
+        InitPlayerPanel(scoreboard.fr.scroll)
+    end
+    function scoreboard.fr:Close()
+        self:AlphaTo(0, .4, 0)
+        scoreboard.fr.scroll:Remove()
+    end
+
+    scoreboard.fr.pnl = scoreboard.fr:Add('Panel')
+    scoreboard.fr.pnl:SetSize(s(900), s(750))
+    scoreboard.fr.pnl:SetPos(s(460), s(190))
+    function scoreboard.fr.pnl:Paint(w, h)
+        draw.RoundedBox(8, 0, 0, w, h, ColorAlpha(colors.bg, 150))
+    end
+end
+
 hook.Add("Initialize", "ScoreboardInitialize", function()
     GAMEMODE.ScoreboardShow = nil 
     GAMEMODE.ScoreboardHide = nil
@@ -163,4 +166,8 @@ end)
 hook.Add("ScoreboardHide", "ScoreboardHide", function() 
     gui.EnableScreenClicker(false)
     scoreboard.fr:Close()
+end)
+
+concommand.Add('shizlib_scoreboard_reload', function()
+    scoreboard.Init()
 end)

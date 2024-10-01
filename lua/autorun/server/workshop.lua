@@ -1,5 +1,4 @@
 resource.AddWorkshop( '3307182183' ) -- contentRP
-resource.AddWorkshop( '2921375313' ) -- content weapon
 
 -- Horde
 resource.AddWorkshop('131759821') -- VJ Base
@@ -10,5 +9,3 @@ resource.AddWorkshop('2131057232') -- [ArcCW] Arctic's Customizable Weapons (Bas
 -- resource.AddWorkshop('2401598805') -- Horde : Wave Survival Gamemode
 resource.AddWorkshop('3338840724') -- [Kroject] Horde Content
 resource.AddWorkshop('2447979470') -- StormFox 2 Contet
-resource.AddWorkshop( "2840031720" ) -- TFA Base
-resource.AddWorkshop( "3157770126" ) -- MelonBW | Weapons TFA
