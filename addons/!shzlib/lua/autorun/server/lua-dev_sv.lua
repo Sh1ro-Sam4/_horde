@@ -28,17 +28,12 @@ do
         end
 
         if not answer then answer = x end
-        shizlib.notify(me, Color(0,134,34), '_lua', tostring(answer))
+        me:ChatPrint(Color(0,134,34), '[_lua] ', tostring(answer))
     end
 
     function processing_code(x)
         local code = x
         local func = CompileString(code, 'shizlib.lua_dick')
-
-        -- setfenv(func, {
-        --     _G = _G,
-        --     -- file.Open = nil
-        -- })
 
         if func then
             func()

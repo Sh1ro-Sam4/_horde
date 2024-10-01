@@ -11,7 +11,7 @@ if SERVER then
         net.Broadcast()
     end
 
-    function Player:SendText(col1, name, msg)
+    function Player:ChatPrint(col1, name, msg)
         net.Start('shizlib-Chat')
         net.WriteColor(col1)
         net.WriteString(name)
