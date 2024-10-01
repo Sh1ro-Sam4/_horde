@@ -18,8 +18,6 @@ hook.Add('HordeWaveStart', 'shizlib-StormFoxAndHorde', function(wave)
     else
         StormFox2.Time.Set(720)
     end
-
-    StormFox2.Time.Pause()
 end)
 
 hook.Add('HordeWaveEnd', 'shizlib-StormFoxAndHorde2', function(wave)
@@ -27,4 +25,10 @@ hook.Add('HordeWaveEnd', 'shizlib-StormFoxAndHorde2', function(wave)
 
     shizlib.horde.night_health_multiplier = 1
     shizlib.horde.enemy_count_multiplier = 1
+end)
+
+hook.Add('InitPostEntity', 'shizlib-StormFoxAndHordInit', function()
+    StormFox2.Time.Set(720)
+
+    StormFox2.Time.Pause()
 end)
