@@ -1,7 +1,5 @@
 CreateClientConVar('shizlib_blur', '1', true, false)
 
-if CFG.disabledModules.skin then return end
-
 local surface = surface
 local draw = draw
 local Color = Color
