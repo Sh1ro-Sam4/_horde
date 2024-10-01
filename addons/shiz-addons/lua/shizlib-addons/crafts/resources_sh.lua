@@ -179,19 +179,6 @@ shizlib.Resources = {
     },
 }
 
-shizlib.Looting = {
-    ['trashcan'] = {
-        name = 'Мусорка',
-        model = 'models/props_trainstation/trashcan_indoor001b.mdl',
-        amount = 1,
-    },
-    ['trashcan1'] = {
-        name = 'Мусорка 2',
-        model = 'models/props_junk/TrashDumpster01a.mdl',
-        amount = math.random(1, 3),
-    },
-}
-
 function shizlib.Crafting.LoadEntities()
     for k, v in pairs( shizlib.Resources ) do
         local ENT = {}
@@ -222,44 +209,4 @@ function shizlib.Crafting.LoadEntities()
     end
 end
 
-function shizlib.Crafting.LoadLooting()
-    for k, v in pairs( shizlib.Looting ) do
-        local ENT = {}
-        ENT.Type = "anim"
-        ENT.Base = "base_looting"
-
-        ENT.PrintName = v.name
-        ENT.Category		= "SHZ | Loot"
-        ENT.Author			= "shizlib"
-
-        ENT.Spawnable = true
-        ENT.AdminSpawnable = true
-            
-        ENT.LootType = k
-        ENT.RespawnTime = 0
-
-        function ENT:Use(activator, caller)
-            if not self.cd or self.cd < CurTime() then
-                self.cd = CurTime() + 1
-                if self:GetPos():Distance(activator:GetPos()) >= CFG.useDist then return end
-                if self.RespawnTime > CurTime() then return DarkRP.notify(activator, 0, 4, 'Мусорка пуста..') end
-                DarkRP.notify(activator, 0, 4, 'Ищем..')
-                for i = 1, shizlib.Looting[self.LootType].amount do
-                    if math.random(1, 2) == 2 then
-                        local ent = ents.Create(table.Random(CFG.lootingItems))
-                        ent:SetPos(Vector(self:GetPos().x,self:GetPos().y,self:GetPos().z+20))
-                        ent:Spawn()
-                        ent:Activate()
-                    end
-                end
-
-                self.RespawnTime = CurTime() + 60
-            end
-        end
-
-        scripted_ents.Register( ENT, 'shizlib_looting_' .. string.Replace( string.lower( k ), " ", "" ) )
-    end
-end
-
 shizlib.Crafting.LoadEntities()
-shizlib.Crafting.LoadLooting()
