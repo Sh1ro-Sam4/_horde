@@ -1,5 +1,3 @@
-if CFG.disabledModules.use then return end
-
 local Player = FindMetaTable('Player')
 shizlib.use = shizlib.use or {}
 
@@ -13,8 +11,4 @@ function shizlib.use.check(ply, ent)
 	local tr = shizlib.use.getTrace(ply)
 
 	return tr.Entity == ent
-end
-
-function Player:GetBWName()
-	return self:Name()
 end

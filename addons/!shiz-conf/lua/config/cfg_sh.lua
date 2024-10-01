@@ -1,43 +1,10 @@
 CFG = CFG or {}
 
-CFG.disabledModules = {
-    use = false,
-    player = false,
-}
-
 CFG.useDist = 84
 CFG.useDistSqr = CFG.useDist * CFG.useDist
 
 CFG.skinSound = {
-    press = 'shizlib/submenu/submenu_dropdown_option_select_01.wav',
-    hover = 'shizlib/submenu/submenu_dropdown_select_01.wav',
-    scrollWheeled = 'shizlib/sidemenu/sidemenu_click_01.wav',
     achievements = 'ui/achievement_earned.wav',
-}
-
-CFG.defaultWeapons = {
-    'weapon_physcannon',
-    'itemstore_pickup',
-}
-
-CFG.limitEntity = {}
-
-CFG.lootingItems = {
-    'shizlib_resource_battery',
-    'shizlib_resource_aluminum',
-    'shizlib_resource_screws',
-    'shizlib_resource_tape',
-    'shizlib_resource_gold',
-    'shizlib_resource_glue',
-    'shizlib_resource_wire',
-    'shizlib_resource_copper',
-    'shizlib_resource_spring',
-    'shizlib_resource_lead',
-    'shizlib_resource_silver',
-    'shizlib_resource_steel',
-    'shizlib_resource_glass',
-    'shizlib_resource_cloth',
-    'shizlib_resource_pipe',
 }
 
 CFG.icon17 = {
@@ -69,5 +36,3 @@ CFG.icon17 = {
     ['knife'] = 'knife',
     ['revolver'] = 'revolver',
 }
-
--- Пасхалка

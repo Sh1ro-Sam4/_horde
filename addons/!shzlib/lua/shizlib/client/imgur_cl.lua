@@ -1,3 +1,7 @@
+/*
+	NEED TO REWRITE!!!!
+*/
+
 file.CreateDir('shizlib')
 
 http.Fetch('https://i.imgur.com/5dCjln4.png', function(body, size, headers, code)
