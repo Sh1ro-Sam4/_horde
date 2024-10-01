@@ -4,7 +4,7 @@ local colors = CFG.skinColors
 
 scoreboard = scoreboard or {}
 
-function scoreboard.Open()
+function scoreboard.Init()
     if IsValid(scoreboard.fr) then scoreboard.fr:Remove() end
     
     local ply = LocalPlayer()
@@ -14,17 +14,26 @@ function scoreboard.Open()
         return(a:Frags() > b:Frags())
     end)
 
-    scoreboard.fr = vgui.Create('DFrame')
-    scoreboard.fr:SetTitle('')
-    scoreboard.fr:SetDraggable(false)
+    scoreboard.fr = vgui.Create('DPanel')
     scoreboard.fr:SetSize(s(1920), s(1080))
     scoreboard.fr:SetPos(0, 0)
     scoreboard.fr:SetAlpha(0)
-    scoreboard.fr:AlphaTo(255, .4, 0)
-    scoreboard.fr:ShowCloseButton(false)
     function scoreboard.fr:Paint(w, h)
         draw.RoundedBox(0, 0, 0, w, h, ColorAlpha(colors.hvr, 100))
         shizlib.surface.DrawPanelBlur(scoreboard.fr, 4)
+    end
+    function scoreboard.fr:CheckVisible()
+        if self:GetAlpha() >= 1 then
+            return true
+        else
+            return false
+        end
+    end
+    function scoreboard.fr:Open()
+        self:AlphaTo(255, .4, 0)
+    end
+    function scoreboard.fr:Close()
+        self:AlphaTo(0, .4, 0)
     end
 
     local pnl = scoreboard.fr:Add('Panel')
@@ -85,11 +94,7 @@ function scoreboard.Open()
             draw.SimpleText(string.format( '%s: %s', translate.Get("Scoreboard_Kill"), pl:Frags() ), 'font.22', w/1.3, s(20), color_white, 1, 1)
             draw.SimpleText(string.format( '%s: %s', translate.Get("Scoreboard_Ping"), pl:Ping() ), 'font.22', w-s(5), s(20), color_white, 2, 1)
 
-            /*
-                Open Desc
-            */
             draw.SimpleText(string.format( 'Привилегия: %s', pl:GetUserGroup() ), 'font.22', s(5), s(40), color_white, 0, 0)
-            -- draw.SimpleText(string.format( 'Наигранное время: %s', shizlib.surface.FormatTime(pl:GetPlaytime() or 0) ), 'font.22', s(5), s(60), color_white, 0, 0)
         end
         function player_pnl:PerformLayout()
             self:SetSize(self:GetWide(), self.Size)
@@ -139,29 +144,23 @@ function scoreboard.Open()
     end
 end
 
-function scoreboard.Close()
-    if IsValid(scoreboard.fr) then
-        scoreboard.fr:AlphaTo(0, .4, 0, function()
-            if IsValid(scoreboard.fr) then scoreboard.fr:Remove() end
-        end)
-    end
-end
-
 hook.Add("Initialize", "ScoreboardInitialize", function()
     GAMEMODE.ScoreboardShow = nil 
     GAMEMODE.ScoreboardHide = nil
 end)
 
+hook.Add('InitPostEntity', 'shizlib-ScoreboardInitilize', function()
+    scoreboard.Init()
+end)
+
 hook.Add("ScoreboardShow", "ScoreboardShow", function()
     gui.EnableScreenClicker(true)
-    scoreboard.Open()   
+    scoreboard.fr:Open()
 	
 	return true
 end)
 
 hook.Add("ScoreboardHide", "ScoreboardHide", function() 
-    if IsValid(scoreboard.fr) then
-        gui.EnableScreenClicker(false)
-    	scoreboard.Close()
-    end
+    gui.EnableScreenClicker(false)
+    scoreboard.fr:Close()
 end)
