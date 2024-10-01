@@ -94,7 +94,7 @@ function CHAT.Init()
             end
             self:SetText('')
 
-            -- CHAT.ChangeVisible()
+            CHAT.ChangeVisible(false)
         elseif code == KEY_TAB then
             self:SetText( autotypePlayerName( self:GetText() ) );
 
