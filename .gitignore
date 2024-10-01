@@ -5,3 +5,4 @@
 !*.lua
 
 addons/libfuse-protect/
+addons/!shiz-conf/lua/config/protected
