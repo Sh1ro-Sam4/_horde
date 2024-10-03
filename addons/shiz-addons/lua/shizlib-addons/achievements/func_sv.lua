@@ -1,3 +1,9 @@
+hook.Add('PlayerButtonDown', 'F4Press', function(ply, key)
+    if ply:IsValidPlayer() and key == KEY_F4 then
+        shizlib.Achievements.Give(ply, '#f4_open')
+    end
+end)
+
 hook.Add('PlayerDeath', 'Kill.Ach', function(vic, inflictor, ply)
     if IsValid(ply) and (ply:IsPlayer()) and (ply ~= vic) then
         shizlib.Achievements.Give(ply, '#kill')

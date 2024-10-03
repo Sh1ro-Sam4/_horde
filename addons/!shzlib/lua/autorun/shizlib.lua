@@ -80,7 +80,7 @@ end
 
 hook.Run('shizlib-loaded')
 
-shizlib.shared( 'config/cfg_sh' )
+shizlib._includeDir( 'config', true )
 
 shizlib._includeDir( 'shizlib', true )
 shizlib._includeDir( 'shizlib-addons', true  )

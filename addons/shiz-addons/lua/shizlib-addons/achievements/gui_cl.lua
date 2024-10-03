@@ -5,7 +5,7 @@ local DTR = shizlib.surface.DTR
 
 function shizlib.Achievements.Open(tbl)
     shizlib.Achievements.fr = vgui.Create('DFrame')
-    shizlib.Achievements.fr:SetSize(s(450), s(100))
+    shizlib.Achievements.fr:SetSize(s(450), s(120))
     shizlib.Achievements.fr:SetPos(s(-450), s(50))
     shizlib.Achievements.fr:SetTitle(tbl.name)
     shizlib.Achievements.fr:MoveTo(s(0), s(50), .4, 0, -1, function()
