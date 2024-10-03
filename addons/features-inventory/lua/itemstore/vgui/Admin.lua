@@ -2,7 +2,7 @@ local PANEL = {}
 
 function PANEL:Init()
 	self:SetTitle( itemstore.Translate( "admin_title" ) )
-	self:SetSkin( "itemstore" )
+	self:SetSkin( "shizlib" )
 
 	self.Scroll = vgui.Create( "DScrollPanel", self )
 	self.Scroll:Dock( FILL )

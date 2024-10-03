@@ -1,7 +1,7 @@
 local s = shizlib.surface.s
 local DTR = shizlib.surface.DTR
 
-local col = CFG.theme  
+local col = CFG.skinColors  
 local snd = CFG.skinSound
 
 shizlib.Crafting = shizlib.Crafting or {}
@@ -23,8 +23,8 @@ surface.CreateFont('shz-craft-small', {
 
 local function openRecipeMenu(pnl, tbl, ent, base)
     function pnl:Paint(w, h)
-        draw.SimpleText('Ингридиенты: ', 'shz-craft-big', pnl:GetWide()/4,s(50), col.text, 1, 0)
-        draw.SimpleText('Итог: ', 'shz-craft-big', pnl:GetWide()/2 + pnl:GetWide()/4, s(150), col.text, 1, 1)
+        draw.SimpleText('Ингридиенты: ', 'shz-craft-big', pnl:GetWide()/4,s(50), color_white, 1, 0)
+        draw.SimpleText('Итог: ', 'shz-craft-big', pnl:GetWide()/2 + pnl:GetWide()/4, s(150), color_white, 1, 1)
     end
 
     local resourcesList = pnl:Add('DIconLayout')
@@ -38,7 +38,7 @@ local function openRecipeMenu(pnl, tbl, ent, base)
         local icon = resourcesList:Add('Panel')
         icon:SetSize(s(75), s(75))
         function icon:Paint(w, h)
-            draw.RoundedBox(4, 0, 0, w, h, col.focus)
+            draw.RoundedBox(4, 0, 0, w, h, col.hvr)
         end
         if base == 'food' then
             local mdl = icon:Add('DModelPanel')
@@ -54,13 +54,13 @@ local function openRecipeMenu(pnl, tbl, ent, base)
         function a:Paint(w, h)
             if v.amount > 1 then
                 draw.RoundedBoxEx(8, w-s(15), 0, s(15), s(15), col.bg,  false, false, true, false)
-                draw.SimpleText(v.amount, 'shz-craft-small', w-s(7.5), s(7.5), col.text, 1, 1)
+                draw.SimpleText(v.amount, 'shz-craft-small', w-s(7.5), s(7.5), color_white, 1, 1)
             end
             if base ~= 'food' then
                 DTR(s(15), s(15), s(45), s(45), color_white, Material(string.format('shizlib/icon17/64/%s.png', shizlib.Resources[v.class].icon)))
-                draw.SimpleText(shizlib.Resources[v.class].name, 'shz-craft-small', s(5), h-s(5), col.text, 0, 4)
+                draw.SimpleText(shizlib.Resources[v.class].name, 'shz-craft-small', s(5), h-s(5), color_white, 0, 4)
             else
-                draw.SimpleText(shizlib.Food[v.class].name, 'shz-craft-small', s(5), h-s(5), col.text, 0, 4)
+                draw.SimpleText(shizlib.Food[v.class].name, 'shz-craft-small', s(5), h-s(5), color_white, 0, 4)
             end
         end
     end
@@ -75,21 +75,21 @@ local function openRecipeMenu(pnl, tbl, ent, base)
     uGot:SetSize(s(75), s(75))
     uGot:SetPos(pnl:GetWide()/2 + pnl:GetWide()/4-s(37.5), s(175))
     function uGot:Paint(w, h)
-        draw.RoundedBox(4, 0, 0, w, h, col.focus)
+        draw.RoundedBox(4, 0, 0, w, h, col.hvr)
         if tbl.amount > 1 then
-            draw.RoundedBoxEx(8, w-s(15), 0, s(15), s(15), col.bg,  false, false, true, false)
-            draw.SimpleText(tbl.amount, 'shz-craft-small', w-s(7.5), s(7.5), col.text, 1, 1)
+            draw.RoundedBoxEx(8, w-s(15), 0, s(15), s(15), col.hvr,  false, false, true, false)
+            draw.SimpleText(tbl.amount, 'shz-craft-small', w-s(7.5), s(7.5), color_white, 1, 1)
         end
         if base ~= 'food' and base ~= 'accessory' then
             DTR(s(15), s(15), s(45), s(45), color_white, Material(icon))
-            draw.SimpleText(tbl.name, 'shz-craft-small', s(5), h-s(5), col.text, 0, 4)
+            draw.SimpleText(tbl.name, 'shz-craft-small', s(5), h-s(5), color_white, 0, 4)
         else
-            draw.SimpleText(tbl.name, 'shz-craft-small', s(5), h-s(5), col.text, 0, 4)
+            draw.SimpleText(tbl.name, 'shz-craft-small', s(5), h-s(5), color_white, 0, 4)
         end
     end
     if base == 'food' or base == 'accessory' then
         local mdl = uGot:Add('DModelPanel')
-        mdl:SetModel(shizlib.Food[tbl.entity] and shizlib.Food[tbl.entity].model or SH_ACC.List[tbl.entity].mdl)
+        mdl:SetModel(SH_ACC.List[tbl.entity].mdl)
         mdl:Dock(FILL)
         mdl:DockMargin(s(2),s(2),s(2),s(2))
         mdl.LayoutEntity = function() end
@@ -97,7 +97,7 @@ local function openRecipeMenu(pnl, tbl, ent, base)
         if shizlib.Food[tbl.entity] then mdl:SetFOV(10) else mdl:SetFOV(25) end
     end
 
-    local craftBtn = pnl:Add('SHZButton')
+    local craftBtn = pnl:Add('DButton')
     craftBtn:SetSize(s(150), s(25))
     craftBtn:SetPos(pnl:GetWide()/2 + pnl:GetWide()/4-s(75), s(260))
     craftBtn:SetText('Скрафтить')
@@ -109,13 +109,13 @@ local function openRecipeMenu(pnl, tbl, ent, base)
 end
 
 function shizlib.Crafting.Menu(tbl, ent)
-    local fr = vgui.Create('SHZFrame')
+    local fr = vgui.Create('DFrame')
     fr:SetSize(s(900), s(600))
     fr:Center()
     fr:SetTitle('Крафты')
     fr:MakePopup()
     
-    local scroll = fr:Add('SHZScrollPanel')
+    local scroll = fr:Add('DScrollPanel')
     scroll:Dock(LEFT)
     scroll:SetWide(s(200))
     scroll:DockMargin(s(4),s(4),s(4),s(4))
@@ -130,10 +130,28 @@ function shizlib.Crafting.Menu(tbl, ent)
         elseif v.base == 'resource' then
             icon = string.format('shizlib/icon17/64/%s.png', shizlib.Resources[v.entity].icon)
         end
-        local recipeBtn = scroll:Add('SHZButton')
+        local recipeBtn = scroll:Add('DButton')
         recipeBtn:Dock(TOP)
-        if v.base ~= 'food' and v.base ~= 'accessory' then
-            recipeBtn:SetIcon(Material(icon))
+        function recipeBtn:Paint(w, h)
+            local off = h > 20 and 2 or 1
+            if pnl.Depressed then
+                draw.RoundedBox(4, 0, off, w, h-off, col.g)
+                draw.RoundedBox(4, 0, off, w, h-off, col.hvr)
+            else
+                draw.RoundedBox(4, 0, 0, w, h, col.g_d)
+                draw.RoundedBox(4, 0, 0, w, h-off, col.g)
+                if pnl.Disabled then
+                    draw.RoundedBox(4, 0, 0, w, h, col.dsb)
+                elseif pnl.Hovered then
+                    draw.RoundedBox(4, 0, 0, w, h, col.hvr)
+                end
+            end
+            if recipeBtn.Icon then
+                DTR(4, 4, self:GetTall()-8, self:GetTall()-8, color_white, recipeBtn.Icon)
+            end
+        end
+        if v.base ~= 'accessory' then
+            recipeBtn.Icon = Material(icon)
         end
         recipeBtn:SetText(v.name)
         function recipeBtn:DoClick()

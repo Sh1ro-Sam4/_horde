@@ -1,7 +1,7 @@
 local PANEL = {}
 
 function PANEL:Init()
-	self:SetSkin( "itemstore" )
+	self:SetSkin( "shizlib" )
 	self:SetTitle( itemstore.Translate( "trade_request" ) )
 
 	self:ShowCloseButton( false )

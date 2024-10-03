@@ -6,6 +6,7 @@ resource.AddWorkshop('152529683') -- Zombie SNPCs
 resource.AddWorkshop('2257255110') -- [ArcCW] Gunsmith Offensive
 resource.AddWorkshop('2135529088') -- [ArcCW] Modern Warfare 2
 resource.AddWorkshop('2131057232') -- [ArcCW] Arctic's Customizable Weapons (Base)
--- resource.AddWorkshop('2401598805') -- Horde : Wave Survival Gamemode
 resource.AddWorkshop('3338840724') -- [Kroject] Horde Content
 resource.AddWorkshop('2447979470') -- StormFox 2 Contet
+resource.AddWorkshop( "572310302" ) -- cosmetic GTA 5
+resource.AddWorkshop( "148215278" ) -- cosmetic GMod Tower

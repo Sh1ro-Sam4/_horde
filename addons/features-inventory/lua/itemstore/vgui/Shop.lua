@@ -4,7 +4,7 @@ AccessorFunc( PANEL, "Entity", "Entity" )
 
 function PANEL:Init()
 	self:SetTitle( "Вы хотели, что-то купить?" )
-	self:SetSkin( "itemstore" )
+	self:SetSkin( "shizlib" )
 
 	self.Scroll = vgui.Create( "DScrollPanel", self )
 	self.Scroll:Dock( FILL )

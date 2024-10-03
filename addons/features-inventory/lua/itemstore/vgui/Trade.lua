@@ -1,7 +1,7 @@
 local PANEL = {}
 
 function PANEL:Init()
-	self:SetSkin( "itemstore" )
+	self:SetSkin( "shizlib" )
 
 	self.LeftContainer = vgui.Create( "ItemStoreContainer", self )
 	self.RightContainer = vgui.Create( "ItemStoreContainer", self )

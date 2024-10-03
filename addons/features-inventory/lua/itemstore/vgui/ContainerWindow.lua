@@ -1,7 +1,7 @@
 local PANEL = {}
 
 function PANEL:Init()
-	self:SetSkin('itemstore')
+	self:SetSkin('shizlib')
 	self:SetAlpha(0)
 	self:AlphaTo(255, .4, 0)
 

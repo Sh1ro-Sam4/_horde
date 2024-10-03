@@ -192,7 +192,7 @@ function PANEL:DoRightClick()
 	menu:AddOption( itemstore.Translate( "destroy" ), function()
 		Derma_Query( itemstore.Translate( "destroy_confirmation" ), itemstore.Translate( "destroy_title" ), itemstore.Translate( "ok" ), function()
 			LocalPlayer():DestroyItem( con_id, slot )
-		end, itemstore.Translate( "cancel" ) ):SetSkin( "itemstore" )
+		end, itemstore.Translate( "cancel" ) ):SetSkin( "shizlib" )
 	end ):SetIcon( "icon16/delete.png" )
 
 	if item:CanSplit( 1 ) then

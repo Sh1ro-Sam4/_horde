@@ -4,7 +4,7 @@ AccessorFunc( PANEL, "Entity", "Entity" )
 
 function PANEL:Init()
 	self:SetTitle( "Edit Shop" )
-	self:SetSkin( "itemstore" )
+	self:SetSkin( "shizlib" )
 	self:SetSize( 250, 500 )
 	
 	self.Panel = vgui.Create( "DPanel", self )
