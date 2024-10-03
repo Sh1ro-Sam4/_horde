@@ -61,7 +61,7 @@ function PANEL:Refresh()
 	self.Description:SetFont( 'font.16' )
 	self.Description:SizeToContents()
 
-	if not shizlib.Resources[(self:GetItem().Class):sub(18, (self:GetItem().Class):len())].model then
+	if not shizlib.Resources[(self:GetItem().Class):sub(18, (self:GetItem().Class):len())] then
 		self.Model:SetModel( item:GetModel() )
 
 		self.Model.Entity:SetMaterial( item:GetMaterial() )

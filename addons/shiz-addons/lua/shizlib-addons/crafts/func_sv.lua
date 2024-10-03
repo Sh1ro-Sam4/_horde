@@ -91,8 +91,8 @@ local CheckResourcesTbl = {
 }
 
 function shizlib.Crafting.CraftItem(kk, ply, ent, cfg)
-    if ent:GetClass() ~= 'shizlib_workbench' and ent:GetClass() ~= 'shizlib_stove' then return end
-    if ply:GetPos():Distance(ent:GetPos()) > CFG.useDist then return end
+    -- if ent:GetClass() ~= 'shizlib_workbench' and ent:GetClass() ~= 'shizlib_stove' then return end
+    -- if ply:GetPos():Distance(ent:GetPos()) > CFG.useDist then return end
 
     if not shizlib.Crafting.ValidTable(kk, ValidTableTbl[cfg]) then shizlib.notify(ply, Color(189,0,0), 'Крафты', 'Такого крафта нет!') end
     local tbl = shizlib.Crafting.ValidTable(kk, ValidTableTbl[cfg])

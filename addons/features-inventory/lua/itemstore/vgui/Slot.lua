@@ -92,8 +92,9 @@ function PANEL:Paint( w, h )
 
 		surface.SetDrawColor( dark )
 		surface.DrawRect( 0, 0, w, h )
-		local icon = shizlib.Resources[(item.Class):sub(18, (item.Class):len())].icon
+		local icon = shizlib.Resources[(item.Class):sub(18, (item.Class):len())]
 		if icon then
+			icon = icon.icon
 			icon = ('shizlib/icon17/64/%s.png'):format(icon)
 			DTR(s(5), s(5), w-s(10), h-s(10), color_white, Material(icon))
 		end
@@ -120,7 +121,7 @@ function PANEL:Refresh()
 	local item = self:GetItem()
 
 	if item then
-		if not shizlib.Resources[(item.Class):sub(18, (item.Class):len())].model then
+		if not shizlib.Resources[(item.Class):sub(18, (item.Class):len())] then
 			self:SetModel( item:GetModel() )
 		end
 		self:SetColor( item:GetColor() or color_white )
