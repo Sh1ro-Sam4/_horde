@@ -94,7 +94,6 @@ local function openRecipeMenu(pnl, tbl, ent, base)
         mdl:DockMargin(s(2),s(2),s(2),s(2))
         mdl.LayoutEntity = function() end
         mdl:SetLookAt(Vector(0, 0, 0))
-        if shizlib.Food[tbl.entity] then mdl:SetFOV(10) else mdl:SetFOV(25) end
     end
 
     local craftBtn = pnl:Add('DButton')
@@ -138,13 +137,8 @@ function shizlib.Crafting.Menu(tbl, ent)
                 draw.RoundedBox(4, 0, off, w, h-off, col.g)
                 draw.RoundedBox(4, 0, off, w, h-off, col.hvr)
             else
-                draw.RoundedBox(4, 0, 0, w, h, col.g_d)
+                draw.RoundedBox(4, 0, 0, w, h, ColorAlpha(col.g, 150))
                 draw.RoundedBox(4, 0, 0, w, h-off, col.g)
-                if pnl.Disabled then
-                    draw.RoundedBox(4, 0, 0, w, h, col.dsb)
-                elseif pnl.Hovered then
-                    draw.RoundedBox(4, 0, 0, w, h, col.hvr)
-                end
             end
             if recipeBtn.Icon then
                 DTR(4, 4, self:GetTall()-8, self:GetTall()-8, color_white, recipeBtn.Icon)
