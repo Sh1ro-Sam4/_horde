@@ -1,6 +1,6 @@
 DEFINE_BASECLASS( "DListLayout" )
 
-local col = CFG.theme
+local col = CFG.skinColors
 local PANEL = {}
 
 AccessorFunc( PANEL, "ContainerID", "ContainerID", FORCE_NUMBER )
@@ -27,18 +27,6 @@ PANEL.Blur = Material( "pp/blurscreen" )
 function PANEL:Paint( w, h )
 	draw.RoundedBox(8, 0, 0, w, h, ColorAlpha(col.bg, 200))
 	draw.RoundedBoxEx(8, 0, 0, w, 22, col.hvr, true, true)
-	-- self.Blur:SetFloat( "$blur", 8 )
-	-- self.Blur:Recompute()
-	-- render.UpdateScreenEffectTexture()
-
-	-- local x, y = self:LocalToScreen( 0, 0 )
-
-	-- surface.SetDrawColor( 255, 255, 255 )
-	-- surface.SetMaterial( self.Blur )
-	-- surface.DrawTexturedRect( x * -1, y * -1, ScrW(), ScrH() )
-
-	-- surface.SetDrawColor( Color( 30, 30, 30, 200 ) )
-	-- surface.DrawRect( 0, 0, w, h )
 end
 
 function PANEL:PerformLayout()
@@ -66,16 +54,6 @@ function PANEL:Refresh()
 		name = name .. " x" .. item:GetAmount()
 	end
 
-	-- if self:GetSlot() then
-	-- 	desc = desc .. "\n\n" .. itemstore.Translate( "dragtomove" )
-	-- 	desc = desc .. "\n" .. itemstore.Translate( "mclicktodrop" )
-	-- 	desc = desc .. "\n" .. itemstore.Translate( "rclickforoptions" )
-
-	-- 	if item.Use then
-	-- 		desc = desc .. "\n" .. itemstore.Translate( "dclicktouse" )
-	-- 	end
-	-- end
-
 	self.Name:SetText( name )
 	self.Name:SizeToContents()
 
@@ -83,15 +61,17 @@ function PANEL:Refresh()
 	self.Description:SetFont( 'font.16' )
 	self.Description:SizeToContents()
 
-	self.Model:SetModel( item:GetModel() )
+	if not shizlib.Resources[(self:GetItem().Class):sub(18, (self:GetItem().Class):len())].model then
+		self.Model:SetModel( item:GetModel() )
 
-	self.Model.Entity:SetMaterial( item:GetMaterial() )
-	self.Model:SetColor( item:GetColor() or color_white )
+		self.Model.Entity:SetMaterial( item:GetMaterial() )
+		self.Model:SetColor( item:GetColor() or color_white )
 
-	min, max = self.Model.Entity:GetRenderBounds()
+		min, max = self.Model.Entity:GetRenderBounds()
 
-	self.Model:SetCamPos( Vector( 0.55, 0.55, 0.55 ) * min:Distance( max ) )
-	self.Model:SetLookAt( ( min + max ) / 2 )
+		self.Model:SetCamPos( Vector( 0.55, 0.55, 0.55 ) * min:Distance( max ) )
+		self.Model:SetLookAt( ( min + max ) / 2 )
+	end
 
 	self:InvalidateLayout( true )
 end

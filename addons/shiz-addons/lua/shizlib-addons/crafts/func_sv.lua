@@ -32,29 +32,7 @@ function shizlib.Crafting.TypeHandler(tbl, ply)
         for i = 1, tbl.amount do
             con:AddItem(item, true)
         end
-    elseif base == 'food' then
-        local id = ply.Inventory:GetID()
-        local con = itemstore.containers.Get( id )
-
-        local data = {
-            ['Model'] = shizlib.Food[entity].model,
-            ['Class'] = string.format('shizlib_food_%s', entity),
-            ['FPPOwnerID'] = ply:SteamID(),
-        }
-        local item = itemstore.Item(string.format('shizlib_food_%s', entity))
-        item:SetModel(shizlib.Food[entity].model)
-        for i = 1, tbl.amount do
-            con:AddItem(item, true)
-        end
     elseif base == 'accessory' then
-        -- local id = ply.Inventory:GetID()
-        -- local con = itemstore.containers.Get( id )
-
-        -- local data = {
-        --     ['Model'] = shizlib.Food[entity].model,
-        --     ['Class'] = string.format('shizlib_food_%s', entity),
-        --     ['FPPOwnerID'] = ply:SteamID(),
-        -- }
         local ent = ents.Create('base_accessory')
         ent:SetPos(ply:GetPos())
         ent:Spawn()

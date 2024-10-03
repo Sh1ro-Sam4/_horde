@@ -8,6 +8,8 @@ surface.CreateFont( "ItemStoreAmount", {
 
 local GradientUp = Material( "gui/gradient_up" )
 local GradientDown = Material( "gui/gradient_down" )
+local s = shizlib.surface.s
+local DTR = shizlib.surface.DTR
 
 AccessorFunc( PANEL, "Item", "Item" )
 AccessorFunc( PANEL, "ContainerID", "ContainerID", FORCE_NUMBER )
@@ -82,9 +84,6 @@ function PANEL:Paint( w, h )
 	surface.DrawRect( 0, 0, w, h )
 
 	local item = self:GetItem()
-	if item and shizlib.Resources[item.Class] then
-		
-	end
 
 	if item and item.HighlightColor then
 		local col = Color( item.HighlightColor.r, item.HighlightColor.g, item.HighlightColor.b )
@@ -93,14 +92,11 @@ function PANEL:Paint( w, h )
 
 		surface.SetDrawColor( dark )
 		surface.DrawRect( 0, 0, w, h )
-
-		surface.SetMaterial( Material( "gui/center_gradient" ) )
-		surface.SetDrawColor( CFG.theme.hvr )
-		surface.DrawTexturedRect( 0, 0, w, h )
-
-		surface.SetMaterial( Material( "gui/center_gradient" ) )
-		surface.SetDrawColor( CFG.theme.hvr )
-		surface.DrawTexturedRectRotated( w * .5, h * .5, w * 1.25, h * 1.25, 90 )
+		local icon = shizlib.Resources[(item.Class):sub(18, (item.Class):len())].icon
+		if icon then
+			icon = ('shizlib/icon17/64/%s.png'):format(icon)
+			DTR(s(5), s(5), w-s(10), h-s(10), color_white, Material(icon))
+		end
 	end
 
 	if not itemstore.config.HighlightStyle ~= "border" or not item then
@@ -124,7 +120,9 @@ function PANEL:Refresh()
 	local item = self:GetItem()
 
 	if item then
-		self:SetModel( item:GetModel() )
+		if not shizlib.Resources[(item.Class):sub(18, (item.Class):len())].model then
+			self:SetModel( item:GetModel() )
+		end
 		self:SetColor( item:GetColor() or color_white )
 
 		if IsValid( self.Entity ) then

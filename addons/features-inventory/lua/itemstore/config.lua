@@ -100,7 +100,7 @@ itemstore.config.MigrateOldData = false
 -- If a player's rank is not contained within this table, it defaults to default.
 -- DO NOT REMOVE DEFAULT! If you remove it, there will be errors!
 itemstore.config.InventorySizes = {
-	default = { 6, 4, 1 },
+	default = { 8, 8, 2 },
 }
 
 -- Same as above, for banks. Same format. DON'T REMOVE DEFAULT!

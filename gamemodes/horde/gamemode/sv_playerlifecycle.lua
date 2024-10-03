@@ -74,6 +74,7 @@ function HORDE:GameEnd(status)
     end
     for _, ply in pairs(player.GetHumans()) do
         ply:Horde_AddSkullTokens(tokens)
+        ply:SHZ_GiveItemstoreGift(HORDE.current_wave, HORDE.difficulty)
     end
 
     HORDE.game_end = true

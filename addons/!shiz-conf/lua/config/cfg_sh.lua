@@ -7,6 +7,34 @@ CFG.skinSound = {
     achievements = 'ui/achievement_earned.wav',
 }
 
+CFG.dropOnDefeat = {
+    'steel',
+    'aluminum',
+    'copper',
+    'lead',
+    'gold',
+    'silver',
+    'glass',
+    'tape',
+    'glue',
+    'cloth',
+    'wire',
+    'battery',
+    'battery_c',
+    'motherboard',
+    'pipe',
+    'piston',
+    'rifle_barrel',
+    'rifle_body',
+    'rifle_butt',
+    'rifle_clip',
+    'screws',
+    'spring',
+    'tools',
+    'wood',
+    'stone',
+}
+
 CFG.icon17 = {
     ['ak47'] = 'assault_rifle',
     ['aug'] = 'assault_rifle',
