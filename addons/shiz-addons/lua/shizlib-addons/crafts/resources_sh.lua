@@ -109,6 +109,23 @@ shizlib.Resources = {
             self:Remove()
         end,
     },
+    ['cry_doll'] = {
+        name = 'Кукля',
+        description = 'НЕ ТРОГАЙ ЕЕ!',
+        icon = 'star',
+        model = 'models/props_c17/doll01.mdl',
+        func = function(self, ply)
+            self:SetColor(Color(255, 0, 0))
+            self:EmitSound('ui/buttonclickrelease.wav')
+            timer.Simple(3, function()
+                VJ_EmitSound(self, "vj_fire/explosion2.wav", 100, 100)
+                util.BlastDamage(self, self:CPPIGetOwner(), self:GetPos(), 128, 400)
+                util.ScreenShake(self:GetPos(), 100, 200, 1, 2500)
+                ParticleEffect("vj_explosion2", self:GetPos(), self:GetAngles())
+                self:Remove()
+            end)
+        end,
+    },
     ['pipe'] = {
         name = 'Труба',
         description = 'Тебе труба!',
