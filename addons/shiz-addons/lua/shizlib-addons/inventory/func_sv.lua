@@ -22,4 +22,4 @@ function Player:SHZ_GiveItemstoreGift(waves, diff)
         item:SetModel(shizlib.Resources[entity].model)
         con:AddItem(item, true)
     end
-end
+end 
