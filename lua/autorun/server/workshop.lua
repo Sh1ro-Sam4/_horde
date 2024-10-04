@@ -10,3 +10,5 @@ resource.AddWorkshop('3338840724') -- [Kroject] Horde Content
 resource.AddWorkshop('2447979470') -- StormFox 2 Contet
 resource.AddWorkshop( "572310302" ) -- cosmetic GTA 5
 resource.AddWorkshop( "148215278" ) -- cosmetic GMod Tower
+
+resource.AddWorkshop( "2792428671" ) -- Plush Shark
