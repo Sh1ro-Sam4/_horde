@@ -43,3 +43,89 @@ shizlib.getURLMaterial('https://i.imgur.com/yqBVB77.png') // #kill
 shizlib.getURLMaterial('https://i.imgur.com/doXsoqb.png') // #accessory
 shizlib.getURLMaterial('https://i.imgur.com/zAaFDcH.png') // #craft
 shizlib.getURLMaterial('https://i.imgur.com/lNDK0ML.png') // #purchase
+
+DarkRP = DarkRP or {}
+
+local function toggleThirdPerson()
+    DarkRP.thirdPersonEnabled = not DarkRP.thirdPersonEnabled
+end
+
+concommand.Add('shizlib_thirdp', function()
+    toggleThirdPerson()
+end)
+
+hook.Add("PlayerButtonUp", "dThirdPerson_keyBind", function(player, buttonId)
+    if not IsFirstTimePredicted() then return end
+    if player ~= LocalPlayer() then return end
+    if buttonId ~= KEY_T then return end
+    if gui.IsGameUIVisible() then return end
+    if player:IsTyping() then return end
+    if player.cdThirdPersonText then return end
+    if input.LookupBinding('shizlib_thirdp') then return end
+    chat.AddText(Color(122,185,4), '============================================')
+    chat.AddText(color_white, 'Кажется вы нажали на "T" и попытались включить 3-е лицо')
+    chat.AddText(color_white, 'Третье лицо переехало в консольную команду "shizlib_thirdp"')
+    chat.AddText(color_white, 'Что-бы настроить бинд откройте консоль и напишите')
+    chat.AddText(color_white, 'bind ', Color(122,185,4), '[KEY]', color_white, ' "shizlib_thirdp"')
+    chat.AddText(Color(122,185,4), '============================================')
+    player.cdThirdPersonText = true
+end)
+
+hook.Add("CalcView", "thirdPersonView", function(client, position, angles, fov, znear, zfar)
+    if not DarkRP.thirdPersonEnabled then return end
+    local distance = 70
+    local delvar = 15
+
+    local traceData = {
+        start = position,
+        endpos = position - angles:Forward() * distance + ((angles:Right() * distance) / delvar),
+        filter = LocalPlayer()
+    }
+
+    local trace = util.TraceLine(traceData)
+    local newDistance = trace.HitPos:Distance(position)
+
+    local newDistance_2 = util.TraceLine({
+        start = position,
+        endpos = position - angles:Forward() * distance + ((-angles:Right() * distance) / delvar),
+        filter = LocalPlayer()
+    }).HitPos:Distance(position)
+
+    local newDistance_3 = util.TraceLine({
+        start = position,
+        endpos = position - angles:Forward() * distance + ((angles:Up() * distance) / delvar),
+        filter = LocalPlayer()
+    }).HitPos:Distance(position)
+
+    local newDistance_4 = util.TraceLine({
+        start = position,
+        endpos = position - angles:Forward() * distance + ((-angles:Up() * distance) / delvar),
+        filter = LocalPlayer()
+    }).HitPos:Distance(position)
+
+    if newDistance < distance - 1 then
+        distance = newDistance - 3
+    end
+
+    if newDistance_2 < distance - 1 then
+        distance = newDistance_2 - 3
+    end
+
+    if newDistance_3 < distance - 1 then
+        distance = newDistance_2 - 13
+    end
+
+    if newDistance_4 < distance - 1 then
+        distance = newDistance_2 - 13
+    end
+
+    return {
+        origin = position - angles:Forward() * distance + ((angles:Right()) / delvar),
+        angles = angles,
+        fov = fov,
+        filter = LocalPlayer(),
+        drawviewer = true,
+        znear = nearZ,
+        zfar = farZ
+    }
+end)
