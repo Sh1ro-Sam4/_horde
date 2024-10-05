@@ -25,11 +25,13 @@ function scoreboard.Open()
     function scoreboard.fr:Paint(w, h)
         draw.RoundedBox(0, 0, 0, w, h, ColorAlpha(colors.bg, 100))
         shizlib.surface.DrawPanelBlur(scoreboard.fr, 4)
+        
+        draw.SimpleText( ('%s - %s'):format(GetHostName(), translate.Get("Game_Difficulty_" .. HORDE.difficulty_text[HORDE.difficulty])), 'font.30', w/2, s(95), color_white, 1, 1)
     end
 
     local pnl = scoreboard.fr:Add('Panel')
-    pnl:SetSize(s(900), s(750))
-    pnl:SetPos(s(460), s(190))
+    pnl:SetSize(s(1100), s(750))
+    pnl:SetPos(s(360), s(190))
 
     local scroll = pnl:Add('DScrollPanel')
     scroll:Dock(FILL)
@@ -54,22 +56,55 @@ function scoreboard.Open()
                 local mat = Material(subclass.Icon, "mips smooth")
                 local rank = pl:Horde_GetRank(subclass.PrintName)
                 local rank_level = pl:Horde_GetRankLevel(subclass.PrintName)
-                surface.SetMaterial(mat)
-                surface.SetDrawColor(HORDE.Rank_Colors[rank])
-                surface.DrawTexturedRect(s(320), s(5), s(50), s(50))
+                DTR(s(320), s(5), s(50), s(50), HORDE.Rank_Colors[rank], mat)
                 if rank == HORDE.Rank_Master then
                     draw.SimpleText(rank_level, "Trebuchet18", w * 0.2075, s(18), HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
                 else
                     if rank_level > 0 then
                         local star = Material("star.png", "mips smooth")
-                        surface.SetMaterial(star)
                         local y_pos = s(37)
                         for i = 0, rank_level - 1 do
-                            surface.DrawTexturedRect(s(310), y_pos, s(15), s(15))
+                            DTR(s(310), y_pos, s(15), s(15), HORDE.Rank_Colors[rank], star)
                             y_pos = y_pos - s(10)
                         end
                     end
                 end
+            end
+
+            local perks
+            if HORDE.classes[subclass_name] then
+                perks = HORDE.classes[subclass_name].perks
+            else
+                perks = HORDE.subclasses[subclass_name].Perks
+            end
+
+            local x = s(500)
+            for perk_level, v in SortedPairs(perks) do
+                local color = color_white
+                if HORDE.current_wave < HORDE:Horde_GetWaveForPerk(perk_level) then 
+                    color = Color(150,150,150)
+                end
+                if not pl.Horde_PerkChoices then
+                    break
+                end
+                if (not subclass_name) or (not perk_level) or (not v.choices) then 
+                    break
+                end
+                if (not pl.Horde_PerkChoices[subclass_name]) then break end
+
+                local choice = v.choices[pl.Horde_PerkChoices[subclass_name][perk_level] or 1]
+                local perk = HORDE.perks[choice]
+                local icon = perk.Icon
+                if icon then
+                    local mat = Material(icon, "mips smooth")
+                    DTR(x, s(5), s(50), s(50), color, mat)
+                else
+                    local mat = Material(HORDE.subclasses[subclass_name].Icon, "mips smooth")
+                    surface.SetMaterial(mat)
+                    surface.SetDrawColor(color)
+                    surface.DrawTexturedRect(x, 2, 35, 35)
+                end
+                x = x + s(50)
             end
 
             local name = pl:LongName()

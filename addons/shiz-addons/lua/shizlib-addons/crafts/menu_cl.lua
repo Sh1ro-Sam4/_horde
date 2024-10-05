@@ -157,7 +157,6 @@ function shizlib.Crafting.Menu(tbl, ent)
 end
 
 concommand.Add('shizlib_craftmenu', function()
-    if not LocalPlayer():IsSuperAdmin() then return end
     shizlib.Crafting.Menu(shizlib.Crafting.Recipes, Entity(1))
 end)
 

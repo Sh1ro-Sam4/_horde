@@ -90,7 +90,7 @@ local CheckResourcesTbl = {
     ['food'] = 'shizlib_food',
 }
 
-function shizlib.Crafting.CraftItem(kk, ply, ent, cfg)
+function shizlib.Crafting.CraftItem(kk, ply, cfg)
     -- if ent:GetClass() ~= 'shizlib_workbench' and ent:GetClass() ~= 'shizlib_stove' then return end
     -- if ply:GetPos():Distance(ent:GetPos()) > CFG.useDist then return end
 
