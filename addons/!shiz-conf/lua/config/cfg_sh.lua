@@ -7,6 +7,11 @@ CFG.skinSound = {
     achievements = 'ui/achievement_earned.wav',
 }
 
+CFG.djump = {
+    ['founder'] = true,
+    ['vip'] = true,
+}
+
 CFG.dropOnDefeat = {
     'steel',
     'aluminum',

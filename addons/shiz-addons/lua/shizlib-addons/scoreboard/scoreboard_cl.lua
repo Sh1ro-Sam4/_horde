@@ -107,6 +107,22 @@ function scoreboard.Open()
                 x = x + s(50)
             end
 
+            local gadget = pl:Horde_GetGadget()
+            if gadget then
+                local mat = Material(HORDE.gadgets[gadget].Icon, "mips smooth")
+                surface.SetMaterial(mat) -- Use our cached material
+                if HORDE.gadgets[gadget].Active then
+                    if HORDE.gadgets[gadget].Once then
+                        surface.SetDrawColor(HORDE.color_gadget_once)
+                    else
+                        surface.SetDrawColor(HORDE.color_gadget_active)
+                    end
+                else
+                    surface.SetDrawColor(color_white)
+                end
+                surface.DrawTexturedRect(s(660), s(-4), s(140), s(70))
+            end
+
             local name = pl:LongName()
 
             draw.SimpleText(string.format( '%s', name ), 'font.22', s(60), s(5), color_white, 0, 0)
