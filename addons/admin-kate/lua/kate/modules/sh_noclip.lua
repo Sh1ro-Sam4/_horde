@@ -3,7 +3,7 @@ hook.Add( 'PlayerNoClip', 'Kate_HandleNoclip', function( pl, desired )
     return false
   end
 
-  if SERVER and ( pl:GetRelevance() > 0 ) then
+  if SERVER and ( pl:GetRelevance() > 100 ) then
     return true
   end
 end )

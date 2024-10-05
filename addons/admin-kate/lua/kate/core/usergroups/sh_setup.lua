@@ -76,3 +76,10 @@ kate.AddUserGroup( 'Moderator' )
     'kick', 'teleport', 'cloak', 'message',
     'mute', 'gag', 'freeze', 'strip'
   } )
+
+kate.AddUserGroup( 'Vip' )
+  :SetRelevance( 1 )
+  :SetAdmin( false )
+  :SetFlags( {
+    'mute', 'gag'
+  } )
