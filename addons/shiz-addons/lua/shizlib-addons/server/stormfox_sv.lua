@@ -36,3 +36,30 @@ end)
 hook.Add('Horde_OnPlayerShouldRespawnDuringWave', 'shizlib-RespawnForSome', function(ply)
     return true
 end)
+
+local Player = FindMetaTable('Player')
+function Player:GiveHook()
+    local ent = ents.Create('sent_grapplehook_bpack')
+    ent:Spawn()
+    ent:Activate()
+    ent:SetPos(self:GetPos())
+
+    ent:SendItemMessage( self , false )
+            
+    ent.SetOnPlayer( self , slotname , ent )
+    ent:SetControllingPlayer( self )
+
+    local slotname = ent:GetClass()
+    if ent.SaveButtonToCvar then
+        local selfkey = ent:GetControllingPlayerConVarKey()
+        
+        if ent:IsKeyAllowed( selfkey ) and selfkey ~= ent:GetKey() then
+            ent:SetKey( selfkey )
+        end
+    end
+
+
+    ent:SetKeyPressed( false )
+
+    ent:OnAttach( ply , forced )
+end

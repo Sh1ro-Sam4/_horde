@@ -9,6 +9,12 @@ resource.AddWorkshop('2131057232') -- [ArcCW] Arctic's Customizable Weapons (Bas
 resource.AddWorkshop('3338840724') -- [Kroject] Horde Content
 resource.AddWorkshop('2447979470') -- StormFox 2 Contet
 
+resource.AddWorkshop('2930602619') -- HORDE: Custom Gadgets Pack
+resource.AddWorkshop('3078047587') -- HORDE: Custom Spells
+resource.AddWorkshop('2867340187') -- HORDE: Custom Mutation Pack
+resource.AddWorkshop('2873828373') -- HORDE: Custom Watchtowers
+
+
 resource.AddWorkshop('2843934898') -- HORDE Subclass: Juggernaut
 resource.AddWorkshop('2863521310') -- HORDE Subclass: Shinigami
 resource.AddWorkshop('2853625358') -- HORDE Subclass: Cyborg Ninja (Edited)
