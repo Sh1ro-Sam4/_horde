@@ -8,6 +8,11 @@ resource.AddWorkshop('2135529088') -- [ArcCW] Modern Warfare 2
 resource.AddWorkshop('2131057232') -- [ArcCW] Arctic's Customizable Weapons (Base)
 resource.AddWorkshop('3338840724') -- [Kroject] Horde Content
 resource.AddWorkshop('2447979470') -- StormFox 2 Contet
+
+resource.AddWorkshop('2843934898') -- HORDE Subclass: Juggernaut
+resource.AddWorkshop('2863521310') -- HORDE Subclass: Shinigami
+resource.AddWorkshop('2853625358') -- HORDE Subclass: Cyborg Ninja (Edited)
+
 resource.AddWorkshop( "572310302" ) -- cosmetic GTA 5
 resource.AddWorkshop( "148215278" ) -- cosmetic GMod Tower
 
