@@ -32,3 +32,7 @@ hook.Add('InitPostEntity', 'shizlib-StormFoxAndHordInit', function()
 
     StormFox2.Time.Pause()
 end)
+
+hook.Add('Horde_OnPlayerShouldRespawnDuringWave', 'shizlib-RespawnForSome', function(ply)
+    return true
+end)
