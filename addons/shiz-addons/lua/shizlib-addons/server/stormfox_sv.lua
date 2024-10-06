@@ -37,6 +37,18 @@ hook.Add('Horde_OnPlayerShouldRespawnDuringWave', 'shizlib-RespawnForSome', func
     return true
 end)
 
+hook.Add('Horde_OnPlayerDamagePost', 'shizlib-RicoshetDamage', function(ply, npc, bonus, hitgroup, dmginfo)
+    if ply:IsSuperAdmin() then
+        local dmg = DamageInfo()
+        dmg:SetAttacker(dmginfo:GetAttacker())
+        dmg:SetInflictor(dmginfo:GetInflictor())
+        dmg:SetDamageType(DMG_PLASMA)
+        dmg:SetDamage(dmginfo:GetDamage())
+        dmg:SetDamageCustom(HORDE.DMG_SPLASH)
+        util.BlastDamageInfo(dmg, dmginfo:GetDamagePosition(), 750)
+    end
+end)
+
 local Player = FindMetaTable('Player')
 function Player:GiveHook()
     local ent = ents.Create('sent_grapplehook_bpack')

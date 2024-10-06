@@ -234,9 +234,9 @@ end
 
 function HORDE:GetDefaultItemInfusions()
     local melee_blunt_infusions = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Concussive, HORDE
-        .Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
+        .Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating, HORDE.Infusion_All }
     local melee_slash_infusions = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE
-        .Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
+        .Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating, HORDE.Infusion_All }
     HORDE.items["arccw_horde_stunstick"].infusions = melee_blunt_infusions
     HORDE.items["arccw_horde_crowbar"].infusions = melee_blunt_infusions
     HORDE.items["arccw_horde_knife"].infusions = melee_slash_infusions

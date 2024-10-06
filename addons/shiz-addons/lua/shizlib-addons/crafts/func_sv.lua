@@ -80,14 +80,12 @@ local ValidTableTbl = {
     ['weapon'] = shizlib.Crafting.Recipes,
     ['resource'] = shizlib.Crafting.Recipes,
     ['accessory'] = shizlib.Crafting.Recipes,
-    ['food'] = shizlib.Crafting.RecipesCook,
 }
 
 local CheckResourcesTbl = {
     ['weapon'] = 'shizlib_resource',
     ['resource'] = 'shizlib_resource',
     ['accessory'] = 'shizlib_resource',
-    ['food'] = 'shizlib_food',
 }
 
 function shizlib.Crafting.CraftItem(kk, ply, cfg)
