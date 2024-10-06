@@ -175,7 +175,7 @@ function meta:SH_AccNotify(acc, text, duration)
 
 	duration = duration or 0
 
-	DarkRP.notify(self, 1, 4, text)
+	self:ChatPrint(Color(105, 0, 0), '[Аксессуары] ', text)
 end
 
 -- DarkRP 2.4.3 compatibility

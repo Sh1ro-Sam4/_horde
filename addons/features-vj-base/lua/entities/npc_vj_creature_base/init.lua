@@ -1332,12 +1332,12 @@ function ENT:VJ_ACT_PLAYACTIVITY(animation, stopActivities, stopActivitiesTime, 
 			
 			self:StopAttacks(true)
 			self.vACT_StopAttacks = true
-			self.NextChaseTime = CurTime() + stopActivitiesTime
-			self.NextIdleTime = CurTime() + stopActivitiesTime
+			self.NextChaseTime = CurTime() + animTime
+			self.NextIdleTime = CurTime() + animTime
 			
 			-- If there is already a timer, then adjust it instead of creating a new one
-			if !timer.Adjust("timer_act_stopattacks"..self:EntIndex(), stopActivitiesTime, 1, function() self.vACT_StopAttacks = false end) then
-				timer.Create("timer_act_stopattacks"..self:EntIndex(), stopActivitiesTime, 1, function() self.vACT_StopAttacks = false end)
+			if !timer.Adjust("timer_act_stopattacks"..self:EntIndex(), animTime, 1, function() self.vACT_StopAttacks = false end) then
+				timer.Create("timer_act_stopattacks"..self:EntIndex(), animTime, 1, function() self.vACT_StopAttacks = false end)
 			end
 		end
 		self.CurAnimationSeed = seed -- We need to set it again because self:StopAttacks() above will reset it when it calls to chase enemy!

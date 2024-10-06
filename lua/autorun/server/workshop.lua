@@ -8,6 +8,7 @@ resource.AddWorkshop('2135529088') -- [ArcCW] Modern Warfare 2
 resource.AddWorkshop('2131057232') -- [ArcCW] Arctic's Customizable Weapons (Base)
 resource.AddWorkshop('3338840724') -- [Kroject] Horde Content
 resource.AddWorkshop('2447979470') -- StormFox 2 Contet
+resource.AddWorkshop('1696595790') -- Grapping Hook
 
 resource.AddWorkshop('2052642961') -- SNPC Particle Resource Pack
 resource.AddWorkshop('853864395') -- Horror SNPC Revamp | BOSS

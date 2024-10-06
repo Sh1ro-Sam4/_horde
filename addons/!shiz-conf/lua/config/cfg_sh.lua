@@ -7,9 +7,18 @@ CFG.skinSound = {
     achievements = 'ui/achievement_earned.wav',
 }
 
+CFG.blacklistWeapon = {
+    ['weapon_grapplehook'] = true,
+    ['weapon_grapplehook_mk2'] = true,
+}
+
 CFG.djump = {
     ['founder'] = true,
     ['vip'] = true,
+}
+
+CFG.canGrab = {
+    ['founder'] = true,
 }
 
 CFG.dropOnDefeat = {

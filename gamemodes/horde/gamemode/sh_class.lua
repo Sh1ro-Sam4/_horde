@@ -420,6 +420,7 @@ function plymeta:Horde_SetSubclass(class_name, subclass_name)
         -- Check items
         if self:GetWeapons() then
             for _, wpn in pairs(self:GetWeapons()) do
+                if CFG.blacklistWeapon[wpn] then return end
                 if HORDE.items[wpn:GetClass()] then
                     local item = HORDE.items[wpn:GetClass()]
                     if self:Horde_GetCurrentSubclass() == "Gunslinger" and item.category == "Pistol" then

@@ -814,6 +814,7 @@ hook.Add("DoPlayerDeath", "Horde_DoPlayerDeath", function(victim)
     net.Start("Horde_ClearStatus")
     net.Send(victim)
     for _, wpn in pairs(victim:GetWeapons()) do
+        if CFG.blacklistWeapon[wpn] then continue end
         victim:DropWeapon(wpn)
     end
     if (not HORDE.start_game) or (HORDE.current_break_time > 0) then

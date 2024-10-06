@@ -6,6 +6,7 @@ concommand.Add("horde_drop_weapon", function (ply, cmd, args)
     if ply:GetActiveWeapon() and ply:GetActiveWeapon():IsValid() and ply:GetActiveWeapon().Base == "horde_spell_weapon_base" then
         return
     end
+    if CFG.blacklistWeapon[ply:GetActiveWeapon()] then return end
     ply:DropWeapon()
 end)
 
@@ -256,6 +257,7 @@ function plymeta:Horde_RecalcWeight()
         if not HORDE.items[wpn:GetClass()] then goto cont end
         local wpn_weight = HORDE.items[wpn:GetClass()].weight
         if weight + wpn_weight > self:Horde_GetMaxWeight() then
+            if CFG.blacklistWeapon[wpn] then continue end
             self:DropWeapon(wpn)
         else
             weight = weight + wpn_weight
@@ -434,6 +436,7 @@ hook.Add("WeaponEquip", "Horde_Economy_Equip", function (wpn, ply)
         end
         if (ply:Horde_GetWeight() - item.weight < 0) or (item.whitelist and (not item.whitelist[ply:Horde_GetClass().name])) then
             timer.Simple(0, function ()
+                if CFG.blacklistWeapon[wpn] then return end
                 ply:DropWeapon(wpn)
             end)
             return
@@ -812,6 +815,7 @@ net.Receive("Horde_SelectClass", function (len, ply)
     -- Drop all weapons
     ply:Horde_SetClass(class)
     for _, wpn in pairs(ply:GetWeapons()) do
+        if CFG.blacklistWeapon[wpn] then continue end
         ply:DropWeapon(wpn)
     end
     ply:Horde_SetSubclass(name, subclass_name)

@@ -226,6 +226,7 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
         if ply:GetActiveWeapon() and ply:GetActiveWeapon():IsValid() and ply:GetActiveWeapon().Base == "horde_spell_weapon_base" then
             return
         end
+        if CFG.blacklistWeapon[ply:GetActiveWeapon()] then return end
         ply:DropWeapon()
     elseif text[1] == "!throwmoney" then
         ply:Horde_DropMoney(text[2])
