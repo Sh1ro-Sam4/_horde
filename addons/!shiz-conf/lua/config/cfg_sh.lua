@@ -12,6 +12,10 @@ CFG.blacklistWeapon = {
     ['weapon_grapplehook_mk2'] = true,
 }
 
+CFG.blacklistMap = {
+    ['hr_desolate'] = true,
+}
+
 CFG.djump = {
     ['founder'] = true,
     ['vip'] = true,

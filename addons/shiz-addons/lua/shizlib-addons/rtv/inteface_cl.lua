@@ -78,6 +78,26 @@ RTV = RTV or {}
 local player_panel_h = s(150)
 local w = s(1000)
 local h = s(700)
+
+local players_map_votes = {
+    ['hr_desolate'] = 1,
+    ['de_stad'] = 0,
+}
+local players_diff_votes = {}
+local remaining_time = 60
+
+net.Receive("Horde_VotemapSync", function (len)
+    players_map_votes = net.ReadTable()
+end)
+
+net.Receive("Horde_VotediffSync", function (len)
+    players_diff_votes = net.ReadTable()
+end)
+
+net.Receive("Horde_RemainingTime", function (len)
+    remaining_time = net.ReadInt(8)
+end)
+
 RTV.create_player_panel = function (pnl, pos, ply, award, reason)
     local panel = vgui.Create("DPanel", pnl)
     panel:DockPadding(10, 10, 10, 10)
@@ -126,6 +146,97 @@ RTV.create_player_panel = function (pnl, pos, ply, award, reason)
     end
 
     return panel
+end
+
+RTV.map_btns = {}
+RTV.create_map_panel = function(pnl, map)
+    local vote_btn = vgui.Create("DButton", pnl)
+    vote_btn:DockMargin(10, 5, 10, 5)
+    vote_btn:SetSize(pnl:GetParent():GetWide(), 50)
+    vote_btn:Dock(TOP)
+    vote_btn:SetText('')
+    vote_btn.DoClick = function ()
+        votemap_panel:GetParent():Votemap(vote_btn, map)
+        surface.PlaySound("UI/buttonclick.wav")
+    end
+
+    local name_label = vgui.Create("DLabel", vote_btn)
+    name_label:Dock(LEFT)
+    name_label:SetText("")
+    name_label:SetSize(250, 80)
+    name_label:SetColor(Color(255,255,255))
+    name_label:SetFont("Content")
+    name_label.Paint = function(self)
+        if (players_map_votes[map] <= 0) or self:IsHovered() or (RTV.map_btns[vote_btn] == 1) then
+            draw.SimpleText(map, "Content", 10, 20, Color(255,255,255), TEXT_ALIGN_LEFT)
+        else
+            draw.SimpleText(map, "Content", 10, 20, HORDE.color_crimson, TEXT_ALIGN_LEFT)
+        end
+    end
+
+    local count_label = vgui.Create("DLabel", vote_btn)
+    count_label:Dock(RIGHT)
+    count_label:SetSize(50, 80)
+    count_label:SetColor(Color(255,255,255))
+    count_label:SetFont("Content")
+    count_label:SetText("")
+    count_label.Paint = function ()
+        if players_map_votes[map] then
+            if (players_map_votes[map] <= 0) or vote_btn_hovered or (RTV.map_btns[vote_btn] == 1) then
+                draw.SimpleText(tostring(players_map_votes[map]) .. "/" .. tostring(table.Count(player.GetAll())), "Content", 0, 20, Color(255,255,255))
+            else
+                draw.SimpleText(tostring(players_map_votes[map]) .. "/" .. tostring(table.Count(player.GetAll())), "Content", 0, 20, HORDE.color_crimson)
+            end
+        end
+    end
+
+    RTV.map_btns[vote_btn] = 0
+end
+
+RTV.diff_btns = {}
+RTV.create_diff_panel = function(pnl, diff)
+    local vote_btn = vgui.Create("DButton", pnl)
+    local vote_btn_hovered = false
+    vote_btn:DockMargin(10, 5, 10, 5)
+    vote_btn:SetSize(pnl:GetParent():GetWide(), 50)
+    vote_btn:Dock(TOP)
+    vote_btn:SetText("")
+    vote_btn.DoClick = function ()
+        votemap_panel:GetParent():Votediff(vote_btn, diff)
+        surface.PlaySound("UI/buttonclick.wav")
+    end
+    players_diff_votes[diff] = 0
+    local name_label = vgui.Create("DLabel", vote_btn)
+    name_label:Dock(LEFT)
+    name_label:SetText("")
+    name_label:SetSize(250, 80)
+    name_label:SetColor(Color(255,255,255))
+    name_label:SetFont("Content")
+    name_label.Paint = function ()
+        if (players_diff_votes[diff] <= 0) or vote_btn_hovered or (RTV.diff_btns[vote_btn] == 1) then
+            draw.SimpleText(translate.Get("Game_Difficulty_" .. diff), "Content", 10, 20, Color(255,255,255), TEXT_ALIGN_LEFT)
+        else
+            draw.SimpleText(translate.Get("Game_Difficulty_" .. diff), "Content", 10, 20, HORDE.color_crimson, TEXT_ALIGN_LEFT)
+        end
+    end
+
+    local count_label = vgui.Create("DLabel", vote_btn)
+    count_label:Dock(RIGHT)
+    count_label:SetSize(50, 80)
+    count_label:SetColor(Color(255,255,255))
+    count_label:SetFont("Content")
+    count_label:SetText("")
+    count_label.Paint = function ()
+        if players_diff_votes[diff] then
+            if (players_diff_votes[diff] <= 0) or vote_btn_hovered or (RTV.diff_btns[vote_btn] == 1) then
+                draw.SimpleText(tostring(players_diff_votes[diff]) .. "/" .. tostring(table.Count(player.GetAll())), "Content", 0, 20, Color(255,255,255))
+            else
+                draw.SimpleText(tostring(players_diff_votes[diff]) .. "/" .. tostring(table.Count(player.GetAll())), "Content", 0, 20, HORDE.color_crimson)
+            end
+        end
+    end
+
+    RTV.diff_btns[vote_btn] = 0
 end
 
 concommand.Add('shizlib_rtv_menu_test', function()
@@ -188,6 +299,28 @@ concommand.Add('shizlib_rtv_menu_test', function()
     RTV.create_player_panel(lboard, {x=w/4, y=s(80)}, mvp, 'MVP', tostring(mvp_kills) .. " " .. translate.Get("Game_Kills") .. ", " .. tostring(mvp_damage) .. " " .. translate.Get("Game_Damage") .. " (" .. tostring(percentage) .. "%)")
     RTV.create_player_panel(lboard, {x=0, y=s(90) + player_panel_h}, damage_player, translate.Get("Game_Most_Damage_Dealt"), tostring(most_damage) .. " " .. translate.Get("Game_Damage"))
     RTV.create_player_panel(lboard, {x=w/2, y=s(90) + player_panel_h}, kills_player, translate.Get("Game_Most_Kills"), tostring(most_kills) .. " " .. translate.Get("Game_Kills"))
+    RTV.create_player_panel(lboard, {x=0, y=s(90) + 2*player_panel_h}, damage_taken_player, translate.Get("Game_Most_Damage_Taken"), tostring(most_damage_taken) .. " " .. translate.Get("Game_Damage_Taken"))
+    RTV.create_player_panel(lboard, {x=w/2, y=s(90) + 2*player_panel_h}, elite_kill_player, translate.Get("Game_Elite_Killer"), tostring(most_elite_kills) .. " " .. translate.Get("Game_Elite_Kills"))
+    RTV.create_player_panel(lboard, {x=0, y=s(90) + 3*player_panel_h}, most_heal_player, translate.Get("Game_Most_Heal"), tostring(most_heal) .. " " .. translate.Get("Game_Healed"))
+    RTV.create_player_panel(lboard, {x=w/2, y=s(90) + 3*player_panel_h}, headshot_player, translate.Get("Game_SharpShooter"), tostring(most_headshots) .. " " .. translate.Get("Game_Headshots"))
 
     dsheet:AddSheet(translate.Get('Game_Game_Summary'), lboard, 'icon16/gun.png')
+
+    local map = dsheet:Add('Panel')
+    local diffs = map:Add('Panel')
+    diffs:Dock(LEFT)
+    diffs:SetWide(s(300))
+
+    RTV.create_diff_panel(diffs, "NORMAL")
+    RTV.create_diff_panel(diffs, "HARD")
+    RTV.create_diff_panel(diffs, "REALISM")
+    RTV.create_diff_panel(diffs, "NIGHTMARE")
+    RTV.create_diff_panel(diffs, "APOCALYPSE")
+
+    for k, v in ipairs(maps) do
+        if CFG.blacklistMap[v] then continue end
+        RTV.create_map_panel(map, v)
+    end
+    
+    dsheet:AddSheet(translate.Get("Game_Vote_Map"), map, 'icon16/gun.png')
 end)
