@@ -276,81 +276,81 @@ concommand.Add('shizlib_rtv_menu_test', function()
     dsheet:AddSheet(translate.Get("Game_Vote_Map"), map, 'icon16/gun.png')
 end)
 
-net.Receive('Horde_GameEnd', function()
-    timer.Simple(1, function()
-        if IsValid(RTV.to_remove) then RTV.to_remove:Remove() end
-    end)
+-- net.Receive('Horde_GameEnd', function()
+--     timer.Simple(1, function()
+--         if IsValid(RTV.to_remove) then RTV.to_remove:Remove() end
+--     end)
 
-    local status = net.ReadString()
+--     local status = net.ReadString()
 
-    local mvp = net.ReadEntity()
-    local mvp_damage = net.ReadUInt(32)
-    local mvp_kills = net.ReadUInt(32)
+--     local mvp = net.ReadEntity()
+--     local mvp_damage = net.ReadUInt(32)
+--     local mvp_kills = net.ReadUInt(32)
 
-    local damage_player = net.ReadEntity()
-    local most_damage = net.ReadUInt(32)
+--     local damage_player = net.ReadEntity()
+--     local most_damage = net.ReadUInt(32)
 
-    local kills_player = net.ReadEntity()
-    local most_kills = net.ReadUInt(32)
+--     local kills_player = net.ReadEntity()
+--     local most_kills = net.ReadUInt(32)
 
-    local most_heal_player = net.ReadEntity()
-    local most_heal = net.ReadUInt(32)
+--     local most_heal_player = net.ReadEntity()
+--     local most_heal = net.ReadUInt(32)
 
-    local headshot_player = net.ReadEntity()
-    local most_headshots = net.ReadUInt(32)
+--     local headshot_player = net.ReadEntity()
+--     local most_headshots = net.ReadUInt(32)
 
-    local elite_kill_player = net.ReadEntity()
-    local most_elite_kills = net.ReadUInt(32)
+--     local elite_kill_player = net.ReadEntity()
+--     local most_elite_kills = net.ReadUInt(32)
 
-    local damage_taken_player = net.ReadEntity()
-    local most_damage_taken = net.ReadUInt(32)
+--     local damage_taken_player = net.ReadEntity()
+--     local most_damage_taken = net.ReadUInt(32)
 
-    local total_damage = net.ReadUInt(32)
+--     local total_damage = net.ReadUInt(32)
 
-    local maps = net.ReadTable()
+--     local maps = net.ReadTable()
 
-    RTV.frame = vgui.Create('DPanel')
-    RTV.frame:SetSize(s(1015), s(800))
-    RTV.frame:Center()
-    RTV.frame:MakePopup()
+--     RTV.frame = vgui.Create('DPanel')
+--     RTV.frame:SetSize(s(1015), s(800))
+--     RTV.frame:Center()
+--     RTV.frame:MakePopup()
     
-    local dsheet = RTV.frame:Add('DPropertySheet')
-    dsheet:Dock(FILL)
+--     local dsheet = RTV.frame:Add('DPropertySheet')
+--     dsheet:Dock(FILL)
 
-    local lboard = dsheet:Add('Panel')
-    function lboard:Paint(w, h)
-        draw.SimpleText(translate.Get("Game_Result_" .. status) .. "! " .. game.GetMap() .. " - " .. translate.Get("Game_Difficulty_" .. HORDE.difficulty_text[HORDE.difficulty]), 'font.40', w/2, s(40), color_white, 1, 1)
-    end
+--     local lboard = dsheet:Add('Panel')
+--     function lboard:Paint(w, h)
+--         draw.SimpleText(translate.Get("Game_Result_" .. status) .. "! " .. game.GetMap() .. " - " .. translate.Get("Game_Difficulty_" .. HORDE.difficulty_text[HORDE.difficulty]), 'font.40', w/2, s(40), color_white, 1, 1)
+--     end
 
-    RTV.create_player_panel(lboard, {x=w/4, y=s(80)}, mvp, 'MVP', tostring(mvp_kills) .. " " .. translate.Get("Game_Kills") .. ", " .. tostring(mvp_damage) .. " " .. translate.Get("Game_Damage") .. " (" .. tostring(percentage) .. "%)")
-    RTV.create_player_panel(lboard, {x=0, y=s(90) + player_panel_h}, damage_player, translate.Get("Game_Most_Damage_Dealt"), tostring(most_damage) .. " " .. translate.Get("Game_Damage"))
-    RTV.create_player_panel(lboard, {x=w/2, y=s(90) + player_panel_h}, kills_player, translate.Get("Game_Most_Kills"), tostring(most_kills) .. " " .. translate.Get("Game_Kills"))
-    RTV.create_player_panel(lboard, {x=0, y=s(90) + 2*player_panel_h}, damage_taken_player, translate.Get("Game_Most_Damage_Taken"), tostring(most_damage_taken) .. " " .. translate.Get("Game_Damage_Taken"))
-    RTV.create_player_panel(lboard, {x=w/2, y=s(90) + 2*player_panel_h}, elite_kill_player, translate.Get("Game_Elite_Killer"), tostring(most_elite_kills) .. " " .. translate.Get("Game_Elite_Kills"))
-    RTV.create_player_panel(lboard, {x=0, y=s(90) + 3*player_panel_h}, most_heal_player, translate.Get("Game_Most_Heal"), tostring(most_heal) .. " " .. translate.Get("Game_Healed"))
-    RTV.create_player_panel(lboard, {x=w/2, y=s(90) + 3*player_panel_h}, headshot_player, translate.Get("Game_SharpShooter"), tostring(most_headshots) .. " " .. translate.Get("Game_Headshots"))
+--     RTV.create_player_panel(lboard, {x=w/4, y=s(80)}, mvp, 'MVP', tostring(mvp_kills) .. " " .. translate.Get("Game_Kills") .. ", " .. tostring(mvp_damage) .. " " .. translate.Get("Game_Damage") .. " (" .. tostring(percentage) .. "%)")
+--     RTV.create_player_panel(lboard, {x=0, y=s(90) + player_panel_h}, damage_player, translate.Get("Game_Most_Damage_Dealt"), tostring(most_damage) .. " " .. translate.Get("Game_Damage"))
+--     RTV.create_player_panel(lboard, {x=w/2, y=s(90) + player_panel_h}, kills_player, translate.Get("Game_Most_Kills"), tostring(most_kills) .. " " .. translate.Get("Game_Kills"))
+--     RTV.create_player_panel(lboard, {x=0, y=s(90) + 2*player_panel_h}, damage_taken_player, translate.Get("Game_Most_Damage_Taken"), tostring(most_damage_taken) .. " " .. translate.Get("Game_Damage_Taken"))
+--     RTV.create_player_panel(lboard, {x=w/2, y=s(90) + 2*player_panel_h}, elite_kill_player, translate.Get("Game_Elite_Killer"), tostring(most_elite_kills) .. " " .. translate.Get("Game_Elite_Kills"))
+--     RTV.create_player_panel(lboard, {x=0, y=s(90) + 3*player_panel_h}, most_heal_player, translate.Get("Game_Most_Heal"), tostring(most_heal) .. " " .. translate.Get("Game_Healed"))
+--     RTV.create_player_panel(lboard, {x=w/2, y=s(90) + 3*player_panel_h}, headshot_player, translate.Get("Game_SharpShooter"), tostring(most_headshots) .. " " .. translate.Get("Game_Headshots"))
 
-    dsheet:AddSheet(translate.Get('Game_Game_Summary'), lboard, 'icon16/gun.png')
+--     dsheet:AddSheet(translate.Get('Game_Game_Summary'), lboard, 'icon16/gun.png')
 
-    local map = dsheet:Add('Panel')
+--     local map = dsheet:Add('Panel')
 
-    local diffs = map:Add('Panel')
-    diffs:Dock(LEFT)
-    diffs:SetWide(s(300))
+--     local diffs = map:Add('Panel')
+--     diffs:Dock(LEFT)
+--     diffs:SetWide(s(300))
 
-    local scroll = map:Add('DScrollPanel')
-    scroll:Dock(FILL)
+--     local scroll = map:Add('DScrollPanel')
+--     scroll:Dock(FILL)
 
-    RTV.create_diff_panel(diffs, "NORMAL")
-    RTV.create_diff_panel(diffs, "HARD")
-    RTV.create_diff_panel(diffs, "REALISM")
-    RTV.create_diff_panel(diffs, "NIGHTMARE")
-    RTV.create_diff_panel(diffs, "APOCALYPSE")
+--     RTV.create_diff_panel(diffs, "NORMAL")
+--     RTV.create_diff_panel(diffs, "HARD")
+--     RTV.create_diff_panel(diffs, "REALISM")
+--     RTV.create_diff_panel(diffs, "NIGHTMARE")
+--     RTV.create_diff_panel(diffs, "APOCALYPSE")
 
-    for k, v in ipairs(maps) do
-        if CFG.blacklistMap[v] then continue end
-        RTV.create_map_panel(scroll, v)
-    end
+--     for k, v in ipairs(maps) do
+--         if CFG.blacklistMap[v] then continue end
+--         RTV.create_map_panel(scroll, v)
+--     end
     
-    dsheet:AddSheet(translate.Get("Game_Vote_Map"), map, 'icon16/gun.png')
-end)
+--     dsheet:AddSheet(translate.Get("Game_Vote_Map"), map, 'icon16/gun.png')
+-- end)
