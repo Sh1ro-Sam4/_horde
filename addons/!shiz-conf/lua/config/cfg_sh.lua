@@ -13,7 +13,26 @@ CFG.blacklistWeapon = shizlib.array.toKeys({
 })
 
 CFG.blacklistMap = shizlib.array.toKeys({
-    'hr_desolate',
+    'cs_assault',
+    'cs_compound',
+    'cs_havana',
+    'cs_italy',
+    'cs_militia',
+    'cs_office',
+    'de_aztec',
+    'de_cbble',
+    'de_chateau',
+    'de_dust',
+    'de_dust2',
+    'de_inferno',
+    'de_nuke',
+    'de_piranesi',
+    'de_port',
+    'de_prodigy',
+    'de_tides',
+    'de_train',
+    'test_hardware',
+    'test_speakers',
 })
 
 CFG.djump = shizlib.array.toKeys({

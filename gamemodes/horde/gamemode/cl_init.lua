@@ -403,40 +403,40 @@ hook.Add("HUDShouldDraw", "Horde_RemoveRetardRedScreen", function(name)
     end
 end)
 
-net.Receive("Horde_GameEnd", function ()
-    local status = net.ReadString()
+-- net.Receive("Horde_GameEnd", function ()
+--     local status = net.ReadString()
 
-    local mvp = net.ReadEntity()
-    local mvp_damage = net.ReadUInt(32)
-    local mvp_kills = net.ReadUInt(32)
+--     local mvp = net.ReadEntity()
+--     local mvp_damage = net.ReadUInt(32)
+--     local mvp_kills = net.ReadUInt(32)
 
-    local damage_player = net.ReadEntity()
-    local most_damage = net.ReadUInt(32)
+--     local damage_player = net.ReadEntity()
+--     local most_damage = net.ReadUInt(32)
 
-    local kills_player = net.ReadEntity()
-    local most_kills = net.ReadUInt(32)
+--     local kills_player = net.ReadEntity()
+--     local most_kills = net.ReadUInt(32)
 
-    local most_heal_player = net.ReadEntity()
-    local most_heal = net.ReadUInt(32)
+--     local most_heal_player = net.ReadEntity()
+--     local most_heal = net.ReadUInt(32)
 
-    local headshot_player = net.ReadEntity()
-    local most_headshots = net.ReadUInt(32)
+--     local headshot_player = net.ReadEntity()
+--     local most_headshots = net.ReadUInt(32)
 
-    local elite_kill_player = net.ReadEntity()
-    local most_elite_kills = net.ReadUInt(32)
+--     local elite_kill_player = net.ReadEntity()
+--     local most_elite_kills = net.ReadUInt(32)
 
-    local damage_taken_player = net.ReadEntity()
-    local most_damage_taken = net.ReadUInt(32)
+--     local damage_taken_player = net.ReadEntity()
+--     local most_damage_taken = net.ReadUInt(32)
 
-    local total_damage = net.ReadUInt(32)
+--     local total_damage = net.ReadUInt(32)
 
-    local maps = net.ReadTable()
+--     local maps = net.ReadTable()
 
-    local end_gui = vgui.Create("HordeSummaryPanel")
-    end_gui:SetData(status, mvp, mvp_damage, mvp_kills, damage_player, most_damage, kills_player, most_kills, most_heal_player, most_heal, headshot_player, most_headshots, elite_kill_player, most_elite_kills, damage_taken_player, most_damage_taken, total_damage, maps)
+--     -- local end_gui = vgui.Create("HordeSummaryPanel")
+--     -- end_gui:SetData(status, mvp, mvp_damage, mvp_kills, damage_player, most_damage, kills_player, most_kills, most_heal_player, most_heal, headshot_player, most_headshots, elite_kill_player, most_elite_kills, damage_taken_player, most_damage_taken, total_damage, maps)
 
-    RTV.to_remove = end_gui
-end)
+--     -- RTV.to_remove = end_gui
+-- end)
 
 killicon.AddAlias("arccw_horde_awp", "arccw_go_awp")
 killicon.AddAlias("arccw_horde_barret", "arccw_mw2_barrett")

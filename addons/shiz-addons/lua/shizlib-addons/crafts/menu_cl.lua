@@ -102,7 +102,6 @@ local function openRecipeMenu(pnl, tbl, ent, base)
     craftBtn:SetText('Скрафтить')
 
     function craftBtn:DoClick()
-        if LocalPlayer():GetPos():Distance(ent:GetPos()) > CFG.useDist then return end
         netstream.Start('Crafting.Craft', {id = tbl.id, Ent = ent, Cfg = base})
     end
 end

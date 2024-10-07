@@ -92,10 +92,10 @@ function shizlib.Crafting.CraftItem(kk, ply, cfg)
     -- if ent:GetClass() ~= 'shizlib_workbench' and ent:GetClass() ~= 'shizlib_stove' then return end
     -- if ply:GetPos():Distance(ent:GetPos()) > CFG.useDist then return end
 
-    if not shizlib.Crafting.ValidTable(kk, ValidTableTbl[cfg]) then shizlib.notify(ply, Color(189,0,0), 'Крафты', 'Такого крафта нет!') end
+    if not shizlib.Crafting.ValidTable(kk, ValidTableTbl[cfg]) then ply:ChatPrint(Color(189,0,0), '[Крафты] ', 'Такого крафта нет!') end
     local tbl = shizlib.Crafting.ValidTable(kk, ValidTableTbl[cfg])
 
-    if not shizlib.Crafting.CheckResources(tbl, ply, CheckResourcesTbl[cfg]) then return shizlib.notify(ply, Color(189,0,0), 'Крафты', 'У вас не достаточно ресурсов!') end
+    if not shizlib.Crafting.CheckResources(tbl, ply, CheckResourcesTbl[cfg]) then return ply:ChatPrint(Color(189,0,0), '[Крафты] ', 'У вас не достаточно ресурсов!') end
 
     local id = ply.Inventory:GetID()
     local con = itemstore.containers.Get( id )
@@ -104,7 +104,7 @@ function shizlib.Crafting.CraftItem(kk, ply, cfg)
     end
 
     shizlib.Crafting.TypeHandler(tbl, ply)
-    ply:ChatPrint(string.format('Вы скрафтили "%s"', tbl.name))
+    ply:ChatPrint(Color(189,0,0), '[Крафты] ', string.format('Вы скрафтили "%s"', tbl.name))
 
     hook.Run('shizlib:crafting', ply, tbl)
 end

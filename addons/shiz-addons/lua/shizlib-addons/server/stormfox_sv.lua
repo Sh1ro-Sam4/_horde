@@ -54,7 +54,7 @@ hook.Add('Think', 'Player-Tinker?Thinker!', function(ply)
 	end
 end)
 
-hook.Add('PlayerThink', 'shizlib-Grab', function(ply, time)
+hook.Remove('PlayerThink', 'shizlib-Grab', function(ply, time)
     if not CFG.canGrab[ply:GetUserGroup()] then return end
 
     if ply:KeyDown(IN_ATTACK) and ply.Grabbing then

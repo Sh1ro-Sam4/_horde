@@ -80,6 +80,7 @@ end
 
 hook.Run('shizlib-loaded')
 
+shizlib.shared( 'shizlib/features/array_sh' )
 shizlib._includeDir( 'config', true )
 
 shizlib._includeDir( 'shizlib', true )
