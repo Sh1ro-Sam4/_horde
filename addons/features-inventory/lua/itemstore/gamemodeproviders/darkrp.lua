@@ -1,5 +1,5 @@
 function PROVIDER:GetMoney( pl )
-	return pl:getDarkRPVar( "money" )
+	return 0
 end
 
 if SERVER then
