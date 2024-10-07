@@ -7,23 +7,23 @@ CFG.skinSound = {
     achievements = 'ui/achievement_earned.wav',
 }
 
-CFG.blacklistWeapon = {
-    ['weapon_grapplehook'] = true,
-    ['weapon_grapplehook_mk2'] = true,
-}
+CFG.blacklistWeapon = shizlib.array.toKeys({
+    'weapon_grapplehook',
+    'weapon_grapplehook_mk2',
+})
 
-CFG.blacklistMap = {
-    ['hr_desolate'] = true,
-}
+CFG.blacklistMap = shizlib.array.toKeys({
+    'hr_desolate',
+})
 
-CFG.djump = {
-    ['founder'] = true,
-    ['vip'] = true,
-}
+CFG.djump = shizlib.array.toKeys({
+    'founder',
+    'vip',
+})
 
-CFG.canGrab = {
-    ['founder'] = true,
-}
+CFG.canGrab = shizlib.array.toKeys({
+    'founder',
+})
 
 CFG.dropOnDefeat = {
     'steel',
