@@ -19,8 +19,13 @@ if SERVER then
         net.Send(self)
     end
 
+    local message_tbl = {
+        'Telegram channel: t.me/kroject',
+        'Discord server: https://discord.gg/a8H9eUTcgR',
+    }
+
     timer.Create('Broadcast-SelfProviding:)', 180, 0, function()
-        shizlib.Broadcast(Color(174,0,197), '[Kroject] ', 'Join us Discord server: https://discord.gg/a8H9eUTcgR')
+        shizlib.Broadcast(Color(174,0,197), '[Kroject] ', table.Random(message_tbl))
     end)
 else
     net.Receive('shizlib-Chat', function(len)
