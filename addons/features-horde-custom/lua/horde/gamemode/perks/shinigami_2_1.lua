@@ -1,6 +1,6 @@
 PERK.PrintName = "Algor Mortis"
 PERK.Description = "Gain immunity to Cold damage. Cold damage received will heal you instead. \nTaking damage releases a frost nova that blocks damage received \nand deals ice damage. 10 second cooldown."
-PERK.Icon = "materials/perks/necromancer/void_field.png"
+PERK.Icon = "materials/perks/necromancer/withering_prescence.png"
 PERK.Params = {
     [1] = {value = 8},
     [2] = {value = 0.25, percent = true},
