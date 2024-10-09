@@ -18,3 +18,16 @@ hook.Add('KeyPress', 'shizlib-doubleJump', function(ply, key)
         ply:SetVelocity(vel)
     end
 end)
+
+-- local ply = Player(19)
+
+-- local entity = '3dglasses'
+
+-- local ent = ents.Create('base_accessory')
+-- ent:SetPos(ply:GetPos())
+-- ent:Spawn()
+-- ent:Activate()
+-- ent:SetID(entity)
+-- ent:SetModel(SH_ACC.List[ent:GetID()].mdl)
+
+-- ply:PickupItem(ent)
