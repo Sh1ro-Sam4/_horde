@@ -432,10 +432,10 @@ net.Receive("Horde_GameEnd", function ()
 
     local maps = net.ReadTable()
 
-    -- local end_gui = vgui.Create("HordeSummaryPanel")
-    -- end_gui:SetData(status, mvp, mvp_damage, mvp_kills, damage_player, most_damage, kills_player, most_kills, most_heal_player, most_heal, headshot_player, most_headshots, elite_kill_player, most_elite_kills, damage_taken_player, most_damage_taken, total_damage, maps)
+    local end_gui = vgui.Create("HordeSummaryPanel")
+    end_gui:SetData(status, mvp, mvp_damage, mvp_kills, damage_player, most_damage, kills_player, most_kills, most_heal_player, most_heal, headshot_player, most_headshots, elite_kill_player, most_elite_kills, damage_taken_player, most_damage_taken, total_damage, maps)
 
-    -- RTV.to_remove = end_gui
+    RTV.to_remove = end_gui
 end)
 
 killicon.AddAlias("arccw_horde_awp", "arccw_go_awp")
