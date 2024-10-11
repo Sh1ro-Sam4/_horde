@@ -44,6 +44,9 @@ function scoreboard.Open()
         player_pnl:SetText('')
         function player_pnl:Paint(w, h)
             draw.RoundedBox(8, 0, 0, w, h, colors.hvr)
+            if not pl:Alive() then
+                draw.RoundedBox(8, 0, 0, w, h, ColorAlpha(colors.r, 50))
+            end
 
             local subclass_name = HORDE.Class_Survivor
             if pl:Horde_GetCurrentSubclass() then 
