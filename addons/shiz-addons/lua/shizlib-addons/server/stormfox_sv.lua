@@ -10,7 +10,7 @@ shizlib.horde.enemy_count_multiplier = 1
 
 hook.Add('HordeWaveStart', 'shizlib-StormFoxAndHorde', function(wave)
     if math.random(1, 2) == 1 then
-        shizlib.Broadcast(Color(163,12,12), '[Оповещение] ', 'Наступила ночь! Будте бдительны, зомби стали сильнее!')
+        shizlib.Broadcast(Color(163,12,12), '[Радиовещание] ', 'Наступила ночь! Будте бдительны, зомби стали сильнее!')
         shizlib.horde.night_health_multiplier = 1.4
         shizlib.horde.enemy_count_multiplier = 1.5
 

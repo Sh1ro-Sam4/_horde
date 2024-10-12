@@ -25,10 +25,18 @@ if SERVER then
     }
 
     timer.Create('Broadcast-SelfProviding:)', 180, 0, function()
-        shizlib.Broadcast(Color(174,0,197), '[Kroject] ', table.Random(message_tbl))
+        shizlib.Broadcast(Color(174,0,197), '[INFO] ', table.Random(message_tbl))
     end)
 else
     net.Receive('shizlib-Chat', function(len)
         chat.AddText(net.ReadColor(), net.ReadString(), color_white, net.ReadString())
+    end)
+end
+
+if SERVER then
+    util.AddNetworkString('shizlib.ToggleChat')
+
+    net.Receive('shizlib.ToggleChat', function(len, pl)
+        pl:SetNWBool('IsTyping', net.ReadBool())
     end)
 end
