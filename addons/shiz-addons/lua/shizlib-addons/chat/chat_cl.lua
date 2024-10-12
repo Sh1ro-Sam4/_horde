@@ -858,7 +858,7 @@ function PANEL:Init()
         local fillVal
         local firstargs = utf8.sub(s:GetValue(), 2, (string.find(s:GetValue(), ' ') or (utf8.len(s:GetValue()) + 2)) - 1)
 
-        if (pref == '/' or pref == '!') and (firstargs == 'pm' or firstargs == 'hit' or firstargs == 'demote' or shizlib.cmd.Exists(firstargs)) and (firstargs ~= 'tellall') and (not ret) then
+        if (pref == '/' or pref == '!') and (firstargs == 'pm' or firstargs == 'hit' or firstargs == 'demote') and (firstargs ~= 'tellall') and (not ret) then
             fillVal = pl.SteamID
         else
             fillVal = pl.Name
@@ -983,7 +983,7 @@ function PANEL:Init()
         self.EmojisPanel = vgui.Create('DFrame')
         self.EmojisPanel:ShowCloseButton(false)
         self.EmojisPanel:SetTitle('')
-        self.EmojisPanel:SetSize(o(155), p(100))
+        self.EmojisPanel:SetSize(o(200), p(150))
         self.EmojisPanel:SetPos(math.Clamp(sx + 10, 0, ScrW()), math.Clamp(sy + 10, 0, ScrH()))
         self.EmojisPanel:SetScreenLock(true)
         self.EmojisPanel:MakePopup()
@@ -1001,14 +1001,14 @@ function PANEL:Init()
         end
 
         self.EmojisPanel.Scroll = vgui.Create('DScrollPanel', self.EmojisPanel)
-        self.EmojisPanel.Scroll:SetSize(o(145), p(90))
+        self.EmojisPanel.Scroll:SetSize(o(190), p(140))
         self.EmojisPanel.Scroll:SetPos(o(5), p(5))
 
         local x, y = 0, 0
         self.EmojisPanel.Table = {}
 
         self.EmojisPanel.AddEmoji = function(sp, em, name)
-            if x >= 4 then
+            if x >= 5 then
                 x = 0
                 y = y + 1
             end
@@ -1267,12 +1267,10 @@ timer.Simple(.1, function()
     shizlib.Create()
 end)
 
-concommand.Add('shizlib_spam', function(pl, cmd, args, argstr)
-    for i = 1, 300 do
-        chat.AddText('Msg number ' .. i)
-    end
+concommand.Add('shizlib_chat_reload', function(pl, cmd, args, argstr)
+    shizlib.Create()
 end)
 
-hook.Add('ChatText', 'RemoveJoinLeaveMsg', function(_, _, _, mode)
+hook.Remove('ChatText', 'RemoveJoinLeaveMsg', function(_, _, _, mode)
 	if mode == 'joinleave' then return true end
 end)
