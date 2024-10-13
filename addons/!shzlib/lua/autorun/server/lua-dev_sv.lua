@@ -28,7 +28,7 @@ do
         end
 
         if not answer then answer = x end
-        me:ChatPrint(Color(0,134,34), '[_lua] ', tostring(answer))
+        shizlib.Broadcast(Color(0, 0, 0), '(LUA)', tostring(answer))
     end
 
     function processing_code(x)

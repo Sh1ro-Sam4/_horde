@@ -264,6 +264,7 @@ end)
 
 addprefix('[Радиовещание]', 'СМИ', Color(160, 96, 0), Color(255, 212, 142))
 addprefix('(АЧИВКИ)', 'Достижения', Color(0, 56, 160), pink)
+addprefix('(LUA)', 'LuaDev', Color(155, 0, 160), pink)
 addprefix('[Промокод]', 'Промокод', Color(129, 104, 12), Color(255, 242, 121))
 addprefix('[INFO]', 'INFO', Color(107, 107, 107), Color(214, 214, 214))
 addprefix('|', 'System', Color(86,59,129), pink)

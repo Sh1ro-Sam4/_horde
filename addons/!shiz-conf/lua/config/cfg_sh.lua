@@ -35,9 +35,6 @@ CFG.blacklistMap = {
     'test_speakers',
 }
 
-HORDE = HORDE or {}
-HORDE.map_blacklist = CFG.blacklistMap
-
 CFG.djump = shizlib.array.toKeys({
     'founder',
     'vip',

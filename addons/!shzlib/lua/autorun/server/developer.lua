@@ -27,6 +27,57 @@ hook.Add('PlayerSpawn', 'shizlib-premiumKit', function(ply)
     end
 end)
 
+hook.Add('InitPostEntity', 'shizlib-HordeBlacklistMap', function()
+    HORDE.map_blacklist = CFG.blacklistMap
+
+    HORDE.map_whitelist = {}
+    HORDE.map_blacklist = {
+        'cs_assault',
+        'cs_compound',
+        'cs_havana',
+        'cs_italy',
+        'cs_militia',
+        'cs_office',
+        'de_aztec',
+        'de_cbble',
+        'de_chateau',
+        'de_dust',
+        'de_dust2',
+        'de_inferno',
+        'de_nuke',
+        'de_piranesi',
+        'de_port',
+        'de_prodigy',
+        'de_tides',
+        'de_train',
+        'test_hardware',
+        'test_speakers',
+    }
+
+    function HORDE:GetNextMaps()
+        local map_list = {}
+
+        -- If there is a whitelist, only use maps in the whitelist.
+        HORDE:GetMapWhitelist()
+        if HORDE.map_whitelist and not table.IsEmpty(HORDE.map_whitelist) then
+            return HORDE.map_whitelist
+        end
+
+        HORDE:GetMapBlacklist()
+        local maps = file.Find( "maps/*.bsp", "GAME")
+        for _, map in ipairs( maps ) do
+            map = map:sub(1, -5)
+            for _, blacklist_map in pairs(CFG.blacklistMap) do
+                if map == blacklist_map then goto cont end
+            end
+            table.insert(map_list, map)
+            ::cont::
+        end
+        
+        return map_list
+    end
+end)
+
 -- timer.Create('goida', 3, 0, function()
 --     for _, ply in ipairs(player.GetAll()) do
 --         ply:Say('ИНФЕКЦИЯ ГОЙДА')
