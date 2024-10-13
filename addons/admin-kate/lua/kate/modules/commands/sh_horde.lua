@@ -67,3 +67,19 @@ kate.AddCommand('Stats', function(pl)
     -- StatsMenu(pl)
 end)
 :SetFlag('stats')
+
+kate.AddCommand('respawn', function(pl, target)
+    target.Horde_Fake_Respawn = true
+    target:Spawn()
+    target.Horde_Fake_Respawn = nil
+
+    local phrase = function( showSteamId )
+        return { 'LOG_RESPAWN', kate.GetActor( pl, showSteamId ), kate.GetTarget( target, showSteamId ) }
+    end
+
+    kate.Notify( player.GetAll(), LOG_COMMON, kate.GetPhrase( true, unpack( phrase( false ) ) ) )
+    kate.Print( LOG_COMMON, kate.GetPhrase( false, unpack( phrase( true ) ) ) )
+end)
+    :SetFlag( 'respawn' )
+    :AddParam( 'PLAYER_ENTITY' )
+    :AddAlias( 'spawn' )

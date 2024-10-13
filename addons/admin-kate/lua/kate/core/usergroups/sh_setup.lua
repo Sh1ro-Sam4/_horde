@@ -77,6 +77,13 @@ kate.AddUserGroup( 'Moderator' )
     'mute', 'gag', 'freeze', 'strip'
   } )
 
+kate.AddUserGroup( 'Elite' )
+  :SetRelevance( 2 )
+  :SetAdmin( false )
+  :SetFlags( {
+    'mute', 'gag', 'respawn'
+  } )
+
 kate.AddUserGroup( 'Vip' )
   :SetRelevance( 1 )
   :SetAdmin( false )

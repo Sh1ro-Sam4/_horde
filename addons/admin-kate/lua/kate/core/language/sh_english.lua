@@ -8,6 +8,7 @@ local phrases = {
   LOG_RCON = '%s sent RCON command: %s',
   LOG_KICK = '%s kicked %s with reason: %s',
   LOG_SLAY = '%s slayed %s',
+  LOG_RESPAWN = '%s respawn %s',
   LOG_MODEL = '%s set model of %s to %s',
   LOG_SIZE = '%s set model scale of %s to %s',
   LOG_HEALTH = '%s set %s health to %s',
