@@ -55,10 +55,10 @@ SWEP.Firemodes = {
         Mode = 2,
         PrintName = "Ballistic Mode"
     },
-    -- {
-    --     Mode = 3,
-    --     PrintName = "Energy Mode"
-    -- },
+    {
+        Mode = 3,
+        PrintName = "Energy Mode"
+    },
 }
 
 SWEP.NPCWeaponType = "weapon_ar2"
