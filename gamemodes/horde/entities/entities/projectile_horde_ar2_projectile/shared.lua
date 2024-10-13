@@ -92,7 +92,7 @@ function ENT:PhysicsCollide(data, phys)
 		return
 	end
 
-	local shouldRemove = self:OnBounce(data, phys)
+	self:OnBounce(data, phys)
 
 	local dataF = EffectData()
 	dataF:SetOrigin(data.HitPos)
