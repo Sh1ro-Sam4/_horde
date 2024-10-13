@@ -42,8 +42,6 @@ AddCSLuaFile("includes/modules/ai_vj_task.lua")
 ------ Main Hooks / Functions ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if SERVER then
-	util.AddNetworkString("vj_welcome_msg")
-	util.AddNetworkString("vj_meme")
 elseif CLIENT then
 	hook.Add("AddToolMenuTabs", "VJ_CREATETOOLTAB", function()
 		spawnmenu.AddToolTab("DrVrej", "DrVrej", "vj_base/icons/vrejgaming.png") // "icon16/plugin.png"
@@ -57,11 +55,6 @@ elseif CLIENT then
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 hook.Add("PlayerInitialSpawn", "VJBaseSpawn", function(ply, transition)
-	-- Simple message for the users
-	timer.Simple(1, function()
-		net.Start("vj_welcome_msg")
-		net.Send(ply)
-	end)
 	
 	if !game.SinglePlayer() && ply:SteamID() == "STEAM_0:0:22688298" then
 		PrintMessage(HUD_PRINTTALK, "DrVrej Has Joined The Game!")
@@ -70,15 +63,6 @@ hook.Add("PlayerInitialSpawn", "VJBaseSpawn", function(ply, transition)
 		sd:SetSoundLevel(0)
 		sd:Play()
 		timer.Simple(10, function() if sd then sd:Stop() end end)
-	end
-end)
----------------------------------------------------------------------------------------------------------------------------------------------
-net.Receive("vj_meme", function(len, pl)
-	if pl:IsPlayer() && pl:SteamID() == "STEAM_0:0:22688298" then
-		PrintMessage(HUD_PRINTTALK, "DrVrej is in the server!")
-		local sd = CreateSound(game.GetWorld(), "vj_misc/illuminati_confirmed.mp3")
-		sd:SetSoundLevel(0)
-		sd:Play()
 	end
 end)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

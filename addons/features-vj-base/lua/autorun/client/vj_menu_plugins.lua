@@ -72,46 +72,9 @@ local function VJ_PLUGINS(Panel)
 		gui.OpenURL("https://www.youtube.com/watch?v=dGoqEpFZ5_M")
 	end
 	Panel:AddPanel(tutorialVid)
-	
-	-- *insert lenny face*
-	if (LocalPlayer():SteamID() == "STEAM_0:0:22688298") then
-		local lennyface = vgui.Create("DButton")
-		lennyface:SetFont("TargetID")
-		lennyface:SetText("HELLO")
-		lennyface:SetSize(150, 25)
-		lennyface:SetColor(Color(0, 0, 102))
-		lennyface:SetFont("VJFont_Trebuchet24_SmallMedium")
-		lennyface.DoClick = function(x)
-			net.Start("vj_meme")
-			net.SendToServer()
-		end
-		Panel:AddPanel(lennyface)
-	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 hook.Add("PopulateToolMenu", "VJ_ADDTOMENU_INSTALLATIONS", function()
 	spawnmenu.AddToolMenuOption("DrVrej", "Main Menu", "Installed Plugins", "#vjbase.menu.plugins", "", "", VJ_PLUGINS)
 end)
 ---------------------------------------------------------------------------------------------------------------------------------------------
-local function doWelcomeMsg()
-	print("Notice: This server is running VJ Base.")
-
-	local amt = #VJ.Plugins
-    if amt <= 9 then
-		amt = "0"..tostring(amt)
-	else
-		amt = tostring(amt)
-	end
-    local dashes = "----------------------------"
-	
-    chat.AddText(Color(255,215,0),"|"..dashes..">", Color(0,255,255), " VJ Base ", Color(30,200,255), VJBASE_VERSION.." ", Color(255,215,0), "<"..dashes.."|")
-    chat.AddText(Color(255,215,0),"|- ", Color(255,255,0),"NOTICE! ", Color(255,255,255), "To configure ", Color(0,255,255), "VJ Base ", Color(255,255,255), "click on ", Color(0,255,255), "DrVrej", Color(255,255,255)," in the spawn menu! ", Color(255,215,0),"-|")
-    //chat.AddText(Color(255,215,0),"|"..dashes..">", Color(30,200,255), " "..amt, Color(0,255,255), " VJ Plugins ", Color(255,215,0), "<"..dashes.."|")
-end
-concommand.Add("vj_welcome_msg", doWelcomeMsg)
-net.Receive("vj_welcome_msg", doWelcomeMsg)
----------------------------------------------------------------------------------------------------------------------------------------------
-concommand.Add("vj_iamhere", function(ply,cmd,args)
-	net.Start("vj_meme")
-	net.SendToServer()
-end)
