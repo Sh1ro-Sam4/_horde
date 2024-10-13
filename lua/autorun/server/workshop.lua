@@ -9,6 +9,9 @@ resource.AddWorkshop('2131057232') -- [ArcCW] Arctic's Customizable Weapons (Bas
 resource.AddWorkshop('3338840724') -- [Kroject] Horde Content
 resource.AddWorkshop('2447979470') -- StormFox 2 Contet
 resource.AddWorkshop('1696595790') -- Grapping Hook
+resource.AddWorkshop('3218751593') -- [wOS] Counter-Strike 1.6: Port Edition
+resource.AddWorkshop('1250787888') -- Counter-Strike Nexon: zombies SNPCs
+resource.AddWorkshop('2916561591') -- [wOS] DynaBase - Dynamic Animation Manager
 
 resource.AddWorkshop('2052642961') -- SNPC Particle Resource Pack
 resource.AddWorkshop('853864395') -- Horror SNPC Revamp | BOSS
