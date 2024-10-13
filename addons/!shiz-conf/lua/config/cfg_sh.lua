@@ -12,7 +12,7 @@ CFG.blacklistWeapon = shizlib.array.toKeys({
     'weapon_grapplehook_mk2',
 })
 
-CFG.blacklistMap = shizlib.array.toKeys({
+CFG.blacklistMap = {
     'cs_assault',
     'cs_compound',
     'cs_havana',
@@ -33,15 +33,24 @@ CFG.blacklistMap = shizlib.array.toKeys({
     'de_train',
     'test_hardware',
     'test_speakers',
-})
+}
+
+HORDE = HORDE or {}
+HORDE.map_blacklist = CFG.blacklistMap
 
 CFG.djump = shizlib.array.toKeys({
     'founder',
     'vip',
 })
 
+CFG.canHook = shizlib.array.toKeys({
+    'founder',
+    'elite',
+})
+
 CFG.canGrab = shizlib.array.toKeys({
     'founder',
+    'imperator',
 })
 
 CFG.dropOnDefeat = {
