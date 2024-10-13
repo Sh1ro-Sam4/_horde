@@ -19,7 +19,6 @@ ENT.BaseDamage = 25
 ENT.BaseSplashDamage = 10
 ENT.DirectDamage = 60            -- How much damage should it do when it hits something
 ENT.DirectDamageType = DMG_CRUSH -- Damage type
-ENT.BounceCount = 0
 
 function ENT:Draw()
 	self:DrawModel()
@@ -64,14 +63,8 @@ function ENT:SetupDataTables()
 	self:NetworkVar("Int", 0, "Charged")
 end
 
-local MAX_BOUNCE = 5
-
 function ENT:OnBounce(data, phys)
-	if (self.BounceCount >= MAX_BOUNCE) then
-		self:Remove()
-	else 
-		self.BounceCount = self.BounceCount + 1
-	end
+
 end
 
 function ENT:PhysicsCollide(data, phys)
