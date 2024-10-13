@@ -1,6 +1,7 @@
 local Player = FindMetaTable('Player')
+local Entity = FindMetaTable('Entity')
 
-function Player:IsValidPlayer()
+function Entity:IsValidPlayer()
     return self and self:IsValid() and self:IsPlayer() and not self:IsBot()
 end
 
