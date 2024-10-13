@@ -6,42 +6,50 @@ shizlib.Achievements.CFG = {
         description = [[
             Ты точно готов?
         ]],
-        icon = 'kasanov/misc/logo1.png',
+        icon = 'kasanov/misc/achievement.png',
     },
     ['#death'] = {
         name = 'В первый раз, да?',
         description = [[
             Впервые ощутил всю прелесть респауна
         ]],
-        icon = 'https://i.imgur.com/MnjGHpQ.png',
+        icon = 'kasanov/misc/achievement.png',
     },
     ['#kill'] = {
-        name = 'First blood',
+        name = 'Сотня',
         description = [[
-            Совершите свое первое преступление?
-            Но это же зомби
+            Убейте 100 существ
         ]],
-        icon = 'https://i.imgur.com/yqBVB77.png',
+        icon = 'kasanov/misc/achievement.png',
+        needToGet = 100,
     },
     ['#purchase'] = {
         name = 'Пошопимся?',
         description = [[
             Купите что нибудь у продовца
         ]],
-        icon = 'https://i.imgur.com/lNDK0ML.png',
+        icon = 'kasanov/misc/achievement.png',
     },
     ['#craft'] = {
         name = 'Великий инженер',
         description = [[
             Скрафтите что нибудь
         ]],
-        icon = 'https://i.imgur.com/zAaFDcH.png',
+        icon = 'kasanov/misc/achievement.png',
     },
     ['#accessory'] = {
         name = 'Я красивый?',
         description = [[
             Воспользуйтесь любым косметическим предметом
         ]],
-        icon = 'https://i.imgur.com/doXsoqb.png',
+        icon = 'kasanov/misc/achievement.png',
+    },
+    ['#dev'] = {
+        name = 'Зачем оно тебе?',
+        description = [[
+            Заставь разработчика выдать
+            это достижение тебе
+        ]],
+        icon = 'kasanov/misc/achievement.png',
     },
 }

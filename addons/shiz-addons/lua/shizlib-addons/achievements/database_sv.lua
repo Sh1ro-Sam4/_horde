@@ -28,6 +28,7 @@ function shizlib.Achievements.Save(ply, id, custom)
         sql.Query( string.format( 'INSERT INTO plyAch (sid, achs) VALUES(%s, %s)', SQLStr(ply:SteamID64()), SQLStr(util.TableToJSON(ply.Achs)) ) )
     end
     netstream.Start(ply, 'shizlib.Achievements', shizlib.Achievements.CFG[id])
+    shizlib.Broadcast(Color(0,0,0), '(АЧИВКИ)', string.format('%s получил достижение: %s', ply:Name(), shizlib.Achievements.CFG[id].name))
 end
 
 function shizlib.Achievements.Load(ply)

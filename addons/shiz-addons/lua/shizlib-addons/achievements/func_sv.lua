@@ -4,9 +4,9 @@ hook.Add('PlayerButtonDown', 'F4Press', function(ply, key)
     end
 end)
 
-hook.Add('PlayerDeath', 'Kill.Ach', function(vic, inflictor, ply)
-    if IsValid(ply) and (ply:IsPlayer()) and (ply ~= vic) then
-        shizlib.Achievements.Give(ply, '#kill')
+hook.Add('OnNPCKilled', 'Kill.Ach', function(npc, att, inf)
+    if att:IsValidPlayer() then
+        shizlib.Achievements.Give(att, '#kill', 1)
     end
 end)
 
