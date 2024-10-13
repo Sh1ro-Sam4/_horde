@@ -19,6 +19,20 @@ hook.Add('KeyPress', 'shizlib-doubleJump', function(ply, key)
     end
 end)
 
+hook.Add('PlayerSpawn', 'shizlib-premiumKit', function(ply)
+    if CFG.canHook[ply:GetUserGroup()] then
+        timer.Simple(.1, function()
+            ply:Give('weapon_grapplehook')
+        end)
+    end
+end)
+
+-- timer.Create('goida', 3, 0, function()
+--     for _, ply in ipairs(player.GetAll()) do
+--         ply:Say('ИНФЕКЦИЯ ГОЙДА')
+--     end
+-- end)
+
 -- local ply = Player(19)
 
 -- local entity = '3dglasses'
