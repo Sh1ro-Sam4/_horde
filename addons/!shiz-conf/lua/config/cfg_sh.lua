@@ -12,6 +12,20 @@ CFG.blacklistWeapon = shizlib.array.toKeys({
     'weapon_grapplehook_mk2',
 })
 
+CFG.PlayerModelsSpawn = {
+    'models/cs/playermodels/arctic.mdl',
+    'models/cs/playermodels/gsg9.mdl',
+    'models/cs/playermodels/guerilla.mdl',
+    'models/cs/playermodels/leet.mdl',
+    'models/cs/playermodels/sas.mdl',
+    'models/cs/playermodels/terror.mdl',
+    'models/cs/playermodels/urban.mdl',
+}
+
+CFG.PlayerModelsSpawnVIP = {
+    'models/cs/playermodels/vip.mdl',
+}
+
 CFG.blacklistMap = {
     'cs_assault',
     'cs_compound',
