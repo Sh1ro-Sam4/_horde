@@ -23,6 +23,14 @@ shizlib.Achievements.CFG = {
         icon = 'kasanov/misc/achievement.png',
         needToGet = 100,
     },
+    ['#monster'] = {
+        name = 'Ты точно человек?',
+        description = [[
+            Убейте 1000 существ
+        ]],
+        icon = 'kasanov/misc/achievement.png',
+        needToGet = 1000,
+    },
     ['#purchase'] = {
         name = 'Пошопимся?',
         description = [[
