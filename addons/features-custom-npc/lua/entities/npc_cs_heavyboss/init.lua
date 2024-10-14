@@ -10,7 +10,7 @@ ENT.StartHealth = GetConVarNumber("vj_heavyboss_h")
 ENT.MovementType = VJ_MOVETYPE_GROUND
 ENT.HullType = HULL_LARGE
 ---------------------------------------------------------------------------------------------------------------------------------------------
-ENT.VJ_NPC_Class = {"CLASS_CSZOMBIE"}
+ENT.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"}
 ENT.Bleeds = true -- Does the SNPC bleed? (Blood decal, particle and etc.)
 ENT.BloodParticle = "blood_impact_red_01" -- Particle that the SNPC spawns when it's damaged
 ENT.BloodDecal = "Blood" -- (Red = Blood) (Yellow Blood = YellowBlood) | Leave blank for none
