@@ -219,6 +219,10 @@ function SWEP:OnRemove()
 	self:Holster()
 end
 
+function SWEP:OnDrop()
+	self:Remove()
+end
+
 if CLIENT then
 
 	SWEP.vRenderOrder = nil

@@ -69,6 +69,11 @@ function SWEP:Initialize()
 self:SetWeaponHoldType( self.HoldType )
 end
 
+function SWEP:OnDrop()
+	self:Remove()
+end
+
+
 function SWEP:DrawHUD()
 if CLIENT then
 local x, y
