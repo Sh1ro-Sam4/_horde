@@ -7,6 +7,7 @@ end)
 hook.Add('OnNPCKilled', 'Kill.Ach', function(npc, att, inf)
     if att:IsValidPlayer() then
         shizlib.Achievements.Give(att, '#kill', 1)
+        shizlib.Achievements.Give(att, '#monster', 1)
     end
 end)
 
