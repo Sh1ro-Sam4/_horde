@@ -500,7 +500,7 @@ function PANEL:Init()
 
         if input.IsKeyDown(KEY_ESCAPE) and self:IsKeyboardInputEnabled() then
             shizlib.closeChatbox()
-            gui.HideGameUI()
+            -- gui.HideGameUI()
         end
     end
 
@@ -682,7 +682,7 @@ function PANEL:Init()
                 end
             end
         elseif code == KEY_BACKQUOTE then
-            gui.HideGameUI()
+            -- gui.HideGameUI()
         elseif code == KEY_ENTER then
             if string.Trim(s:GetText()) ~= '' then
                 if string.Trim( s:GetText() ) != '' then
@@ -1050,4 +1050,10 @@ end)
 
 hook.Remove('ChatText', 'RemoveJoinLeaveMsg', function(_, _, _, mode)
 	if mode == 'joinleave' then return true end
+end)
+
+hook.Add('OnPauseMenuShow', 'shizlib-ClosePanelOnESC', function()
+    if IsValid(shizlib.ChatBox) then
+        return false
+    end
 end)
