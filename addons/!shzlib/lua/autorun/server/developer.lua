@@ -76,13 +76,67 @@ hook.Add('InitPostEntity', 'shizlib-HordeBlacklistMap', function()
         
         return map_list
     end
-end)
 
--- timer.Create('goida', 3, 0, function()
---     for _, ply in ipairs(player.GetAll()) do
---         ply:Say('ИНФЕКЦИЯ ГОЙДА')
---     end
--- end)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 1, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 1, false, .5, 1, 1, 1)
+
+    -- HORDE:CreateEnemy('Heavy Zombie', 'npc_cs_fatzombie', 1, 2, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Light Zombie', 'npc_cs_spezombie', 1, 2, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie Master', 'npc_cs_heavm', 1, 2, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 2, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 2, false, .5, 1, 1, 1)
+
+    -- HORDE:CreateEnemy('Deimos', 'npc_cs_deimos', 1, 3, true, 1, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie', 'npc_cs_fatzombie', 1, 3, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Light Zombie', 'npc_cs_spezombie', 1, 3, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie Master', 'npc_cs_heavm', 1, 3, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 3, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 3, false, .5, 1, 1, 1)
+
+    -- HORDE:CreateEnemy('Deimos', 'npc_cs_deimos', 1, 4, true, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie', 'npc_cs_fatzombie', 1, 4, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Light Zombie', 'npc_cs_spezombie', 1, 4, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie Master', 'npc_cs_heavm', 1, 4, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 4, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 4, false, .5, 1, 1, 1)
+
+    -- HORDE:CreateEnemy('Deimos', 'npc_cs_deimos', 1, 6, true, .5, .33, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie', 'npc_cs_fatzombie', 1, 6, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Light Zombie', 'npc_cs_spezombie', 1, 6, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie Master', 'npc_cs_heavm', 1, 6, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 6, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 6, false, .5, 1, 1, 1)
+
+    -- HORDE:CreateEnemy('Deimos', 'npc_cs_deimos', 1, 7, true, .5, .33, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie', 'npc_cs_fatzombie', 1, 7, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Light Zombie', 'npc_cs_spezombie', 1, 7, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie Master', 'npc_cs_heavm', 1, 7, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 7, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 7, false, .5, 1, 1, 1)
+
+    -- HORDE:CreateEnemy('Deimos', 'npc_cs_deimos', 1, 8, true, .5, .33, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie', 'npc_cs_fatzombie', 1, 8, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Light Zombie', 'npc_cs_spezombie', 1, 8, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie Master', 'npc_cs_heavm', 1, 8, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 8, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 8, false, .5, 1, 1, 1)
+
+    -- HORDE:CreateEnemy('Deimos', 'npc_cs_deimos', 1, 9, true, .5, .33, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie', 'npc_cs_fatzombie', 1, 9, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Light Zombie', 'npc_cs_spezombie', 1, 9, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie Master', 'npc_cs_heavm', 1, 9, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 9, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 9, false, .5, 1, 1, 1)
+
+    -- HORDE:CreateEnemy('Deimos', 'npc_cs_deimos', 1, 10, true, .5, .33, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie', 'npc_cs_fatzombie', 1, 10, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Light Zombie', 'npc_cs_spezombie', 1, 10, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Heavy Zombie Master', 'npc_cs_heavm', 1, 10, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 10, false, .5, 1, 1, 1)
+    -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 10, false, .5, 1, 1, 1)
+
+    -- HORDE:NormalizeEnemiesWeight()
+end)
 
 -- local ply = Player(19)
 
