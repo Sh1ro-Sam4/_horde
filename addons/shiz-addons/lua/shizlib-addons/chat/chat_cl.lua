@@ -1053,7 +1053,7 @@ hook.Remove('ChatText', 'RemoveJoinLeaveMsg', function(_, _, _, mode)
 end)
 
 hook.Add('OnPauseMenuShow', 'shizlib-ClosePanelOnESC', function()
-    if LocalPlayer().ShowChat then
+    if LocalPlayer().ShowChat or IsValid(shizlib.Crafting.fr) then
         return false
     end
 end)

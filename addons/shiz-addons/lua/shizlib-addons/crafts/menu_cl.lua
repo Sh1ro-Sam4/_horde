@@ -107,11 +107,18 @@ local function openRecipeMenu(pnl, tbl, ent, base)
 end
 
 function shizlib.Crafting.Menu(tbl, ent)
-    local fr = vgui.Create('DFrame')
+    shizlib.Crafting.fr = vgui.Create('DFrame')
+
+    local fr = shizlib.Crafting.fr
     fr:SetSize(s(900), s(600))
     fr:Center()
     fr:SetTitle('Крафты')
     fr:MakePopup()
+    function fr:Think()
+        if input.IsKeyDown(KEY_ESCAPE) and self:IsKeyboardInputEnabled() then
+            fr:Remove()
+        end
+    end
     
     local scroll = fr:Add('DScrollPanel')
     scroll:Dock(LEFT)
