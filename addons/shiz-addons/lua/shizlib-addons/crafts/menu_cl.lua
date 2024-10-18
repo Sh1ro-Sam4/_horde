@@ -159,6 +159,15 @@ concommand.Add('shizlib_craftmenu', function()
     shizlib.Crafting.Menu(shizlib.Crafting.Recipes, Entity(1))
 end)
 
+hook.Add('PlayerButtonUp', 'shizlib-OpenCraftMenu', function(ply, key)
+    if not IsFirstTimePredicted() then return end
+    if ply ~= LocalPlayer() then return end
+    if key ~= KEY_O then return end
+    if gui.IsGameUIVisible() then return end
+    if ply:IsTyping() then return end
+    RunConsoleCommand('shizlib_craftmenu')
+end)
+
 netstream.Hook('shizlib-crafting.open', function(data)
     if data.ent:GetClass() == 'shizlib_stove' then
         shizlib.Crafting.Menu(shizlib.Crafting.RecipesCook, data.ent)
