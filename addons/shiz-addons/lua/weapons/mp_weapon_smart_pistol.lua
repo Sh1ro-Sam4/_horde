@@ -46,9 +46,8 @@ SWEP.BobTimer = CurTime()
 SWEP.Bob = 0
 
 SWEP.Primary.Sound = Sound( "Weapon_SmartPistol.Single" )
-SWEP.Primary.ClipSize = 12
+SWEP.Primary.ClipSize = 18
 SWEP.Primary.DefaultClip = 120
-SWEP.Primary.MaxAmmo = 108
 SWEP.Primary.Automatic = true
 SWEP.Primary.Ammo = "pistol"
 SWEP.Primary.Damage = 42
@@ -102,7 +101,6 @@ self.Sprint = 0
 self.Lock = 0
 self.BobTimer = CurTime()
 self.Bob = 0
-self.Owner:SetWalkSpeed( 200 )
 end
 
 function SWEP:Holster()
@@ -113,7 +111,6 @@ self.Sprint = 0
 self.Lock = 0
 self.BobTimer = CurTime()
 self.Bob = 0
-self.Owner:SetWalkSpeed( 200 )
 return true
 end
 
@@ -207,7 +204,6 @@ self:SetNextSecondaryFire( CurTime() + self.IronInTime )
 self.Primary.Spread = 0.05
 self.Owner:SetFOV( 75, 0.1 )
 self.Aim = 1
-self.Owner:SetWalkSpeed( 100 )
 else
 if self.Aim == 1 then
 self.Weapon:SendWeaponAnim( ACT_VM_UNDEPLOY )
@@ -216,7 +212,6 @@ self:SetNextSecondaryFire( CurTime() + self.IronOutTime )
 self.Primary.Spread = 0.8
 self.Owner:SetFOV( 0, 0.1 )
 self.Aim = 0
-self.Owner:SetWalkSpeed( 200 )
 end
 end
 end
@@ -233,7 +228,6 @@ end
 self.Primary.Spread = 0.8
 self.Owner:SetFOV( 0, 0.1 )
 self.Aim = 0
-self.Owner:SetWalkSpeed( 200 )
 end
 end
 
@@ -274,7 +268,6 @@ self.Sprint = 1
 self.Aim = 0
 self.BobTimer = CurTime()
 self.Bob = 1
-self.Owner:SetWalkSpeed( 200 )
 end
 if self.Sprint == 1 and self.BobTimer <= CurTime() and self.Bob == 1 then
 self.Owner:ViewPunch( Angle( 0, 0, -0.5 ) )
