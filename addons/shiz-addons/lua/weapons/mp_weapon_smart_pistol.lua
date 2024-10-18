@@ -255,9 +255,6 @@ end
 if self.Lock == 1 and !IsValid( tr.Entity ) then
 self.Lock = 0
 end
-if self.Weapon:Ammo1() > self.Primary.MaxAmmo then
-self.Owner:SetAmmo( self.Primary.MaxAmmo, self.Primary.Ammo )
-end
 if self.Sprint == 0 and self.Owner:KeyDown( IN_SPEED ) and ( self.Owner:KeyDown( IN_FORWARD ) || self.Owner:KeyDown( IN_BACK ) || self.Owner:KeyDown( IN_MOVELEFT ) || self.Owner:KeyDown( IN_MOVERIGHT ) ) then
 if SERVER then
 self.Weapon:SendWeaponAnim( ACT_VM_SPRINT_IDLE )
