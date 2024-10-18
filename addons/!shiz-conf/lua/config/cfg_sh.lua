@@ -90,6 +90,9 @@ CFG.dropOnDefeat = {
     'tools',
     'wood',
     'stone',
+
+    
+    'cry_doll',
 }
 
 CFG.icon17 = {
