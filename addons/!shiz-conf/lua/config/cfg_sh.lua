@@ -95,6 +95,10 @@ CFG.dropOnDefeat = {
     'cry_doll',
 }
 
+CFG.whitelistInvholster = shizlib.array.toKeys({
+    'mp_weapon_smart_pistol',
+})
+
 CFG.icon17 = {
     ['ak47'] = 'assault_rifle',
     ['aug'] = 'assault_rifle',
@@ -123,4 +127,5 @@ CFG.icon17 = {
     ['xm1014'] = 'shotgun',
     ['knife'] = 'knife',
     ['revolver'] = 'revolver',
+    ['mp_weapon_smart_pistol'] = 'pistolet',
 }

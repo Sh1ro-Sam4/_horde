@@ -83,4 +83,43 @@ shizlib.Crafting.Recipes = {
         entity = 'aviators',
         customCheck = function(self, ply) return true end,
     },
+    {
+        id = 4,
+        name = 'Smart Pistol MK5',
+        description = 'Автоматический пистолет с автонаведением',
+        amount = 1,
+        resources = {
+            {
+                class = 'battery',
+                amount = 2,
+            },
+            {
+                class = 'aluminum',
+                amount = 2,
+            },
+            {
+                class = 'screws',
+                amount = 1,
+            },
+            {
+                class = 'tools',
+                amount = 1,
+            },
+            {
+                class = 'rifle_body',
+                amount = 1,
+            },
+            {
+                class = 'rifle_clip',
+                amount = 1,
+            },
+            {
+                class = 'motherboard',
+                amount = 1,
+            },
+        },
+        base = 'weapon',
+        entity = 'mp_weapon_smart_pistol',
+        customCheck = function(self, ply) return true end,
+    },
 }
