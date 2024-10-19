@@ -146,6 +146,7 @@ function scoreboard.Open()
                 SetClipboardText(pl:GetUserGroup())
                 chat.AddText(color_white, 'Текст скопирован в буфер обмена! Нажмите CTRL + V')
             end)
+            local achievements = menu:AddOption('Достижения', function() shizlib.Achievements.QueryToAchievementsList(pl) end)
 
             menu:Open()
         end

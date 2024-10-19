@@ -4,14 +4,14 @@ shizlib.Achievements.CFG = {
     ['#f4_open'] = {
         name = 'Готов к труду и обороне?',
         description = [[
-            Ты точно готов?
+            Нажать F4
         ]],
         icon = 'kasanov/misc/achievement.png',
     },
     ['#death'] = {
         name = 'В первый раз, да?',
         description = [[
-            Впервые ощутил всю прелесть респауна
+            Умереть 1 раз
         ]],
         icon = 'kasanov/misc/achievement.png',
     },
@@ -34,14 +34,14 @@ shizlib.Achievements.CFG = {
     ['#purchase'] = {
         name = 'Пошопимся?',
         description = [[
-            Купите что нибудь у продовца
+            ???
         ]],
         icon = 'kasanov/misc/achievement.png',
     },
     ['#craft'] = {
         name = 'Великий инженер',
         description = [[
-            Скрафтите что нибудь
+            Скрафтить любой предмет
         ]],
         icon = 'kasanov/misc/achievement.png',
     },
@@ -53,10 +53,9 @@ shizlib.Achievements.CFG = {
         icon = 'kasanov/misc/achievement.png',
     },
     ['#dev'] = {
-        name = 'Зачем оно тебе?',
+        name = '#dev',
         description = [[
-            Заставь разработчика выдать
-            это достижение тебе
+            Его же никак не получить
         ]],
         icon = 'kasanov/misc/achievement.png',
     },

@@ -2,6 +2,7 @@ shizlib.Achievements = shizlib.Achievements or {}
 
 local s = shizlib.surface.s
 local DTR = shizlib.surface.DTR
+local colors = CFG.skinColors
 
 function shizlib.Achievements.Open(tbl)
     shizlib.Achievements.fr = vgui.Create('DFrame')
@@ -43,6 +44,54 @@ shizlib.getURLMaterial('https://i.imgur.com/yqBVB77.png') // #kill
 shizlib.getURLMaterial('https://i.imgur.com/doXsoqb.png') // #accessory
 shizlib.getURLMaterial('https://i.imgur.com/zAaFDcH.png') // #craft
 shizlib.getURLMaterial('https://i.imgur.com/lNDK0ML.png') // #purchase
+
+--[[Achievements Menu]]--
+
+function shizlib.Achievements.QueryToAchievementsList(ply)
+    if ply:IsValidPlayer() then
+        netstream.Start('shizlib.Achievements.Query', {pl = ply})
+    end
+end
+
+netstream.Hook('shizlib.Achievements.Query', function(data)
+    local achs_tbl = data.achs
+    local pl = data.pl
+
+    shizlib.Achievements.ListMenu = vgui.Create('DFrame')
+    local fr = shizlib.Achievements.ListMenu
+
+    fr:SetSize(s(900), s(600))
+    fr:Center()
+    fr:SetTitle( ('Достижения - %s'):format(pl:Name()) )
+    fr:MakePopup()
+    fr.Player = data.pl
+    fr.AchsTable = achs_tbl
+
+    fr.ScrollPanel = fr:Add('DScrollPanel')
+    fr.ScrollPanel:Dock(FILL)
+
+    fr.AchsPanelList = {}
+    local i = 0
+    for k, v in SortedPairs(achs_tbl) do
+        fr.AchsPanelList[i] = fr.ScrollPanel:Add('Panel')
+        local pnl = fr.AchsPanelList[i]
+        pnl:Dock(TOP)
+        pnl:SetTall(s(60))
+        pnl:DockMargin(0, 0, 0, s(2))
+        function pnl:Paint(w, h)
+            draw.RoundedBox(4, 0, 0, w, h, colors.hvr)
+            DTR(s(4), s(4), s(52), s(52), color_white, Material(v.icon))
+            draw.SimpleText(v.name, 'font.30', s(60), s(4), color_white, 0, 0)
+            draw.SimpleText(v.description, 'font.24', s(60), s(34), color_white, 0, 0)
+        end
+        
+        i = i + 1
+    end
+end)
+
+/*
+    Thirdperson
+*/
 
 DarkRP = DarkRP or {}
 
