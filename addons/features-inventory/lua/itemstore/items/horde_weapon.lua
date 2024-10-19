@@ -114,7 +114,6 @@ end
 
 function ITEM:LoadData( ent )
 	ent:SetModel( self:GetData( "Model" ) )
-	ent:Setamount( 1 )
 
 	if ent.GetWeaponClass then
 		ent:SetWeaponClass( self:GetData( "Class" ) )

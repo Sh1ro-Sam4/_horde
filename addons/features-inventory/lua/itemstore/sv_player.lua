@@ -275,25 +275,6 @@ function meta:DropItem( con_id, slot )
 		else
 			class = item['Data'].Class
 		end
-		if CFG.limitEntity[class] then
-
-			local owner
-			if item['Data'].EntityData then
-				owner = player.GetBySteamID(item['Data'].EntityData.FPPOwnerID)
-			else
-				owner = player.GetBySteamID(item['Data'].FPPOwnerID)
-			end
-			local count = 0
-			for k, v in pairs(ents.FindByClass(class)) do
-				if v:CPPIGetOwner() == owner then
-					count = count + 1
-				end
-			end
-			if count + 1 > CFG.limitEntity[class] then
-				shizlib.notify(self, Color(189,0,0), 'Инвентарь', string.format( 'Вы достигли лимита %s', class ) )
-				return
-			end
-		end
 	end
 
 	if item.Class == 'base_accessory' then

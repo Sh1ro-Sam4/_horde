@@ -11,7 +11,7 @@ function Player:SHZ_GiveItemstoreGift(waves, diff)
     local id = self.Inventory:GetID()
     local con = itemstore.containers.Get( id )
 
-    for i = 1, count do
+    for i = 1, count + 1 do
         local entity = table.Random(CFG.dropOnDefeat)
         local data = {
             ['Model'] = shizlib.Resources[entity].model,

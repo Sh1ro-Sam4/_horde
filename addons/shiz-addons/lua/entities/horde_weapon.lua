@@ -33,20 +33,8 @@ function ENT:Use(activator, caller, usetype, value)
 	local Class = self.WeaponClass
 	local Wep = activator:GetWeapon(Class)
 	print(Class)
-	
-	if BaseWars.Ents:Valid(Wep) then
-	
-		local Clip = Wep.Primary and Wep.Primary.DefaultClip
-		
-		activator:GiveAmmo(Clip or 30, Wep:GetPrimaryAmmoType())
-		
-	else
-	
-		activator:Give(Class)
-		
-	end
-	
-	
+	activator:Give(Class)
+
 	self:Remove()
 
 end
