@@ -8,7 +8,7 @@ function shizlib.Crafting.TypeHandler(tbl, ply)
         local id = ply.Inventory:GetID()
         local con = itemstore.containers.Get( id )
 
-        local item = itemstore.Item('spawned_weapon')
+        local item = itemstore.Item('horde_weapon')
         local wep = weapons.Get(entity)
         item:SetData( "Class", entity )
 		item:SetData( "Amount", 1 )
