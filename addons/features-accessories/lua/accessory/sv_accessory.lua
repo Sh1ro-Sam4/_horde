@@ -30,63 +30,63 @@ function SH_ACC:PlayerInitialSpawn(ply)
 		equipped = {},
 	}
 
-	-- self:Query("SELECT inventory, equipped FROM :db WHERE id = :id", {id = ply}, function(data)
-	-- 	if (!IsValid(ply)) then
-	-- 		return end
+	self:Query("SELECT inventory, equipped FROM :db WHERE id = :id", {id = ply}, function(data)
+		if (!IsValid(ply)) then
+			return end
 
-	-- 	hook.Call("SH_ACC.QueryingInfo", GAMEMODE, ply)
+		hook.Call("SH_ACC.QueryingInfo", GAMEMODE, ply)
 
-	-- 	-- Joining for first time, create row
-	-- 	if (!data or !data[1]) then
-	-- 		self:Query("INSERT INTO :db (id, inventory, equipped) VALUES (:id, '', '')", {id = ply}, function()
-	-- 			if (!IsValid(ply)) then
-	-- 				return end
+		-- Joining for first time, create row
+		if (!data or !data[1]) then
+			self:Query("INSERT INTO :db (id, inventory, equipped) VALUES (:id, '', '')", {id = ply}, function()
+				if (!IsValid(ply)) then
+					return end
 
-	-- 			ply.SH_AccessoryInfo = {
-	-- 				inventory = {},
-	-- 				equipped = {},
-	-- 			}
+				ply.SH_AccessoryInfo = {
+					inventory = {},
+					equipped = {},
+				}
 
-	-- 			hook.Call("SH_ACC.InfoCreated", GAMEMODE, ply, ply.SH_AccessoryInfo)
-	-- 		end)
-	-- 	else
-	-- 		local inventory = {}
-	-- 		local equipped = {}
+				hook.Call("SH_ACC.InfoCreated", GAMEMODE, ply, ply.SH_AccessoryInfo)
+			end)
+		else
+			local inventory = {}
+			local equipped = {}
 
-	-- 		for _, id in pairs (string.Explode("|", data[1].inventory)) do
-	-- 			if (id:Trim() == "") then
-	-- 				continue end
+			for _, id in pairs (string.Explode("|", data[1].inventory)) do
+				if (id:Trim() == "") then
+					continue end
 
-	-- 			inventory[id] = true
-	-- 		end
+				inventory[id] = true
+			end
 
-	-- 		local limit = ply:SH_GetAccessoryLimit()
-	-- 		local eq = 0
-	-- 		for _, id in pairs (string.Explode("|", data[1].equipped)) do
-	-- 			if (id:Trim() == "") then
-	-- 				continue end
+			local limit = ply:SH_GetAccessoryLimit()
+			local eq = 0
+			for _, id in pairs (string.Explode("|", data[1].equipped)) do
+				if (id:Trim() == "") then
+					continue end
 
-	-- 			local acc = self:GetAccessory(id)
-	-- 			if (!acc) then -- don't bother equipping a non existent acc
-	-- 				continue end
+				local acc = self:GetAccessory(id)
+				if (!acc) then -- don't bother equipping a non existent acc
+					continue end
 
-	-- 			if (limit > 0 and eq >= limit) then -- incase the limit changes while the player is offline
-	-- 				continue end
+				if (limit > 0 and eq >= limit) then -- incase the limit changes while the player is offline
+					continue end
 
-	-- 			ply.SH_WornModels[acc.mdl] = true
+				ply.SH_WornModels[acc.mdl] = true
 
-	-- 			eq = eq + 1
-	-- 			equipped[id] = true
-	-- 		end
+				eq = eq + 1
+				equipped[id] = true
+			end
 
-	-- 		ply.SH_AccessoryInfo = {
-	-- 			inventory = inventory,
-	-- 			equipped = equipped,
-	-- 		}
+			ply.SH_AccessoryInfo = {
+				inventory = inventory,
+				equipped = equipped,
+			}
 
-	-- 		hook.Call("SH_ACC.InfoLoaded", GAMEMODE, ply, ply.SH_AccessoryInfo)
-	-- 	end
-	-- end)
+			hook.Call("SH_ACC.InfoLoaded", GAMEMODE, ply, ply.SH_AccessoryInfo)
+		end
+	end)
 end
 
 function SH_ACC:PlayerSay(ply, say, bteam)
