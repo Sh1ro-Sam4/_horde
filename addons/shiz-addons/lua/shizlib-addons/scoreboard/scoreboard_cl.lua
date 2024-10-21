@@ -61,7 +61,7 @@ function scoreboard.Open()
                 local rank_level = pl:Horde_GetRankLevel(subclass.PrintName)
                 DTR(s(320), s(5), s(50), s(50), HORDE.Rank_Colors[rank], mat)
                 if rank == HORDE.Rank_Master then
-                    draw.SimpleText(rank_level, "Trebuchet18", w * 0.2075, s(18), HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+                    draw.SimpleText(rank_level, "Trebuchet18", s(315), s(18), HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
                 else
                     if rank_level > 0 then
                         local star = Material("star.png", "mips smooth")
