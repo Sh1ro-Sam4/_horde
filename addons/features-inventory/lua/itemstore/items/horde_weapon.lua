@@ -186,7 +186,7 @@ function ITEM:Use( pl )
 
 	if self:GetData( "Clip1" ) then
 		if has_weapon then
-			pl:GiveAmmo( self:GetData( "Clip1" ), wep:GetPrimaryAmmoType() )
+			-- pl:GiveAmmo( self:GetData( "Clip1" ), wep:GetPrimaryAmmoType() )
 		else
 			wep:SetClip1( self:GetData( "Clip1" ) )
 		end
@@ -194,14 +194,14 @@ function ITEM:Use( pl )
 
 	if self:GetData( "Clip2" ) then
 		if has_weapon then
-			pl:GiveAmmo( self:GetData( "Clip2" ), wep:GetPrimaryAmmoType() )
+			-- pl:GiveAmmo( self:GetData( "Clip2" ), wep:GetPrimaryAmmoType() )
 		else
 			wep:SetClip2( self:GetData( "Clip2" ) )
 		end
 	end
 
-	self:SetData( "Clip1", 0 )
-	self:SetData( "Clip2", 0 )
+	-- self:SetData( "Clip1", 0 )
+	-- self:SetData( "Clip2", 0 )
 
 	if itemstore.config.SplitWeaponAmmo then
 		if self:GetData( "Ammo" ) then
@@ -218,5 +218,6 @@ function ITEM:Use( pl )
 		self:SetData( "Ammo", 0 )
 	end
 
-	return self:TakeOne()
+	-- return self:TakeOne()
+	return false
 end
