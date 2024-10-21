@@ -39,4 +39,8 @@ if SERVER then
     net.Receive('shizlib.ToggleChat', function(len, pl)
         pl:SetNWBool('IsTyping', net.ReadBool())
     end)
+
+    -- hook.Add('PlayerConnect', 'shizlib-ChatNotifyConnecting', function(name, ip)
+    --     shizlib.Broadcast(Color(0,0,0), '(CONNECT) ', string.format('%s %s подключается на сервер!', ))
+    -- end)
 end

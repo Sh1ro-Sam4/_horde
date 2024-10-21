@@ -268,6 +268,8 @@ addprefix('(LUA)', 'LuaDev', Color(155, 0, 160), pink)
 addprefix('[Промокод]', 'Промокод', Color(129, 104, 12), Color(255, 242, 121))
 addprefix('[INFO]', 'INFO', Color(107, 107, 107), Color(214, 214, 214))
 addprefix('|', 'System', Color(86,59,129), pink)
+addprefix('(CONNECT)', 'Подключения', Color(86,59,129), pink)
+addprefix('(DISCONNECT)', 'Отключения', Color(99,99,99), pink)
 
 local function isprefix(str)
     str = string.Trim(str)
