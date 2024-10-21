@@ -77,6 +77,23 @@ hook.Add('InitPostEntity', 'shizlib-HordeBlacklistMap', function()
         return map_list
     end
 
+    local Player = FindMetaTable('Player')
+
+    function Player:Horde_SetExp(class_name, exp)
+        if SERVER then
+        end
+        if not self:IsValid() then return end
+        if not self.Horde_Exps then self.Horde_Exps = {} end
+        if not class_name then return end
+        exp = exp + 3
+        self.Horde_Exps[class_name] = exp
+        local level = self:Horde_GetLevel(class_name)
+        if exp >= HORDE:GetExpToNextLevel(level + 1) then
+            self:Horde_SetLevel(class_name, level + 1)
+            self.Horde_Exps[class_name] = 0
+        end
+    end
+
     -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 1, false, .5, 1, 1, 1)
     -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 1, false, .5, 1, 1, 1)
 
