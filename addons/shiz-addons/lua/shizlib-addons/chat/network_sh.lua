@@ -40,7 +40,17 @@ if SERVER then
         pl:SetNWBool('IsTyping', net.ReadBool())
     end)
 
-    -- hook.Add('PlayerConnect', 'shizlib-ChatNotifyConnecting', function(name, ip)
-    --     shizlib.Broadcast(Color(0,0,0), '(CONNECT) ', string.format('%s %s подключается на сервер!', ))
-    -- end)
+    hook.Add('PlayerConnect', 'shizlib-ChatNotifyConnecting', function(name, ip)
+        local usergroup = 'user'
+        kate.DB:Query( string.format( 'SELECT * FROM kate_usergroups WHERE IP = %q;', ip ) )
+        :SetOnSuccess( function( _, info )
+            usergroup = info[1]['ExpireGroup']
+        end )
+        :Start()
+        shizlib.Broadcast(Color(0,0,0), '(CONNECT) ', string.format('%s %s подключается на сервер!', usergroup ~= 'user' and 'VIP' or 'Игрок', name))
+    end)
+
+    hook.Add('PlayerDisconnected', 'shizlib-ChatNotifyDisconnecting', function(ply) 
+        shizlib.Broadcast(Color(0,0,0), '(DISCONNECT) ', string.format('%s вышел с сервера', ply:Name()))
+    end)
 end
