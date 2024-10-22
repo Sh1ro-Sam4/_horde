@@ -51,6 +51,8 @@ Offset("models/captainbigbutt/skeyler/hats/pumpkin.mdl", B_HEAD, V(-1, 0.5, 0), 
 --
 --2.0 ACCESSORY
 --
+--castryla
+Offset("models/props_wasteland/laundry_basket001.mdl", "ValveBiped.Bip01_Head1", Vector(3, -1, 0), Angle(0, 100, -90))
 --ponchik
 Offset("models/noesis/donut.mdl", B_HEAD, V(6.2, -0.5, 0.2), A(0, -70, -90))
 --hedkrab

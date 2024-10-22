@@ -94,6 +94,9 @@ local Copy = function(...)
 	return SH_ACC:CopyAccessory(...)
 end
 --
+	local a = New("castryla", {name = "Кастрюля", price = 5000, slot = SH_SLOT_HEAD, mdl = "models/props_wasteland/laundry_basket001.mdl"})
+	a.scale = 0.25
+--
 	New("ponchik", {name = "Пончик", price = 750000, mdl = "models/noesis/donut.mdl", slot = SH_SLOT_HEAD, scale = 0.65})
 --
 	New("hedkrab", {name = "Хєдкраб", price = 750000, mdl = "models/nova/w_headcrab.mdl", slot = SH_SLOT_HEAD, scale = 0.5})
