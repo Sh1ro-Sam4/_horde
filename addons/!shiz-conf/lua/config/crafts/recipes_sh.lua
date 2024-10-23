@@ -91,15 +91,15 @@ shizlib.Crafting.Recipes = {
         resources = {
             {
                 class = 'battery',
-                amount = 2,
+                amount = 8,
             },
             {
                 class = 'aluminum',
-                amount = 2,
+                amount = 4,
             },
             {
                 class = 'screws',
-                amount = 1,
+                amount = 3,
             },
             {
                 class = 'tools',
@@ -115,11 +115,54 @@ shizlib.Crafting.Recipes = {
             },
             {
                 class = 'motherboard',
-                amount = 1,
+                amount = 2,
             },
         },
         base = 'weapon',
         entity = 'mp_weapon_smart_pistol',
+        customCheck = function(self, ply) return true end,
+    },
+    {
+        id = 5,
+        name = 'Death Sickle',
+        description = 'При атаке стреляет вращающимися косами',
+        amount = 1,
+        resources = {
+            {
+                class = 'aluminum',
+                amount = 8,
+            },
+            {
+                class = 'steel',
+                amount = 4,
+            },
+            {
+                class = 'gold',
+                amount = 4,
+            },
+            {
+                class = 'lead',
+                amount = 4,
+            },
+            {
+                class = 'silver',
+                amount = 4,
+            },
+            {
+                class = 'screws',
+                amount = 4,
+            },
+            {
+                class = 'tools',
+                amount = 4,
+            },
+            {
+                class = 'motherboard',
+                amount = 2,
+            },
+        },
+        base = 'weapon',
+        entity = 'weapon_deathsickle',
         customCheck = function(self, ply) return true end,
     },
 }

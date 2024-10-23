@@ -128,4 +128,5 @@ CFG.icon17 = {
     ['knife'] = 'knife',
     ['revolver'] = 'revolver',
     ['mp_weapon_smart_pistol'] = 'pistolet',
+    ['weapon_deathsickle'] = 'knife',
 }
