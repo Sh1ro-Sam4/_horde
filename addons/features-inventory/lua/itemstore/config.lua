@@ -65,7 +65,7 @@ itemstore.config.TradingEnabled = true
 itemstore.config.TradeCooldown = 60
 
 -- How close in hammer units two players need to be to trade. 0 means infinite.
-itemstore.config.TradeDistance = CFG.useDist
+itemstore.config.TradeDistance = 99999
 
 -- Whether or not the player should drop their inventory on death.
 itemstore.config.DeathLoot = false
