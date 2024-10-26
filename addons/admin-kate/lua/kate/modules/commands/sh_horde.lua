@@ -68,6 +68,10 @@ kate.AddCommand('Stats', function(pl)
 end)
 :SetFlag('stats')
 
+kate.AddCommand('settings', function(pl)
+    pl:SendLua('SETTINGS.OpenUI()')
+end)
+
 kate.AddCommand('respawn', function(pl, target)
     target.Horde_Fake_Respawn = true
     target:Spawn()
