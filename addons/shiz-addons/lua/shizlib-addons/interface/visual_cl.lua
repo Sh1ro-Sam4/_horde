@@ -1,7 +1,7 @@
 local s = shizlib.surface.s
 local DTR = shizlib.surface.DTR
 
-CreateClientConVar('shizlib_hud_vingette', 1, true, true)
+CreateClientConVar('shizlib_hud_vingette', 0, true, true)
 
 hook.Add('HUDPaint', 'shizlib-vignette', function()
     if GetConVar('shizlib_hud_vingette'):GetInt() == 0 then return end
