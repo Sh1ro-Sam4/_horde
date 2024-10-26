@@ -16,7 +16,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     if ply:Horde_GetGadget() ~= "gadget_flash" then return end
     sound.Play("weapons/physcannon/energy_sing_explosion2.wav", ply:GetPos())
     local dir = ply:GetAimVector()
-    local vel = dir * 8000
+    local vel = dir * 2000
     ply.Horde_In_Flash = true
     ply.Horde_Invincible = true
     ply:Horde_AddPhasing(0.25, function ()
