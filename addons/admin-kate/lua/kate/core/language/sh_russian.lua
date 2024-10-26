@@ -5,6 +5,7 @@ local phrases = {
   LOG_KICK = '%s кикнул %s: %s',
   LOG_SLAY = '%s убил %s',
   LOG_RESPAWN = '%s возродил %s',
+  LOG_SHIRO = '%s заставил %s одеться как анимешник',
   LOG_MODEL = '%s установил модель %s на %s',
   LOG_SIZE = '%s установил размер модели %s на %s',
   LOG_HEALTH = '%s установил %s %s здоровья',

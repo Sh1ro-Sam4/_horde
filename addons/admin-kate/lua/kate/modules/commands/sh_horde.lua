@@ -71,6 +71,21 @@ end)
 kate.AddCommand('settings', function(pl)
     pl:SendLua('SETTINGS.OpenUI()')
 end)
+:SetFlag('settings')
+
+kate.AddCommand('shiro', function(pl, target)
+    target:SetModel('models/trueblood/shiro/default_p.mdl')
+
+    local phrase = function( showSteamId )
+        return { 'LOG_SHIRO', kate.GetActor(pl, showSteamId), kate.GetTarget( target, showSteamId ) }
+    end
+
+    kate.Notify( player.GetAll(), LOG_COMMON, kate.GetPhrase( true, unpack( phrase( false ) ) ) )
+    kate.Print( LOG_COMMON, kate.GetPhrase( false, unpack( phrase( true ) ) ) )
+end)
+    :SetFlag( 'shiro' )
+    :AddParam( 'PLAYER_ENTITY' )
+    :AddAlias( 'spawn' )
 
 kate.AddCommand('respawn', function(pl, target)
     target.Horde_Fake_Respawn = true
