@@ -91,7 +91,11 @@ shizlib.Crafting.Recipes = {
         resources = {
             {
                 class = 'battery',
-                amount = 8,
+                amount = 4,
+            },
+            {
+                class = 'battery_c',
+                amount = 2,
             },
             {
                 class = 'aluminum',
