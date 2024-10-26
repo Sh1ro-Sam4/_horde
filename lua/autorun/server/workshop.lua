@@ -32,3 +32,4 @@ resource.AddWorkshop( "572310302" ) -- cosmetic GTA 5
 resource.AddWorkshop( "148215278" ) -- cosmetic GMod Tower
 
 resource.AddWorkshop( "2792428671" ) -- Plush Shark
+resource.AddWorkshop( "3007396925" ) -- Shiro Custom | Developer Player Model
