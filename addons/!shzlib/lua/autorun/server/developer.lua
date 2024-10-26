@@ -85,7 +85,8 @@ hook.Add('InitPostEntity', 'shizlib-HordeBlacklistMap', function()
         if not self:IsValid() then return end
         if not self.Horde_Exps then self.Horde_Exps = {} end
         if not class_name then return end
-        exp = exp + 3
+        -- exp = exp + 3
+        exp = exp
         self.Horde_Exps[class_name] = exp
         local level = self:Horde_GetLevel(class_name)
         if exp >= HORDE:GetExpToNextLevel(level + 1) then
@@ -154,16 +155,3 @@ hook.Add('InitPostEntity', 'shizlib-HordeBlacklistMap', function()
 
     -- HORDE:NormalizeEnemiesWeight()
 end)
-
--- local ply = Player(19)
-
--- local entity = '3dglasses'
-
--- local ent = ents.Create('base_accessory')
--- ent:SetPos(ply:GetPos())
--- ent:Spawn()
--- ent:Activate()
--- ent:SetID(entity)
--- ent:SetModel(SH_ACC.List[ent:GetID()].mdl)
-
--- ply:PickupItem(ent)
