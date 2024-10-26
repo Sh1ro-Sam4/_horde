@@ -651,10 +651,9 @@ function SKIN:PaintCheckBox( pnl, w, h )
 		col.a = 100
 	end
 
+	draw.RoundedBox(4, 0, 0, w, h, cols.hvr)
 	if pnl:GetChecked() then
-		draw.SimpleText(utf8.char(0xf14a), 'shz-icons2', w/2, h/2-1, col, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-	else
-		draw.SimpleText(utf8.char(0xf0c8), 'shz-icons2', w/2, h/2-1, col, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		draw.SimpleText(utf8.char(0x2713), 'shz-icons2', w/2, h/2-1, col, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 	end
 
 end
