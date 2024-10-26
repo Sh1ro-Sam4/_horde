@@ -38,7 +38,7 @@ if SERVER then
     ENT.AnimTbl_MeleeAttack = {"Attack1"} 
     ENT.MeleeAttackDamage = 34
     ENT.MeleeAttackDamageType = DMG_SLASH -- Type of Damage
-    ENT.TimeUntilMeleeAttackDamage = 0.45
+    ENT.TimeUntilMeleeAttackDamage = 1
     ENT.MeleeAttackReps = 1
     ENT.MeleeAttackExtraTimers = {0.86, 1.15 }
     
@@ -83,7 +83,7 @@ if SERVER then
 
     function ENT:CustomInitialize()
         self:SetCollisionBounds(Vector(55, 55, 115), Vector(-55, -55, 0))
-        
+        self:SetModelScale(0.5)
     end
     
     function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo,hitgroup)

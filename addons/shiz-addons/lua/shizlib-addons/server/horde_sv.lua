@@ -124,5 +124,8 @@ hook.Add('InitPostEntity', 'shizlib-HordeBlacklistMap', function()
     -- HORDE:CreateEnemy('Psycho Zombie', 'npc_cs_pczombie', 1, 10, false, .5, 1, 1, 1)
     -- HORDE:CreateEnemy('Doctor Zombie', 'npc_cs_zombeheal', 1, 10, false, .5, 1, 1, 1)
 
-    -- HORDE:NormalizeEnemiesWeight()
+    HORDE:CreateEnemy('Oberon', 'new_entity1', 1, 5, true, .5, 1, 10, .5, nil, nil, nil,
+    {is_boss=true, end_wave=true, unlimited_enemies_spawn=false, enemies_spawn_threshold=0, music="music/hl2_song20_submix0.mp3", music_duration=104}, nil, nil, nil, nil, {gadget="gadget_unstable_injection", drop_rate=0.5})
+
+    HORDE:NormalizeEnemiesWeight()
 end)
