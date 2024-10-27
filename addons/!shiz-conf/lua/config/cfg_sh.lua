@@ -1,3 +1,4 @@
+shizlib.horde = shizlib.horde or {}
 CFG = CFG or {}
 
 CFG.useDist = 84
@@ -98,6 +99,9 @@ CFG.dropOnDefeat = {
 CFG.whitelistInvholster = shizlib.array.toKeys({
     'mp_weapon_smart_pistol',
 })
+
+CFG.bonusExp = 0
+CFG.bonusActive = false
 
 CFG.icon17 = {
     ['ak47'] = 'assault_rifle',

@@ -126,6 +126,24 @@ shizlib.Resources = {
             end)
         end,
     },
+    ['power_exp'] = {
+        name = 'Увеличение опыта',
+        description = [[!ГЛОБАЛЬНЫЙ БАФФ!
+        Действует: 1 карту
+        Макс. использований одновременно: 1]],
+        icon = 'star',
+        model = 'models/maxofs2d/hover_rings.mdl',
+        func = function(self, ply)
+            if CFG.bonusActive then
+                ply:ChatPrint(Color(0, 0, 0), '| ', 'Невозможно активировать. Уже активно.')
+            end
+            CFG.bonusExp = 1
+            CFG.bonusActive = true
+            shizlib.Broadcast(Color(0, 0, 0), '| ', string.format('Игрок %s активировал ГЛОБАЛЬНЫЙ множитель опыта!', ply:Name()))
+            shizlib.horde.reloadExpFunc()
+            self:Remove()
+        end,
+    },
     ['pipe'] = {
         name = 'Труба',
         description = 'Тебе труба!',

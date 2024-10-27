@@ -1,3 +1,23 @@
+shizlib.horde = shizlib.horde or {}
+function shizlib.horde.reloadExpFunc()
+    local Player = FindMetaTable('Player')
+
+    function Player:Horde_SetExp(class_name, exp)
+        if SERVER then
+        end
+        if not self:IsValid() then return end
+        if not self.Horde_Exps then self.Horde_Exps = {} end
+        if not class_name then return end
+        exp = exp + CFG.bonusExp
+        self.Horde_Exps[class_name] = exp
+        local level = self:Horde_GetLevel(class_name)
+        if exp >= HORDE:GetExpToNextLevel(level + 1) then
+            self:Horde_SetLevel(class_name, level + 1)
+            self.Horde_Exps[class_name] = 0
+        end
+    end
+end
+
 hook.Add('InitPostEntity', 'shizlib-HordeBlacklistMap', function()
     HORDE.map_blacklist = CFG.blacklistMap
 
@@ -56,8 +76,7 @@ hook.Add('InitPostEntity', 'shizlib-HordeBlacklistMap', function()
         if not self:IsValid() then return end
         if not self.Horde_Exps then self.Horde_Exps = {} end
         if not class_name then return end
-        -- exp = exp + 3
-        exp = exp
+        exp = exp + CFG.bonusExp
         self.Horde_Exps[class_name] = exp
         local level = self:Horde_GetLevel(class_name)
         if exp >= HORDE:GetExpToNextLevel(level + 1) then
