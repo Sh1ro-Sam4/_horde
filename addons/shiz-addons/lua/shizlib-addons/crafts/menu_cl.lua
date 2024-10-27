@@ -114,6 +114,7 @@ function shizlib.Crafting.Menu(tbl, ent)
     fr:Center()
     fr:SetTitle('Крафты')
     fr:MakePopup()
+    fr:SetDraggable(true)
     function fr:Think()
         if input.IsKeyDown(KEY_ESCAPE) and self:IsKeyboardInputEnabled() then
             fr:Remove()
