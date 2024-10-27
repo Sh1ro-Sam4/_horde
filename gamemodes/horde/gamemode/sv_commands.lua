@@ -188,8 +188,8 @@ function ConfigMenu(ply)
 end
 
 function StatsMenu(ply)
-    net.Start("Horde_ToggleStats")
-    net.Send(ply)
+    -- net.Start("Horde_ToggleStats")
+    -- net.Send(ply)
 end
 
 hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
