@@ -18,7 +18,6 @@ resource.AddWorkshop('856642551') -- Titanfall Smart Pistol MK5
 
 resource.AddWorkshop('2052642961') -- SNPC Particle Resource Pack
 resource.AddWorkshop('853864395') -- Horror SNPC Revamp | BOSS
-resource.AddWorkshop('1250787888') -- Counter-Strike Nexon: zombies SNPCs
 
 resource.AddWorkshop('2930602619') -- HORDE: Custom Gadgets Pack
 resource.AddWorkshop('3078047587') -- HORDE: Custom Spells
