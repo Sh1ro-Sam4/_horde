@@ -69,7 +69,7 @@ end)
 :SetFlag('stats')
 
 kate.AddCommand('settings', function(pl)
-    pl:SendLua('SETTINGS.OpenUI()')
+    pl:SendLua('SETTINGS.OpenGUI()')
 end)
 :SetFlag('settings')
 

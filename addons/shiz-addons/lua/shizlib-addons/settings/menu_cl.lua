@@ -45,7 +45,7 @@ local function openSettingsCategoryMenu(pnl, info)
     end
 end
 
-function SETTINGS.OpenUI()
+function SETTINGS.OpenGUI()
     SETTINGS.frame = vgui.Create('DFrame')
 
     local a = SETTINGS.frame
