@@ -19,6 +19,18 @@ function SWEP:SetClipInfo(load)
     self.LastClip1 = load
 end
 
+local reload_male = {
+	Sound("vo/npc/male01/youdbetterreload01.wav"),
+	Sound("vo/npc/male01/coverwhilereload01.wav"),
+	Sound("vo/npc/male01/coverwhilereload02.wav"),
+	Sound("vo/npc/male01/gottareload01.wav"),
+}
+local reload_female = {
+	Sound("vo/npc/female01/youdbetterreload01.wav"),
+	Sound("vo/npc/Alyx/youreload01.wav"),
+	Sound("vo/npc/Alyx/youreload02.wav"),
+}
+
 function SWEP:Reload()
     if IsValid(self:GetHolster_Entity()) then return end
     if self:GetHolster_Time() > 0 then return end
@@ -189,6 +201,16 @@ function SWEP:Reload()
         self:ExitSights()
         self.Sighted = false
     end
+
+    if SERVER then
+		if self:Clip1() < self.Primary.ClipSize then
+			if self.Owner:isFemale() then
+				self.Owner:EmitSound(table.Random(reload_female),62,100,1,CHAN_AUTO)
+			else
+				self.Owner:EmitSound(table.Random(reload_male),62,100,1,CHAN_AUTO)
+			end
+		end
+	end
 
     self:GetBuff_Hook("Hook_PostReload")
 end
