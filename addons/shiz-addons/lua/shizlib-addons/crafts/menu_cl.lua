@@ -21,7 +21,7 @@ surface.CreateFont('shz-craft-small', {
     size = s(13),
 })
 
-local function openRecipeMenu(pnl, tbl, ent, base)
+function shizlib.Crafting.openRecipeMenu(pnl, tbl, ent, base)
     function pnl:Paint(w, h)
         draw.SimpleText('Ингридиенты: ', 'shz-craft-big', pnl:GetWide()/4,s(50), color_white, 1, 0)
         draw.SimpleText('Итог: ', 'shz-craft-big', pnl:GetWide()/2 + pnl:GetWide()/4, s(150), color_white, 1, 1)
@@ -158,7 +158,7 @@ function shizlib.Crafting.Menu(tbl, ent)
         function recipeBtn:DoClick()
             pnl:Clear()
 
-            openRecipeMenu(pnl, v, ent, v.base)
+            shizlib.Crafting.openRecipeMenu(pnl, v, ent, v.base)
         end
     end
 end
