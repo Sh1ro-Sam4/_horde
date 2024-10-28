@@ -116,22 +116,22 @@ hook.Add("EntityTakeDamage", "Horde_EntityTakeDamage", function(target, dmg)
     end
 end)
 
--- Fall damage handling
-hook.Add("GetFallDamage", "RealisticDamage", function(ply, speed)
-    local bonus = { less = 1 }
-    local dmg = 0
-    if HORDE.difficulty == difficulty_normal then
-        dmg = 10
-    elseif HORDE.difficulty == difficulty_hard then
-        dmg = math.max(0, math.ceil(0.2418 * speed - 141.75)) / 2
-    else
-        -- css fall damage
-        dmg = math.max(0, math.ceil(0.2418 * speed - 141.75))
-    end
+-- -- Fall damage handling
+-- hook.Remove("GetFallDamage", "RealisticDamage", function(ply, speed)
+--     local bonus = { less = 1 }
+--     local dmg = 0
+--     if HORDE.difficulty == difficulty_normal then
+--         dmg = 10
+--     elseif HORDE.difficulty == difficulty_hard then
+--         dmg = math.max(0, math.ceil(0.2418 * speed - 141.75)) / 2
+--     else
+--         -- css fall damage
+--         dmg = math.max(0, math.ceil(0.2418 * speed - 141.75))
+--     end
 
-    hook.Run("Horde_GetFallDamage", ply, speed, bonus)
-    return dmg * bonus.less
-end)
+--     hook.Run("Horde_GetFallDamage", ply, speed, bonus)
+--     return dmg * bonus.less
+-- end)
 
 -- Non-hook settings
 -- Wave count scaling
