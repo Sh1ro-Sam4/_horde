@@ -136,6 +136,7 @@ shizlib.Resources = {
         func = function(self, ply)
             if CFG.bonusActive then
                 ply:ChatPrint(Color(0, 0, 0), '| ', 'Невозможно активировать. Уже активно.')
+                return
             end
             CFG.bonusExp = 1
             CFG.bonusActive = true
