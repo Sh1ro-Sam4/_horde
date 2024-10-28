@@ -371,6 +371,7 @@ end
 	-- Head
 	local a = New("strawhat", {name = "Straw Hat", price = 750000, slot = SH_SLOT_HEAD, mdl = "models/captainbigbutt/skeyler/hats/strawhat.mdl"})
 	a.scale = 0.9
+	a.effect = true
 
 	local a = New("sunhat", {name = "Sunshine Hat", price = 750000, slot = SH_SLOT_HEAD, mdl = "models/captainbigbutt/skeyler/hats/sunhat.mdl"})
 	a.scale = 0.9
