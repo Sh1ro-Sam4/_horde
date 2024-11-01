@@ -57,6 +57,22 @@ function meta:SH_EquipAccessory(id)
 		net.WriteString(id)
 		net.WriteBool(true)
 	net.Broadcast()
+	
+	if acc.unusual then
+		if IsValid(shizlib.Accessory[self]) then SafeRemoveEntity(shizlib.Accessory[self]) end
+		shizlib.Accessory[self] = ents.Create('prop_physics')
+		local a = shizlib.Accessory[self]
+
+		a:SetModel('models/hunter/blocks/cube025x025x025.mdl')
+		a:SetNoDraw(true)
+		a:SetSkin(1)
+		a:DrawShadow(false)
+		a:PhysicsInit(SOLID_VPHYSICS)
+		a:SetMoveType(MOVETYPE_VPHYSICS)
+		a:SetSolid(SOLID_VPHYSICS)
+		a:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
+		ParticleEffectAttach('acc_effect2', 1, a, 1)
+	end
 
 	hook.Run('shizlib:accessoryEquip', self, id)
 
@@ -81,6 +97,10 @@ function meta:SH_UnequipAccessory(id)
 		net.WriteString(id)
 		net.WriteBool(false)
 	net.Broadcast()
+
+	if acc.unusual then
+		if IsValid(shizlib.Accessory[self]) then SafeRemoveEntity(shizlib.Accessory[self]) end
+	end
 
 	return true
 end

@@ -22,4 +22,15 @@ function Player:SHZ_GiveItemstoreGift(waves, diff)
         item:SetModel(shizlib.Resources[entity].model)
         con:AddItem(item, true)
     end
-end 
+end
+
+shizlib.Accessory = shizlib.Accessory or {}
+
+-- hook.Add('Think', 'shizlib-Accessory', function()
+-- timer.Create('shizlib-Accessory', .3, 0, function()
+--     for ply, info in pairs(shizlib.Accessory) do
+--         local ed = EffectData()
+--         ed:SetOrigin(ply:GetPos() + ply:OBBCenter()*1.7)
+--         util.Effect(info, ed)
+--     end
+-- end)

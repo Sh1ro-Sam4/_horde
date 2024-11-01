@@ -37,6 +37,14 @@ function meta:SH_AddAccessory(id, nopreview)
 		cs:SetMoveType(MOVETYPE_NONE)
 		cs:Spawn()
 
+		if acc.unusual then
+			local ef = EffectData()
+			ef:SetOrigin(cs:GetPos())
+			ef:SetEntity(cs)
+
+			util.Effect('acc_effect2', ef)
+		end
+
 		self.SH_Accessories[id] = cs
 	end
 

@@ -1,25 +1,91 @@
-function EFFECT:Init(effect_data)
-	self.effect_data = effect_data
-    local pos = effect_data:GetOrigin()
-    local scale = effect_data:GetScale() or 1
-    local normal = VectorRand()
-    self.emitter = ParticleEmitter(pos, true)
-    local ringstart = pos
-    local particle
-	for i=1, 2 do
-		particle = self.emitter:Add("effects/select_ring", ringstart)
-		particle:SetDieTime(0.5 + i * 0.1)
-		particle:SetColor(255, 200, 200)
-		particle:SetStartAlpha(255)
-		particle:SetEndAlpha(0)
-		particle:SetStartSize(0)
-		particle:SetEndSize(150)
-		particle:SetAngles(normal:Angle())
-	end
+function EFFECT:Init(ed)
+
+    local vOrig = ed:GetOrigin()
+    self.Emitter = ParticleEmitter(vOrig)
+
+    for i=1,72 do
+        local sparks = self.Emitter:Add("effects/spark", vOrig)
+        if (sparks) then
+            sparks:SetColor(0, 200, 200)
+            sparks:SetVelocity(VectorRand():GetNormal()*math.random(300, 500))
+            sparks:SetRoll(math.Rand(0, 360))
+            sparks:SetRollDelta(math.Rand(-2, 2))
+            sparks:SetDieTime(2)
+            sparks:SetLifeTime(0)
+            sparks:SetStartSize(3)
+            sparks:SetStartAlpha(255)
+            sparks:SetStartLength(15)
+            sparks:SetEndLength(3)
+            sparks:SetEndSize(3)
+            sparks:SetEndAlpha(255)
+            sparks:SetGravity(Vector(0,0,-800))
+        end
+
+        local sparks2 = self.Emitter:Add("effects/spark", vOrig)
+        if (sparks2) then
+            sparks2:SetColor(0, 200, 200)
+            sparks2:SetVelocity(VectorRand():GetNormal()*math.random(400, 800))
+            sparks2:SetRoll(math.Rand(0, 360))
+            sparks2:SetRollDelta(math.Rand(-2, 2))
+            sparks2:SetDieTime(0.4)
+            sparks2:SetLifeTime(0)
+            sparks2:SetStartSize(5)
+            sparks2:SetStartAlpha(255)
+            sparks2:SetStartLength(80)
+            sparks2:SetEndLength(0)
+            sparks2:SetEndSize(5)
+            sparks2:SetEndAlpha(0)
+            sparks2:SetGravity(Vector(0,0,0))
+        end
+    end
+
+    for i=1,8 do
+        local flash = self.Emitter:Add("effects/combinemuzzle2_dark", vOrig)
+        if (flash) then
+            flash:SetColor(0, 255, 255)
+            flash:SetVelocity(VectorRand():GetNormal()*math.random(10, 30))
+            flash:SetRoll(math.Rand(0, 360))
+            flash:SetDieTime(0.10)
+            flash:SetLifeTime(0)
+            flash:SetStartSize(170)
+            flash:SetStartAlpha(255)
+            flash:SetEndSize(180)
+            flash:SetEndAlpha(0)
+            flash:SetGravity(Vector(0,0,0))		
+        end
+
+        local quake = self.Emitter:Add("effects/splashwake3", vOrig)
+        if (quake) then
+            quake:SetColor(0, 200, 200)
+            quake:SetVelocity(VectorRand():GetNormal()*math.random(10, 30))
+            quake:SetRoll(math.Rand(0, 360))
+            quake:SetDieTime(0.10)
+            quake:SetLifeTime(0)
+            quake:SetStartSize(180)
+            quake:SetStartAlpha(200)
+            quake:SetEndSize(200)
+            quake:SetEndAlpha(0)
+            quake:SetGravity(Vector(0,0,0))		
+        end
+
+        local wave = self.Emitter:Add("sprites/heatwave", vOrig)
+        if (wave) then
+            wave:SetColor(0, 200, 200)
+            wave:SetVelocity(VectorRand():GetNormal()*math.random(10, 30))
+            wave:SetRoll(math.Rand(0, 360))
+            wave:SetDieTime(0.25)
+            wave:SetLifeTime(0)
+            wave:SetStartSize(200)
+            wave:SetStartAlpha(255)
+            wave:SetEndSize(200)
+            wave:SetEndAlpha(0)
+            wave:SetGravity(Vector(0,0,0))
+        end
+    end
 end
 
 function EFFECT:Think()
-    return false
+    return true
 end
 
 function EFFECT:Render()
