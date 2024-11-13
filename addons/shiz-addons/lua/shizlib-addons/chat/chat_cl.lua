@@ -96,6 +96,33 @@ function PANEL:Paint(w, h)
 end
 
 derma.DefineControl('shizlib.ChatPrefix', 'mrppr\'s Chat Prefix', PANEL, 'DButton')
+
+-- big VastRP paste
+-- big pasta https://wiki.facepunch.com/gmod/Global.HSVToColor lel 2
+local function DrawRainbowText(frequency, str, font, x, y)
+	surface.SetFont(font)
+	surface.SetTextPos(x, y)
+	for i = 1, #str do
+		local col = HSVToColor(((CurTime() * frequency) + i * 10) % 360, 1, 1)
+		surface.SetTextColor(col.r, col.g, col.b)
+		surface.DrawText(string.sub(str, i, i))
+	end
+end
+
+-- SimpleTextOutlined repasted
+local function DrawRainbowTextOutlined(frequency, str, font, x, y, outlinewidth, outlinecolour)
+	local steps = ( outlinewidth * 2 ) / 3
+	if steps < 1 then steps = 1 end
+
+	for _x = -outlinewidth, outlinewidth, steps do
+		for _y = -outlinewidth, outlinewidth, steps do
+			draw.SimpleText(str, font, x + _x, y + _y, outlinecolour)
+		end
+	end
+
+	return DrawRainbowText(frequency, str, font, x, y)
+end
+
 PANEL = {}
 
 function PANEL:Init()
@@ -115,7 +142,11 @@ function PANEL:SetUnderline(b)
 end
 
 function PANEL:Paint(w, h)
-    shizlib.ShadowText(self._Text, 'shizlib.Label', w/2, p(2), self._Color or Color(255, 255, 255), 1, 0)
+    if self._Color.a == 0 then
+        DrawRainbowTextOutlined(100, self._Text, 'shizlib.Label', 0, 0, 0.5, color_black)
+    else
+        shizlib.ShadowText(self._Text, 'shizlib.Label', w/2, p(2), self._Color or color_white, 1, 0)
+    end
 
     if self._Underline then
         draw.RoundedBox(0, 0, h - 4, w, 1, self._Color or Color(255, 255, 255))
@@ -1049,10 +1080,6 @@ end)
 
 concommand.Add('shizlib_chat_reload', function(pl, cmd, args, argstr)
     shizlib.Create()
-end)
-
-hook.Remove('ChatText', 'RemoveJoinLeaveMsg', function(_, _, _, mode)
-	if mode == 'joinleave' then return true end
 end)
 
 hook.Add('OnPauseMenuShow', 'shizlib-ClosePanelOnESC', function()
