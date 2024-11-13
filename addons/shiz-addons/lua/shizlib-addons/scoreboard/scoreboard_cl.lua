@@ -131,9 +131,6 @@ function scoreboard.Open()
             if pl:IsAdmin() then
                 surface.SetFont('font.22')
                 surface.SetTextPos(s(60), s(5))
-                if ply:IsSuperAdmin() then
-                    print( name:sub(1, 1) )
-                end
                 for i = 1, #name do
                     surface.SetTextColor(HSVToColor( ( ( RealTime() * 100 ) - i * 15 ) % 360, 1, 1 ))
                     surface.DrawText( name:sub(i, i) )
