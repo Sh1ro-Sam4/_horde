@@ -41,13 +41,11 @@ if SERVER then
     end)
 
     hook.Add('PlayerConnect', 'shizlib-ChatNotifyConnecting', function(name, ip)
-        local usergroup = 'user'
-        kate.DB:Query( string.format( 'SELECT * FROM kate_usergroups WHERE IP = %q;', ip ) )
-        :SetOnSuccess( function( _, info )
-            usergroup = info[1]['ExpireGroup']
-        end )
-        :Start()
-        shizlib.Broadcast(Color(0,0,0), '(CONNECT) ', string.format('%s %s подключается на сервер!', usergroup ~= 'user' and 'VIP' or 'Игрок', name))
+        shizlib.Broadcast(Color(0,0,0), '(CONNECT) ', string.format('%s подключается на сервер! (1/2)', name))
+    end)
+
+    hook.Add('PlayerInitialSpawn', 'shizlib-ChatNotifyConnecting1', function(ply)
+        shizlib.Broadcast(Color(0,0,0), '(CONNECT) ', string.format('%s подключился на сервер (2/2)', ply:Name()))
     end)
 
     hook.Add('PlayerDisconnected', 'shizlib-ChatNotifyDisconnecting', function(ply) 

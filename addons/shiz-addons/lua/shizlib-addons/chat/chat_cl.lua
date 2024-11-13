@@ -1060,3 +1060,8 @@ hook.Add('OnPauseMenuShow', 'shizlib-ClosePanelOnESC', function()
         return false
     end
 end)
+
+gameevent.Listen('player_connect')
+hook.Add('player_connect', 'shizlib-ChatNotifyConnect', function(data)
+    chat.AddText(color_white, '(CONNECT)', color_white, ('Игрок %s подключается на сервер'):format(data.name))
+end)

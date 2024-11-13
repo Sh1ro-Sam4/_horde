@@ -128,7 +128,19 @@ function scoreboard.Open()
 
             local name = pl:LongName()
 
-            draw.SimpleText(string.format( '%s', name ), 'font.22', s(60), s(5), color_white, 0, 0)
+            if pl:IsAdmin() then
+                surface.SetFont('font.22')
+                surface.SetTextPos(s(60), s(5))
+                if ply:IsSuperAdmin() then
+                    print( name:sub(1, 1) )
+                end
+                for i = 1, #name do
+                    surface.SetTextColor(HSVToColor( ( ( RealTime() * 100 ) - i * 15 ) % 360, 1, 1 ))
+                    surface.DrawText( name:sub(i, i) )
+                end
+            else
+                draw.SimpleText(string.format( '%s', name ), 'font.22', s(60), s(5), color_white, 0, 0)
+            end
             draw.SimpleText(string.format( '%s', class ), 'font.22', s(380), h/2, color_white, 0, 1)
             draw.SimpleText(string.format( '%s$', pl:Horde_GetMoney() ), 'font.22', s(60), s(30), color_white, 0, 0)
             draw.SimpleText(string.format( '%s: %s', translate.Get("Scoreboard_Kill"), pl:Frags() ), 'font.22', w/1.3, h/2, color_white, 1, 1)
