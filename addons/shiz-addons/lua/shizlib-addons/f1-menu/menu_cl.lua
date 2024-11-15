@@ -85,6 +85,47 @@ function F1.OpenGUI()
             end
         end
     sheet:AddSheet('Крафты', craft, 'icon16/bricks.png')
+
+    local settings = sheet:Add('DPanel')
+        local under_scroll = settings:Add('Panel')
+        under_scroll:Dock(LEFT)
+        under_scroll:SetWide(s(200))
+        function under_scroll:Paint(w, h)
+            draw.RoundedBoxEx(6, 0, 0, w, h, cols.hvr, true, false, true)
+        end
+
+        local scroll = under_scroll:Add('DScrollPanel')
+        scroll:Dock(FILL)
+
+        local pnl = settings:Add('Panel')
+        pnl:Dock(FILL)
+        pnl:DockPadding(s(10), s(10), s(10), s(10))
+
+        for name, info in SortedPairs(SETTINGS.Config) do
+            local categoryBtn = scroll:Add('DButton')
+            categoryBtn:Dock(TOP)
+            categoryBtn:SetText(name)
+            categoryBtn.Icon = info.Icon and info.Icon or nil
+            function categoryBtn:Paint(w, h)
+                local off = h > 20 and 2 or 1
+                if self.Depressed then
+                    draw.RoundedBox(4, 0, off, w, h-off, cols.g)
+                    draw.RoundedBox(4, 0, off, w, h-off, cols.hvr)
+                else
+                    draw.RoundedBox(4, 0, 0, w, h, ColorAlpha(cols.g, 150))
+                    draw.RoundedBox(4, 0, 0, w, h-off, cols.g)
+                end
+                if self.Icon then
+                    DTR(4, 4, self:GetTall()-8, self:GetTall()-8, colsor_white, self.Icon)
+                end
+            end
+            function categoryBtn:DoClick()
+                pnl:Clear()
+
+                SETTINGS.openSettingsCategoryMenu(pnl, info)
+            end
+        end
+    sheet:AddSheet('Настройки', settings, 'icon16/cog.png')
 end
 
 hook.Add('Think', 'F1-OpenGUI', function(ply, key)
