@@ -4,7 +4,7 @@ local s = shizlib.surface.s
 local DTR = shizlib.surface.DTR
 local colors = CFG.skinColors
 
-local function openSettingsCategoryMenu(pnl, info)
+function SETTINGS.openSettingsCategoryMenu(pnl, info)
     for k, v in SortedPairs(info) do
         if v.checkbox then
             local a = pnl:Add('DCheckBoxLabel')
@@ -21,27 +21,43 @@ local function openSettingsCategoryMenu(pnl, info)
                 RunConsoleCommand(v.convar)
             end
         end
-        -- if v.number then
-        --     local a = pnl:Add('Panel')
-        --     a:Dock(TOP)
-        --     a:SetTall(s(25))
+        if v.number then
+            local a = pnl:Add('Panel')
+            a:Dock(TOP)
+            a:SetTall(s(25))
 
-        --     a.lbl = a:Add('DLabel')
-        --     a.lbl:SetText(v.name .. ' | НЕ РАБОТАЕТ!')
-        --     a.lbl:SetFont('font.20')
-        --     a.lbl:Dock(LEFT)
-        --     a.lbl:DockMargin(0, 0, s(10), 0)
-        --     a.lbl:SizeToContents()
+            a.lbl = a:Add('DLabel')
+            a.lbl:SetText(v.name)
+            a.lbl:SetFont('font.20')
+            a.lbl:Dock(LEFT)
+            a.lbl:DockMargin(0, 0, s(10), 0)
+            a.lbl:SizeToContents()
 
-        --     a.textEntry = a:Add('DTextEntry')
-        --     local textEntry = a.textEntry
-        --     textEntry:Dock(FILL)
-        --     textEntry:SetNumeric(true)
-        --     textEntry:SetValue(tonumber(GetConVar(v.convar):GetInt()))
-        --     function textEntry:OnChange()
-        --         GetConVar(v.convar):SetInt(self:GetValue())
-        --     end
-        -- end
+            a.textEntry = a:Add('DTextEntry')
+            local textEntry = a.textEntry
+            textEntry:Dock(FILL)
+            textEntry:SetNumeric(true)
+            textEntry:SetValue(tonumber(GetConVar(v.convar):GetInt()))
+            function textEntry:OnChange()
+                if not self:GetValue() then
+                    return print('SETTINGS MENU | invalid value')
+                end
+                if self:GetValue() == nil or self:GetValue() == '' then
+                    return print('SETTINGS MENU | nil value')
+                end
+
+                if tonumber(self:GetValue()) > v.max then
+                    GetConVar(v.convar):SetInt(tonumber(v.max))
+                    print('SETTINGS MENU | more than max value')
+                    return
+                elseif tonumber(self:GetValue()) < v.min then
+                    GetConVar(v.convar):SetInt(tonumber(v.min))
+                    print('SETTINGS MENU | less than min value')
+                    return
+                end
+                GetConVar(v.convar):SetInt(tonumber(self:GetValue()))
+            end
+        end
     end
 end
 
@@ -94,7 +110,7 @@ function SETTINGS.OpenGUI()
         function categoryBtn:DoClick()
             pnl:Clear()
 
-            openSettingsCategoryMenu(pnl, info)
+            SETTINGS.openSettingsCategoryMenu(pnl, info)
         end
     end
 end
