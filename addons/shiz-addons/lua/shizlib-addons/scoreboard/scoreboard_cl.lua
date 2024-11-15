@@ -133,7 +133,7 @@ function scoreboard.Open()
                 surface.SetTextPos(s(60), s(5))
                 for i = 1, #name do
                     surface.SetTextColor(HSVToColor( ( ( RealTime() * 100 ) - i * 15 ) % 360, 1, 1 ))
-                    surface.DrawText( name:sub(i, i) )
+                    surface.DrawText( utf8.sub(name, i, i) )
                 end
             else
                 draw.SimpleText(string.format( '%s', name ), 'font.22', s(60), s(5), color_white, 0, 0)

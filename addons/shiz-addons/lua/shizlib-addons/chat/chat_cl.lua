@@ -105,7 +105,7 @@ local function DrawRainbowText(frequency, str, font, x, y)
 	for i = 1, #str do
 		local col = HSVToColor(((CurTime() * frequency) + i * 10) % 360, 1, 1)
 		surface.SetTextColor(col.r, col.g, col.b)
-		surface.DrawText(string.sub(str, i, i))
+		surface.DrawText(utf8.sub(str, i, i))
 	end
 end
 
@@ -243,7 +243,7 @@ local function parse(str)
 
         if found then
             if lastMatchEnd ~= i - 1 then
-                table.insert(entities, str:sub(lastMatchEnd + 1, i - 1))
+                table.insert(entities, utf8.sub(str, lastMatchEnd + 1, i - 1))
             end
 
             table.insert(entities, found)
@@ -255,7 +255,7 @@ local function parse(str)
     end
 
     if lastMatchEnd < #str then
-        table.insert(entities, str:sub(lastMatchEnd + 1, #str))
+        table.insert(entities, utf8.sub(str, lastMatchEnd + 1, #str))
     end
 
     return entities
@@ -1086,9 +1086,4 @@ hook.Add('OnPauseMenuShow', 'shizlib-ClosePanelOnESC', function()
     if LocalPlayer().ShowChat or IsValid(shizlib.Crafting.fr) or IsValid(F1.frame) then
         return false
     end
-end)
-
-gameevent.Listen('player_connect')
-hook.Add('player_connect', 'shizlib-ChatNotifyConnect', function(data)
-    chat.AddText(color_white, '(CONNECT)', color_white, ('Игрок %s подключается на сервер'):format(data.name))
 end)
