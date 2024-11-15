@@ -8,7 +8,7 @@ function F1.OpenGUI()
     F1.frame = vgui.Create('DFrame')
     
     local a = F1.frame
-    a:SetSize(s(1500), s(900))
+    a:SetSize(s(900), s(900))
     a:Center()
     a:SetTitle(GetHostName())
     a:MakePopup()
@@ -34,7 +34,7 @@ function F1.OpenGUI()
             draw.SimpleText('Я знаю что выглядит колхозно.. Но это только сейчас', 'font.20', 0, h, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM)
         end
 
-        local inv = inventory:Add( "ItemStoreContainerWindow" )
+        local inv = inventory:Add( "shz-ISContainerWindow" )
         inv:SetContainerID( LocalPlayer().InventoryID )
         inv:SetTitle( itemstore.Translate( "inventory" ) )
         inv:ShowCloseButton( false )
@@ -133,3 +133,122 @@ hook.Add('Think', 'F1-OpenGUI', function(ply, key)
     if IsValid(F1.frame) then return end
     F1.OpenGUI()
 end)
+
+
+
+// some vgui for future
+
+-- shz-ISContainer
+local PANEL = {}
+
+function PANEL:Init()
+	self.Pages = {}
+	self.Slots = {}
+
+	table.insert( itemstore.containers.Panels, self )
+end
+
+function PANEL:SetContainerID( id )
+	self.ContainerID = id
+	self:Refresh()
+end
+
+function PANEL:GetContainerID()
+	return self.ContainerID
+end
+
+function PANEL:Refresh()
+	local id = self:GetContainerID()
+	local con = itemstore.containers.Get( id )
+
+	if con then
+		for i = 1, con:GetSize() do
+			local page_id = con:GetPageFromSlot( i )
+			local page = self.Pages[ page_id ]
+
+			if not page then
+				page = vgui.Create( "DIconLayout" )
+				page:SetSpaceX( 1 )
+				page:SetSpaceY( 1 )
+
+				self.Pages[ page_id ] = page
+
+				self:AddSheet( itemstore.Translate( "page", page_id ), page )
+			end
+
+			local slot = self.Slots[ i ]
+
+			if not slot then
+				slot = page:Add( "ItemStoreSlot" )
+				slot:SetSize( 40, 40 )
+				slot:SetContainerID( self:GetContainerID() )
+				slot:SetSlot( i )
+
+				self.Slots[ i ] = slot
+			end
+
+			slot:SetItem( con:GetItem( i ) )
+			slot:Refresh()
+		end
+	end
+
+	self:SizeToContents()
+end
+
+function PANEL:SizeToContents()
+	local id = self:GetContainerID()
+	local con = itemstore.containers.Get( id )
+
+	-- if con then
+	-- 	local w = con:GetWidth() * 41 + 15
+	-- 	local h = con:GetHeight() * 41 + 35
+
+	-- 	self:SetSize( w, h )
+	-- end
+    self:SetSize(s(870), s(870))
+    if con then
+        for i = 1, con:GetSize() do
+            local max_size = itemstore.config.InventorySizes['default']
+            local x, y = self:GetSize()
+            local w = ((x - 15) / max_size[1] - max_size[1] * 1)
+            local h = ((y - 35) / max_size[2] - max_size[2] * 1)
+            self.Slots[i]:SetSize(h, h)
+        end
+    end
+end
+
+vgui.Register( "shz-ISContainer", PANEL, "DPropertySheet" )
+
+
+-- shz-ISContainerWindow
+local PANEL = {}
+
+function PANEL:Init()
+	self:SetSkin('shizlib')
+	self:SetAlpha(0)
+	self:AlphaTo(255, .4, 0)
+
+	self.Container = vgui.Create( "shz-ISContainer", self )
+	self.Container:SizeToContents()
+end
+
+function PANEL:PerformLayout()
+	self:SetSize( self.Container:GetWide() + 10, self.Container:GetTall() + 32 )
+	self.Container:SetPos( 5, 27 )
+
+	self.BaseClass.PerformLayout( self )
+end
+
+function PANEL:Refresh()
+	self.Container:Refresh()
+end
+
+function PANEL:SetContainerID( id )
+	self.Container:SetContainerID( id )
+end
+
+function PANEL:GetContainerID()
+	return self.Container:GetContainerID()
+end
+
+vgui.Register( "shz-ISContainerWindow", PANEL, "DFrame" )
